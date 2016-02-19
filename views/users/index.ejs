@@ -4,11 +4,11 @@
 </head>
 <body>
 
-got to prompts index.ejs
+got to users index.ejs
 
 
 <p>Add a new user</p>
-<form action="../users/signup" method="POST">
+<form action="/users/signup" method="POST">
 <input type="text" name="username" placeholder="username">
 <input type="text" name="email" placeholder="email">
 <input type="text" name="password" placeholder="password">
@@ -18,7 +18,7 @@ got to prompts index.ejs
 
 <!-- log into account -->
 <p>Log in</p>
-<form action="../users/login" method="POST">
+<form action="/users/login" method="POST">
 <input type="text" name="email" placeholder="email">
 <input type="text" name="password" placeholder="password">
 <input type="submit">

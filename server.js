@@ -1,45 +1,42 @@
 // REQUIREMENTS
 // -----------------------------------------------------------------
 var express = require("express");
-var morgan = require("morgan");
+var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
 var mongoose = require("mongoose");
-var port = process.env.PORT || 3000;
 var mongoUri = process.env.MONGOLAB_URI || "mongodb://127.0.0.1:27017/amuseme";
+var port = process.env.PORT || 3000;
 var app = express();
-
 
 
 // MIDDLEWARE
 // -----------------------------------------------------------------
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
+app.use(express.static("public"));
+
 // connect to mongo
 mongoose.connect(mongoUri);
 
-// configure morgan
-app.use(morgan("dev"));
 
-// require controllers
-var promptsController = require("./controllers/promptsController.js");
-
-
-
-
-
-// redirect root index to /prompts
 app.get("/", function(req, res) {
-  res.send("Hi"); // confirms root index is accessible
+  res.redirect("/users"); // needs to be changed
 });
 
 
+var usersController = require("./controllers/usersController.js");
+app.use("/users", usersController);
 
+var promptsController = require("./controllers/promptsController.js");
 app.use("/prompts", promptsController);
 
 
 
-
-
-
-// LISTEN
-// -----------------------------------------------------------------
-app.listen(port, function() {
-  console.log("Running on port: " + port);
+// LISTENER
+// ---------------------------------------------------
+mongoose.connection.once("open", function() {
+  console.log("Connected to mongo.");
+  app.listen(port, function(){
+    console.log("Server is listening at: " + port);
+  });
 });
