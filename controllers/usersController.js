@@ -26,7 +26,7 @@ router.get("/logout", function(req, res) {
 router.post("/login", passport.authenticate("local-login", { 
   failureRedirect: "/usersss"}), function(req, res) { // CHANGE FAILURE REDIRECT
   // res.send(req.user); // checks accessible data
-  res.redirect("/prompts");
+  res.redirect("/successss");
 });
 
 
