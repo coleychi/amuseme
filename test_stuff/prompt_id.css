@@ -95,7 +95,8 @@ nav a:hover{
 	padding: 0.8em;
 	margin-top: 1em;
 	margin-bottom: 1.5em;
-	border: 1px solid gray;
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
 	position: relative;
 }
 
@@ -107,7 +108,7 @@ nav a:hover{
 	box-sizing: border-box;
 	position: absolute;
 	bottom: 0;
-	background-color: gray;
+	background-color: #d3d3d3;
 	width: 100%;
 	margin-left: -0.8em;
 	padding: 0.2em 0.8em 0;
@@ -153,9 +154,39 @@ nav a:hover{
 	background-color: gray;
 	width: 100%;
 /*	margin-left: -0.8em;*/
-/*	padding: 0.2em 0.8em 0;*/
+/*	padding: 0.2 em 0.8em 0;*/
 }
 /*end response with panel column*/
+
+
+/* response with table */
+.response-table {
+	width: 80%;
+	margin: 1em auto;
+	border-collapse: collapse;
+}
+
+.response-table td {
+	padding: 0;
+	margin: 0;
+}
+
+.table-content {
+	border: 1px solid gray;
+	box-sizing: border-box;
+}
+
+.table-panel {
+	width: 10%;
+/*	background-color: red;*/
+}
+
+.bottom {
+	background-color: gray;
+	box-sizing: border-box;
+/*	padding: 0.5em;*/
+}
+/*	end response with table */
 
 
 #post-response {
