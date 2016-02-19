@@ -31,7 +31,7 @@ module.exports = function(passport) {
     // User.findOne wont fire unless data is sent back
     process.nextTick(function() { 
 
-      // find a user whose email is the same as the forms email 
+      // find a user whose username is the same as the forms username 
       // (checking to see if user trying to log in exists)
       User.findOne({"username": username}, function(err, user) {
 
@@ -52,7 +52,7 @@ module.exports = function(passport) {
 
           newUser.username = username;
           newUser.password = newUser.generateHash(password); // calls method inside users model
-          newUser.email = req.body.email; // call upon req.body to set username
+          newUser.email = req.body.email; // call upon req.body to set email
 
           // save user
           newUser.save(function(err) {
@@ -76,19 +76,16 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
 
-  function(req, email, password, done) {
+  function(req, username, password, done) {
 
     // console.log("req.body:"); 
     // console.log(req.body); // confirming that info is being grabbed
 
-    // find user with email that matches the email in form
+    // find user with username that matches the username in form
     // checking if user trying to login already exists
-    User.findOne({"email": email}, function(err, user) {
+    User.findOne({"username": username}, function(err, user) {
 
-      // console.log("user object:"); // checks user being accessed
-      // console.log(user);
-      // console.log("error is:");
-      // console.log(err);
+      // console.log(user); // checks object being accessed
 
       // if there is an error, return the error
       if (err) {
@@ -115,5 +112,6 @@ module.exports = function(passport) {
 
   }));
 
-
 }; // closes module.exports
+
+

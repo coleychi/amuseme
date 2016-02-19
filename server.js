@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(methodOverride("_method"));
 
 //configure morgan
-app.use(morgan('dev')); 
+app.use(morgan("dev")); 
 
 // configure passport
 app.use(session({ secret: "amusemeamuseme", resave: true, saveUninitialized: true })); // session secret
@@ -60,11 +60,8 @@ app.get("/", function(req, res) {
 
 
 
-// LISTENER
+// LISTEN
 // ---------------------------------------------------
-mongoose.connection.once("open", function() {
-  console.log("Connected to mongo.");
-  app.listen(port, function(){
-    console.log("Server is listening at: " + port);
-  });
+app.listen(port, function() {
+    console.log("Listening on port: "+ port);
 });
