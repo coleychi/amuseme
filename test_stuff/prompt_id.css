@@ -235,3 +235,9 @@ footer {
 	width: 30%;
 }
 
+.response-number {
+	background-color: white;
+	padding: 0.3em;
+	border-radius: 50%;
+}
+
