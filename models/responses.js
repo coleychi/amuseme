@@ -11,7 +11,9 @@ var responseSchema = new mongoose.Schema({
   responseBody: {type: String, required: true},
   timestamp: {type: Date, default: Date.now},
   author: {type: String},
-  authorid: {type: String}
+  authorid: {type: String},
+  promptBody: {type: String},
+  promptid: {type: String}
 });
 
 

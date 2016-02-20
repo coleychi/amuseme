@@ -313,6 +313,33 @@ nav li a:hover {
 	border-bottom: 1px solid gray;
 }
 
+.profile-response {
+	width: 95%;
+	margin: auto;
+/*	border-top: 3px solid red;*/
+/*	border: 1px solid red;*/
+	border-bottom: 5px solid red;
+	margin-bottom: 2.5em;
+/*	background-color: red;*/
+}
+
+.profile-response p {
+	padding: 0.5em;
+	padding-bottom: 0.75em;
+}
+
+.profile-response span {
+	display: block;
+	background-color: #efefef;
+	padding: 0.3em 1em 0.3em 1em;
+	font-size: 0.75em;
+}
+
+.promptbody span {
+	display: block;
+	background-color: #efefef;
+}
+
 
 footer {
 	overflow: auto;
