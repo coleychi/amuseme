@@ -9,6 +9,12 @@ var User = require("../models/users.js");
 
 // ROUTES
 // -----------------------------------------------------------------
+// INDEX-- users root index (for test only)
+router.get("/", function(req, res) {
+  res.render("users/index.ejs");
+});
+
+
 // SIGNUP-- create a new account
 router.post("/signup", passport.authenticate("local-signup", { 
   failureRedirect: "/users"}), function(req, res) {
@@ -19,19 +25,19 @@ router.post("/signup", passport.authenticate("local-signup", {
 // LOGOUT-- logout of account
 router.get("/logout", function(req, res) {
   req.logout(); // built in function that will logout user
-  res.redirect("/prompts");
+  res.redirect("/users");
 });
 
 // LOGIN-- access an existing account
 router.post("/login", passport.authenticate("local-login", { 
-  failureRedirect: "/usersss"}), function(req, res) { // CHANGE FAILURE REDIRECT
-  // res.send(req.user); // checks accessible data
-  res.redirect("/users/" + req.user.id);
+  failureRedirect: "/loginfailed"}), function(req, res) { // CHANGE FAILURE REDIRECT
+  res.send(req.user); // checks accessible data
+  // res.redirect("/users/" + req.user.id);
 });
 
 
 // NEWPROMPT-- add a new prompt
-router.post("/newprompt", function(req, res) {
+router.post("/:user_id/newprompt", function(req, res) {
   // save new prompt in prompts collection
   var newPrompt = new Prompt(req.body);
   console.log(newPrompt); // confirms newPrompt body content 
@@ -39,11 +45,16 @@ router.post("/newprompt", function(req, res) {
     console.log(promptData); // confirms newPrompt has been saved (should have unique id)
 
     // push into user's prompts
-    User
-
-  })
-
-})
+    User.findById(req.params.user_id, function(err, user) {
+      console.log(user); // confirms instance being grabbed
+      user.prompts.push(promptData); // push new prompt to user's prompts array
+      user.save(function(err, data) { // saves the change to the database
+        console.log("new prompt saved!");
+        res.redirect("/users/" + user.id);
+      });
+    });
+  });
+});
 
 
 // SHOW-- user's show page

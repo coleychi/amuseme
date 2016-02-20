@@ -19,11 +19,23 @@ got to users index.ejs
 <!-- log into account -->
 <p>Log in</p>
 <form action="/users/login" method="POST">
-<input type="text" name="email" placeholder="email">
+<input type="text" name="username" placeholder="username">
 <input type="text" name="password" placeholder="password">
 <input type="submit">
 </form>
 
+<p>Logout</p>
+<a href="/users/logout">logout</a>
+
+
+<p>New Prompt</p>
+<form action="/users/newprompt" method="POST">
+<input type="text" name="promptBody" placeholder="promptBody">
+<input type="submit">
+</form>
+
+<h2><%= locals.user %></h2>
+<h2><%= locals.login %></h2>
 
 </body>
 </html>

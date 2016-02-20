@@ -47,6 +47,13 @@ app.use(session({ secret: "amusemeamuseme", resave: true, saveUninitialized: tru
 app.use(passport.initialize());
 app.use(passport.session());
 
+// set global variable equal to boolean value of user state (logged in/not logged in)
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated(); // authenticate user
+  res.locals.user = req.user; // save user data
+  next();
+});
+
 // use usersController for /users
 app.use("/users", usersController);
 
