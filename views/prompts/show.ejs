@@ -1,7 +1,7 @@
 <% include ../partials/header_partial.ejs %>
 
 
-prompt's show
+<!-- prompt's show -->
 
 	<section class="prompt">
 	<h3><%= prompt.promptBody %></h3>
@@ -13,23 +13,30 @@ prompt's show
 
 			<p><%= prompt.responses[i].responseBody %></p>
 
+			<p>Author: <%= prompt.responses[i].author %></p>
+
 		<div class="response-bottom">
 			<span>By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
 		</div> <!-- closes response-bottom div -->
 
-		</section> <!-- closes response section -->
+		</section>
 
 	<% } %>
 
-	
-	<form action="/prompts/<%= prompt.id %>/newresponse" method="POST">
-	<input type="text" name="responseBody" placeholder="response">
+	<!-- form to post a new response -->
+	<form action="/prompts/<%= prompt.id %>/newresponse" method="POST" id="post-response">
+	<textarea name="responseBody" form="post-response" placeholder="<%= prompt.promptBody %>"></textarea>
 	<input type="submit">
 	</form>
 
+	<footer></footer>
+
 </div> <!-- closes content-container div -->
 
+
 </div> <!-- closes super-container div -->
+
+
 
 </body>
 </html>
