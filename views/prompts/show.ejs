@@ -4,5 +4,16 @@
 </head>
 <body>
 prompt's show
+
+<h1><%= prompt.promptBody %></h1>
+
+<form action="/prompts/<%= prompt.id %>/newresponse" method="POST">
+<input type="text" name="responseBody" placeholder="response">
+<input type="submit">
+</form>
+
+
+<h2>Logged in: <%= locals.login %></h2>
+<h2><%= locals.user %></h2>
 </body>
 </html>

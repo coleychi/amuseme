@@ -16,3 +16,4 @@ var responseSchema = new mongoose.Schema({
 // EXPORT
 // -----------------------------------------------------------------
 module.exports = mongoose.model("Response", responseSchema);
+module.exports.responseSchema = responseSchema

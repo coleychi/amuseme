@@ -1,7 +1,7 @@
 // REQUIREMENTS
 // -----------------------------------------------------------------
 var mongoose = require("mongoose");
-// var responses = require("./responses.js");
+var responseSchema = require("./responses.js").responseSchema;
 
 
 
@@ -10,8 +10,8 @@ var mongoose = require("mongoose");
 // create prompt schema
 var promptSchema = new mongoose.Schema({
   promptBody: {type: String, required: true},
-  timestamp: {type: Date, default: Date.now}
-  // responses: [responsesSchema]
+  timestamp: {type: Date, default: Date.now},
+  responses: [responseSchema]
 });
 
 

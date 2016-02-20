@@ -31,7 +31,12 @@ got to prompts index.ejs
 <input type="text" name="password" placeholder="password">
 <input type="submit">
 </form> -->
+<h2><%= locals.user %></h2>
+<h2><%= locals.login %></h2>
 
+<% for (var i = 0; i < prompts.length; i++) { %>
+	<a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a><br>
+<% } %>
 
 
 </body>
