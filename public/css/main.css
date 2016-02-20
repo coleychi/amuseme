@@ -231,6 +231,69 @@ nav li a:hover {
 	border: none;
 }
 
+.prompt-listitem {
+	width: 70%;
+	margin: 0 auto 1em;
+	padding: 1em;
+	background-color: white;
+	border: 1px #d3d3d3 solid;
+	border-radius: 3px;
+}
+
+.prompt-listitem a {
+	text-decoration: none;
+	color: black;
+}
+
+.prompt-listitem:first-of-type {
+	margin-top: 2em;
+}
+
+.prompt-listitem h3 {
+	font-size: 1.2em;
+	display: inline;
+}
+
+.prompt-listitem span {
+	display: block;
+	margin-top: 0.5em;
+	font-size: 0.6em;
+}
+
+.prompt-listitem button {
+	width: 50%;
+	margin-top: 1.5em;
+	padding: 0.7em;
+	background-color: pink;
+	border: 1px solid gray;
+}
+
+#newprompt-container {
+	width: 60%;
+	margin: 2em auto;
+/*	overflow: auto;*/
+}
+
+#newprompt textarea {
+	width: 85%;
+	height: 4em;
+	padding: 1em;
+	resize: none;
+	border: none;
+	display: inline;
+	float: left;
+}
+
+#newprompt input[type=submit]{
+	width: 10%;
+	margin-top: 0.25em;
+	margin-left: 1em;
+	border: none;
+	padding: 1em;
+	text-align: center;
+	background-color: yellow;
+	display: inline;
+}
 
 
 footer {
