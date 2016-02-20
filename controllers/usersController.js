@@ -18,9 +18,9 @@ router.get("/", function(req, res) {
 
 // SIGNUP-- create a new account
 router.post("/signup", passport.authenticate("local-signup", { 
-  failureRedirect: "/users"}), function(req, res) {
-  res.send(req.user); // checks that data persists
-  // res.redirect("/users/" + req.user.id);
+  failureRedirect: "/userssss"}), function(req, res) {
+  // res.send(req.user); // checks that data persists
+  res.redirect("/users/" + req.user.id); // possibly change redirect to prompts
 });
 
 // LOGOUT-- logout of account
@@ -31,10 +31,16 @@ router.get("/logout", function(req, res) {
 
 // LOGIN-- access an existing account
 router.post("/login", passport.authenticate("local-login", { 
-  failureRedirect: "/loginfailed"}), function(req, res) { // CHANGE FAILURE REDIRECT-- set to dummy route
+  failureRedirect: "/users/newaccount"}), function(req, res) { // CHANGE FAILURE REDIRECT-- set to dummy route
   // res.send(req.user); // checks accessible data
   res.locals.user = req.user;
   res.redirect("/prompts");
+});
+
+
+// NEW ACCOUNT-- create a new account
+router.get("/newaccount", function(req, res) {
+  res.render("users/signup.ejs");
 });
 
 

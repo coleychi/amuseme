@@ -21,11 +21,12 @@
 		<form action="../users/login" method="POST">
 		<input type="text" name="username" placeholder="username">
 		<input type="password" name="password" placeholder="password">
-		<input type="submit" value="Log In"><button>Sign Up</button>
+		<input type="submit" value="Log In" /> <a href="../users/newaccount"><button>Sign Up</button></a>
 		</form>
 
 
 			<h2>Logged in: <%= locals.login %></h2>
+			
 			<a href="../users/logout">logout</a>
 
 		</div> <!-- closes sidebar-container div -->

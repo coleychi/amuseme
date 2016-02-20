@@ -177,7 +177,65 @@ nav li a:hover {
 	width: 100px;
 }
 
+#signup-container {
+	width: 65%;
+	margin: auto;
+	/*background-color: pink;*/
+}
+
+#signup-container h2 {
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+#new-account {
+	width: 60%;
+	margin: auto;
+	/*background-color: orange;*/
+}
+
+#newitem {
+	display: block;
+	position: relative;
+}
+
+#new-account label {
+	width: 25%;
+	font-size: 0.8em;
+	font-weight: bold;
+	display: inline-block;
+	margin-top: 0;
+}
+
+#new-account input {
+	width: 65%;
+	padding: 0.6em;
+	font-size: 1em;
+	display: inline-block;
+	margin-bottom: 1.2em;
+	border: none;
+}
+
+#new-account input[type=submit] {
+	width: 92%;
+	margin-top: 0.5em;
+	padding: 1em;
+	border: none;
+}
+
+#new-account textarea {
+	width: 65%;
+	height: 8em;
+	padding: 1em;
+	resize: none;
+	border: none;
+}
+
+
+
 footer {
 	overflow: auto;
 	height: 50px;
 }
+
+

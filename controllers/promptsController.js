@@ -63,7 +63,7 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
             user.responses.push(responseData); // push new response to user's responses array
             user.save(function(err, data) { // saves change to database
               console.log("response saved to user"); 
-              res.send("done."); // change to a redirect or something
+              res.redirect("/prompts/" + prompt.id); // change to a redirect or something
 
             });
           });
