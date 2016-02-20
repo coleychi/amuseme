@@ -1,19 +1,35 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+<% include ../partials/header_partial.ejs %>
+
+
 prompt's show
 
-<h1><%= prompt.promptBody %></h1>
+	<section class="prompt">
+	<h3><%= prompt.promptBody %></h3>
+	</section>
 
-<form action="/prompts/<%= prompt.id %>/newresponse" method="POST">
-<input type="text" name="responseBody" placeholder="response">
-<input type="submit">
-</form>
+	<% for (var i = 0; i < prompt.responses.length; i++) { %>
 
+		<section class="response">
 
-<h2>Logged in: <%= locals.login %></h2>
-<h2><%= locals.user %></h2>
+			<p><%= prompt.responses[i].responseBody %></p>
+
+		<div class="response-bottom">
+			<span>By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
+		</div> <!-- closes response-bottom div -->
+
+		</section> <!-- closes response section -->
+
+	<% } %>
+
+	
+	<form action="/prompts/<%= prompt.id %>/newresponse" method="POST">
+	<input type="text" name="responseBody" placeholder="response">
+	<input type="submit">
+	</form>
+
+</div> <!-- closes content-container div -->
+
+</div> <!-- closes super-container div -->
+
 </body>
 </html>

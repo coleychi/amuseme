@@ -33,7 +33,6 @@ router.get("/:prompt_id", isLoggedIn, function(req, res) {
 
 // NEWRESPONSE-- add a new response 
 router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
-
   // console.log(req.user); // confirms req.user is accessible
   
   // save new response to responses collection
@@ -41,32 +40,42 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
   console.log(newResponse); // confirms newResponse body content
   newResponse.save(function(err, responseData) { // saves new response to response collection on db
     // console.log(responseData); // confirms newResponse has been saved
+    // console.log(responseData.id)
+    // console.log(req.user.username)
 
-    // push into prompt's responses array and save
-    Prompt.findById(req.params.prompt_id, function(err, prompt) {
-      // console.log(prompt); // confirms prompt instance being grabbed
-      prompt.responses.push(responseData); // push new response to prompt's responses array
-      prompt.save(function(err, data) { // saves change to database
-        console.log("response saved to prompt"); 
+    // set author to the logged in user
+    Response.findByIdAndUpdate(responseData.id, {$set: {author: req.user.username, authorid: req.user.id}}, {new: true}, function(err, responseData) {
+      console.log(responseData);
+
+      // push into prompt's responses array and save
+      Prompt.findById(req.params.prompt_id, function(err, prompt) {
+        // console.log(prompt); // confirms prompt instance being grabbed
+        prompt.responses.push(responseData); // push new response to prompt's responses array
+        prompt.save(function(err, data) { // saves change to database
+          console.log("response saved to prompt"); 
 
         // console.log(req.user.id); // confirms req.user is still accessible 
 
-        // push into user's responses array and save
-        User.findById(req.user.id, function(err, user) {
-          // console.log(user); // confirms user instance being grabbed
-          // console.log(responseData); // confirms responseData accessible
-          user.responses.push(responseData); // push new response to user's responses array
-          user.save(function(err, data) { // saves change to database
-            console.log("response saved to user"); 
-            res.send("done."); // change to a redirect or something
-          });
-        });
+          // push into user's responses array and save
+          User.findById(req.user.id, function(err, user) {
+            // console.log(user); // confirms user instance being grabbed
+            // console.log(responseData); // confirms responseData accessible
+            user.responses.push(responseData); // push new response to user's responses array
+            user.save(function(err, data) { // saves change to database
+              console.log("response saved to user"); 
+              res.send("done."); // change to a redirect or something
 
+            });
+          });
+
+        });
       });
+
     });
 
   });
 });
+
 
 // RANDOM
 

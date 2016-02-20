@@ -9,7 +9,9 @@ var mongoose = require("mongoose");
 // create prompt schema
 var responseSchema = new mongoose.Schema({
   responseBody: {type: String, required: true},
-  timestamp: {type: Date, default: Date.now}
+  timestamp: {type: Date, default: Date.now},
+  author: {type: String},
+  authorid: {type: String}
 });
 
 
