@@ -1,0 +1,31 @@
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div id="super-container">
+
+		<div id="sidebar-container">
+			<h1>aMuseMe</h1>
+			
+			<nav>
+				<ul>
+					<li><a href="#">Prompts</a></li>
+					<li><a href="#">Random</a></li>
+				</ul>
+			</nav>
+
+
+
+		<form action="../users/login" method="POST">
+		<input type="text" name="username" placeholder="username">
+		<input type="text" name="password" placeholder="password">
+		<input type="submit" value="Log In"><button>Sign Up</button>
+		</form>
+
+
+			<h2>Logged in: <%= locals.login %></h2>
+			<a href="../users/logout">logout</a>
+
+		</div> <!-- closes sidebar-container div -->
+
+
+		<div id="content-container">

@@ -1,23 +1,9 @@
 <html>
 <head>
-	<title>Sidebar Test</title>
-<% include ../partials/header_partial.ejs %>
+	<title>TITLE</title>
+</head>
+<body>
 
-			<% for (var i = 0; i < prompts.length; i++) { %>
-				<a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a><br>
-			<% } %>
-
-
-		</div> <!-- closes content-container div -->
-
-	</div> <!-- closes super-container div -->
-
-</body>
-</html>
-
-
-
-<!-- 
 got to prompts index.ejs
 
 
@@ -31,12 +17,12 @@ got to prompts index.ejs
 
 
 <!-- log into account -->
-<!-- <p>Log in</p>
+<p>Log in</p>
 <form action="../users/login" method="POST">
 <input type="text" name="username" placeholder="username">
 <input type="text" name="password" placeholder="password">
 <input type="submit">
-</form> -->
+</form>
 
 
 <!-- <p>Add New Prompt</p>
@@ -45,13 +31,13 @@ got to prompts index.ejs
 <input type="text" name="password" placeholder="password">
 <input type="submit">
 </form> -->
-<!-- <h2><%= locals.user %></h2>
-<h2><%= locals.login %></h2> -->
-<!-- 
+<h2><%= locals.user %></h2>
+<h2><%= locals.login %></h2>
+
 <% for (var i = 0; i < prompts.length; i++) { %>
 	<a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a><br>
 <% } %>
 
 
 </body>
-</html> --> 
+</html>
