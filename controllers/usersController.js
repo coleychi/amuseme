@@ -85,7 +85,7 @@ function isLoggedIn(req, res, next) {
 
   // if they aren't redirect them to the homepage
   res.redirect("/");
-
+  
   }; 
 };
 
