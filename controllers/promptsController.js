@@ -10,7 +10,9 @@ var router = express.Router();
 // INDEX
 router.get("/", function(req, res) {
   res.render("prompts/index.ejs");
-})
+});
+
+
 
 
 
