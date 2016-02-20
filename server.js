@@ -50,7 +50,7 @@ app.use(passport.session());
 // set global variable equal to boolean value of user state (logged in/not logged in)
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated(); // authenticate user
-  res.locals.user = req.user; // save user data
+  // res.locals.user = req.user; // save user data
   next();
 });
 
