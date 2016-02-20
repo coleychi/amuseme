@@ -296,6 +296,24 @@ nav li a:hover {
 }
 
 
+#usershow-container {
+	width: 80%;
+	margin: 2.5em auto;
+}
+
+.profile-content {
+	background-color: white;
+	padding: 1.5em 2em 1.5em 2em;
+	margin-bottom: 2em;
+}
+
+.profile-content h2 {
+	padding-bottom: 0.15em;
+	margin-bottom: 0.5em;
+	border-bottom: 1px solid gray;
+}
+
+
 footer {
 	overflow: auto;
 	height: 50px;
