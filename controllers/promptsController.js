@@ -3,7 +3,8 @@
 var express = require("express");
 var router = express.Router();
 var Prompt = require("../models/prompts.js");
-var Response = require("../models/responses.js")
+var Response = require("../models/responses.js");
+var User = require("../models/users.js");
 
 
 
@@ -43,10 +44,25 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
 
     // push into prompt's responses array
     Prompt.findById(req.params.prompt_id, function(err, prompt) {
-    console.log(prompt); // confirms instance being grabbed
-    prompt.responses.push(responseData); // push new response to prompt's responses array
-    prompt.save(function(err, data) { // saves change to database
-      console.log("response saved to prompt"); 
+      // console.log(prompt); // confirms instance being grabbed
+      prompt.responses.push(responseData); // push new response to prompt's responses array
+      prompt.save(function(err, data) { // saves change to database
+        console.log("response saved to prompt"); 
+
+        console.log(req.user.id); // confirms req.user is still accessible 
+
+        // push into user's responses array
+        User.findById(req.user.id, function(err, user) {
+          console.log(user); // confirms instance being grabbed
+          console.log(responseData)
+          user.responses.push(responseData);
+          user.save(function(err, data) {
+            console.log("response saved to user");
+
+          });
+        });
+
+
     });
   });
 

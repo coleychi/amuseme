@@ -3,6 +3,7 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
 var promptSchema = require("./prompts.js").promptSchema;
+var responseSchema = require("./responses.js").responseSchema;
 
 
 
@@ -13,7 +14,8 @@ var userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  prompts: [promptSchema]
+  prompts: [promptSchema],
+  responses: [responseSchema]
 });
 
 // METHODS
