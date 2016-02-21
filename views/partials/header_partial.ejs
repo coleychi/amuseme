@@ -7,7 +7,7 @@
 	<div id="super-container">
 
 		<div id="sidebar-container">
-			<h1>aMuseMe</h1>
+			<a href="/"><h1>aMuseMe</h1></a>
 			
 			<nav>
 				<ul>
@@ -17,17 +17,32 @@
 			</nav>
 
 
+		<% if (!locals.login) { %>
 
-		<form action="../users/login" method="POST">
-		<input type="text" name="username" placeholder="username">
-		<input type="password" name="password" placeholder="password">
-		<input type="submit" value="Log In" /> <a href="../users/newaccount"><button>Sign Up</button></a>
-		</form>
+			<form action="../users/login" method="POST">
+			<input type="text" name="username" placeholder="username">
+			<input type="password" name="password" placeholder="password">
+			<input type="submit" value="Log In" /> <a href="../users/newaccount"><button>Sign Up</button></a>
+			</form>
+
+		<% } %>
+
+		<% if (locals.login) { %>
+
+		<h2><a href="/users/<%= locals.userid %>"><%= locals.username %></a></h2>
+
+		<a href="../users/logout">logout</a>
+
+		<% } %>
 
 
 			<h2>Logged in: <%= locals.login %></h2>
+
+			<!-- <h2>User: <%= locals.user %></h2> -->
+			<!-- <h2>Username: <%= locals.username %></h2>
+			<h2>User ID: <%= locals.userid %></h2> -->
 			
-			<a href="../users/logout">logout</a>
+			
 
 		</div> <!-- closes sidebar-container div -->
 

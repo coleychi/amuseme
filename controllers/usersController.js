@@ -33,7 +33,7 @@ router.get("/logout", function(req, res) {
 router.post("/login", passport.authenticate("local-login", { 
   failureRedirect: "/users/newaccount"}), function(req, res) { // CHANGE FAILURE REDIRECT-- set to dummy route
   // res.send(req.user); // checks accessible data
-  res.locals.user = req.user;
+  // res.locals.user = req.user;
   res.redirect("/prompts");
 });
 
@@ -86,6 +86,7 @@ function isLoggedIn(req, res, next) {
 
   // if user is authenticated in the session, continue
   if (req.isAuthenticated()) {
+    
     return next();
   } else {
 

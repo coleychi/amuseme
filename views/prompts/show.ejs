@@ -22,12 +22,17 @@
 		</section>
 
 	<% } %>
+	
+	<!-- HIDE NEW RESPONSE FORM IF USER IS NOT LOGGED IN -->
+	<% if (locals.login) { %>
+		<!-- form to post a new response -->
+		<form action="/prompts/<%= prompt.id %>/newresponse" method="POST" id="post-response">
+		<textarea name="responseBody" form="post-response" placeholder="<%= prompt.promptBody %>"></textarea>
+		<input type="submit">
+		</form>
 
-	<!-- form to post a new response -->
-	<form action="/prompts/<%= prompt.id %>/newresponse" method="POST" id="post-response">
-	<textarea name="responseBody" form="post-response" placeholder="<%= prompt.promptBody %>"></textarea>
-	<input type="submit">
-	</form>
+	<% } %>
+
 
 	<footer></footer>
 

@@ -53,6 +53,17 @@ app.use(function(req, res, next) {
   next();
 });
 
+// set gloabl variable equal to user if user is logged in (user object accessible on every ejs page)
+app.use(function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.user = req.user; // entire user object (can't access keys using dot notation on other ejs pages?)
+    res.locals.username = req.user.username; // username
+    res.locals.userid = req.user.id;
+  } 
+
+  next();
+});
+
 // use usersController for /users
 app.use("/users", usersController);
 

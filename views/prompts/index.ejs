@@ -2,24 +2,28 @@
 
 			<% for (var i = 0; i < prompts.length; i++) { %>
 
-				<div class="prompt-listitem">
+			<div class="prompt-listitem">
 
 				<h3><a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a></h3>
 
-
 				<!-- <span>Submitted 5 hours ago by user</span> -->
-				</div>
+			</div>
 			<% } %>
 
 
+			<!-- HIDE NEW PROMPT FORM IF USER IS NOT LOGGED IN -->
+			<% if (locals.login) { %>
 
-	<div id="newprompt-container">
+			<div id="newprompt-container">
 
-		<form action="/users/newprompt" method="POST" id="newprompt">
-		<textarea form="newprompt" name="promptBody"></textarea>
-		<input type="submit" value="Go">
-		</form>
-	</div>
+				<!-- ADDS NEW PROMPT -->
+				<form action="/users/newprompt" method="POST" id="newprompt">
+					<textarea form="newprompt" name="promptBody"></textarea>
+					<input type="submit" value="Go">
+				</form>
+			</div>
+
+			<% } %>
 
 
 		</div> <!-- closes content-container div -->

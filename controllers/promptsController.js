@@ -22,7 +22,7 @@ router.get("/", function(req, res) {
 
 
 // SHOW
-router.get("/:prompt_id", isLoggedIn, function(req, res) {
+router.get("/:prompt_id", function(req, res) {
   Prompt.findById(req.params.prompt_id, function(err, promptData) { // finds prompt instance by id using params
     res.render("prompts/show.ejs", {
       prompt: promptData // renders prompt instance with show.ejs
@@ -50,7 +50,7 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
         authorid: req.user.id,  // saves the author id 
         promptid: req.params.prompt_id} // saves the parent prompt id 
       }, {new: true}, function(err, responseData) {
-        console.log(responseData);
+        // console.log(responseData); // confirms update
 
         // add the promptBody to the response instance
         Prompt.findById(req.params.prompt_id, function(err, prompt) { // finds the prompt by id
@@ -59,53 +59,28 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
           Response.findByIdAndUpdate(responseData.id, {
             $set: {promptBody: prompt.promptBody} // set promptBody in response document
           }, {new: true}, function(err, responseData) {
-            console.log(responseData); // confirms promptBody was added
+            // console.log(responseData); // confirms promptBody was added
 
-            prompt.responses.push(responseData); 
-            prompt.save(function(err, data) {
+            prompt.responses.push(responseData); // push new response to prompt's responses array
+            prompt.save(function(err, data) { // saves change to database
               console.log("response saved to prompt!");
 
               //push into user's responses array and save
               User.findById(req.user.id, function(err, user) {
-                user.responses.push(responseData);
-                user.save(function(err, data) {
+                user.responses.push(responseData); // push new response to user's responses array
+                user.save(function(err, data) { // saves change to database
                   console.log("response saved to user");
                   res.redirect("/prompts/" + prompt.id)
-                })
-              })
-            })
-          }); 
+                });
+              });
+
+            });
+          });
+
         });
-
-
-        // // push into prompt's responses array and save
-        // Prompt.findById(req.params.prompt_id, function(err, prompt) {
-        //   // console.log(prompt); // confirms prompt instance being grabbed
-        //   prompt.responses.push(responseData); // push new response to prompt's responses array
-        //   prompt.save(function(err, data) { // saves change to database
-        //     console.log("response saved to prompt"); 
-
-        //   // console.log(req.user.id); // confirms req.user is still accessible 
-
-        //     // push into user's responses array and save
-        //     User.findById(req.user.id, function(err, user) {
-        //       // console.log(user); // confirms user instance being grabbed
-        //       // console.log(responseData); // confirms responseData accessible
-        //       user.responses.push(responseData); // push new response to user's responses array
-        //       user.save(function(err, data) { // saves change to database
-        //         console.log("response saved to user"); 
-        //         res.redirect("/prompts/" + prompt.id); // change to a redirect or something
-
-        //       });
-        //     });
-
-        //   });
-        // });
-
       });
-
     });
-  });
+});
 
 
 
@@ -134,4 +109,34 @@ function isLoggedIn(req, res, next) {
 // EXPORT
 // -----------------------------------------------------------------
 module.exports = router;
+
+
+
+// SCRAP CODE
+
+  // SECOND HALF OF THE ORIGINAL NEW RESPONSE ROUTE -------------------------------------
+        // // push into prompt's responses array and save
+        // Prompt.findById(req.params.prompt_id, function(err, prompt) {
+        //   // console.log(prompt); // confirms prompt instance being grabbed
+        //   prompt.responses.push(responseData); // push new response to prompt's responses array
+        //   prompt.save(function(err, data) { // saves change to database
+        //     console.log("response saved to prompt"); 
+
+        //   // console.log(req.user.id); // confirms req.user is still accessible 
+
+        //     // push into user's responses array and save
+        //     User.findById(req.user.id, function(err, user) {
+        //       // console.log(user); // confirms user instance being grabbed
+        //       // console.log(responseData); // confirms responseData accessible
+        //       user.responses.push(responseData); // push new response to user's responses array
+        //       user.save(function(err, data) { // saves change to database
+        //         console.log("response saved to user"); 
+        //         res.redirect("/prompts/" + prompt.id); // change to a redirect or something
+
+        //       });
+        //     });
+
+        //   });
+        // });
+  // ------------------------------------- end second half of original new response route
 

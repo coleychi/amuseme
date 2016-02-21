@@ -8,6 +8,10 @@ body {
 	font-family: Helvetica, sans-serif;
 }
 
+a {
+	text-decoration: none;
+}
+
 #super-container {
 	width: 100%;
 	overflow: hidden;
@@ -88,6 +92,7 @@ h1 {
 	margin-top: 1.5em;
 	font-size: 2.5em;
 	text-align: center;
+	color: black;
 }
 
 nav ul {
@@ -102,7 +107,7 @@ nav li a {
 	display: block;
 	padding: 1em 0em 1em 1em;
 	border-top: 1px solid red;
-	text-decoration: none;
+	/*text-decoration: none;*/
 	font-size: 0.85em;
 	/*background-color: lightblue;*/
 }
@@ -241,8 +246,8 @@ nav li a:hover {
 }
 
 .prompt-listitem a {
-	text-decoration: none;
-	color: black;
+	/*text-decoration: none;*/
+	/*color: black;*/
 }
 
 .prompt-listitem:first-of-type {
@@ -341,7 +346,7 @@ nav li a:hover {
 }
 
 .promptbody a {
-	text-decoration: none;
+	/*text-decoration: none;*/
 }
 
 
