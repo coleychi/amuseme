@@ -65,6 +65,8 @@ a {
 	width: 100%; /* 100% of the parent's width */
 	padding: 0.5em;
 	margin-top: 1em;
+	border: 1px solid #d3d3d3;
+	background-color: #ffffff;
 }
 
 /*#sidebar-container form input:first-child {*/
@@ -308,7 +310,9 @@ nav li a:hover {
 	padding: 1em;
 	background-color: white;
 	border: 1px #d3d3d3 solid;
+	border-left: 5px #ff3e4c solid;
 	border-radius: 3px;
+	box-sizing: content-box;
 }
 
 .prompt-listitem:first-of-type {
@@ -324,14 +328,6 @@ nav li a:hover {
 	display: block;
 	margin-top: 0.5em;
 	font-size: 0.6em;
-}
-
-.prompt-listitem button {
-	width: 50%;
-	margin-top: 1.5em;
-	padding: 0.7em;
-	background-color: pink;
-	border: 1px solid gray;
 }
 
 #newprompt-container {

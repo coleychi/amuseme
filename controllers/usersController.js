@@ -44,27 +44,27 @@ router.get("/newaccount", function(req, res) {
 });
 
 
-// NEWPROMPT-- add a new prompt
-router.post("/newprompt", isLoggedIn, function(req, res) {
+// // NEWPROMPT-- add a new prompt
+// router.post("/newprompt", isLoggedIn, function(req, res) {
   
-  // save new prompt in prompts collection
-  var newPrompt = new Prompt(req.body);
-  // console.log(newPrompt); // confirms newPrompt body content 
-  newPrompt.save(function(err, promptData) { // saves new prompt to prompts collection
-    // console.log(promptData); // confirms newPrompt has been saved (should have unique id)
-    // console.log(req.user.id); // confirms logged in user info is accessible
+//   // save new prompt in prompts collection
+//   var newPrompt = new Prompt(req.body);
+//   // console.log(newPrompt); // confirms newPrompt body content 
+//   newPrompt.save(function(err, promptData) { // saves new prompt to prompts collection
+//     // console.log(promptData); // confirms newPrompt has been saved (should have unique id)
+//     // console.log(req.user.id); // confirms logged in user info is accessible
     
-    // push into user's prompts
-    User.findById(req.user.id, function(err, user) {
-      console.log(user); // confirms instance being grabbed
-      user.prompts.push(promptData); // push new prompt to user's prompts array
-      user.save(function(err, data) { // saves the change to the database
-        console.log("new prompt saved!");
-        res.redirect("/users/" + user.id);
-      });
-    });
-  });
-});
+//     // push into user's prompts
+//     User.findById(req.user.id, function(err, user) {
+//       console.log(user); // confirms instance being grabbed
+//       user.prompts.push(promptData); // push new prompt to user's prompts array
+//       user.save(function(err, data) { // saves the change to the database
+//         console.log("new prompt saved!");
+//         res.redirect("/users/" + user.id);
+//       });
+//     });
+//   });
+// });
 
 
 // SHOW-- user's show page... convert username to userid
