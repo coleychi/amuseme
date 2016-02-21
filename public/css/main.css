@@ -212,14 +212,21 @@ nav li a:hover {
 	float: right;
 }
 
+.rb-edit-delete form {
+	margin-left: 0.8em;
+}
+
 .edit-delete-icon {
 	width: 1.2em;
 	height: 1.2em;
-	text-decoration: none;
 }
 
-.edit-delete-icon:first-of-type {
+/*.edit-delete-icon:first-of-type {
 	margin-right: 0.8em;
+}*/
+
+.hidden {
+	display: inline-block;
 }
 
 #post-response {
@@ -245,7 +252,7 @@ nav li a:hover {
 /*	background-color: #fabc00;
 	border-bottom: 5px solid #e4981f;*/
 	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color  
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
 	color: #ffffff;
 	font-weight: bold;
 }

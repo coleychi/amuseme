@@ -37,7 +37,7 @@ router.post("/newprompt", isLoggedIn, function(req, res) {
       user.prompts.push(promptData); // push new prompt to user's prompts array
       user.save(function(err, data) { // saves the change to the database
         console.log("new prompt saved!");
-        res.redirect("/users/" + user.id);
+        res.redirect("/prompts/" + promptData.id);
       });
     });
   });
@@ -45,7 +45,7 @@ router.post("/newprompt", isLoggedIn, function(req, res) {
 
 
 // EDIT-- render edit form page
-router.get("/:response_id/edit", isLoggedIn, function(req, res) {
+router.get("/edit/:response_id", isLoggedIn, function(req, res) {
   Response.findById(req.params.response_id, function(err, responseData) {
     console.log(responseData); // confirms information being passed
     res.render("prompts/edit.ejs", { 
@@ -56,7 +56,7 @@ router.get("/:response_id/edit", isLoggedIn, function(req, res) {
 
 
 // UPDATE-- submit changes to db
-router.put("/:response_id", function(req, res) {
+router.put("/edit/:response_id", function(req, res) {
 
   // update the specific response in responses collection
   Response.findByIdAndUpdate(req.params.response_id, req.body, {new: true}, 
@@ -87,8 +87,30 @@ router.put("/:response_id", function(req, res) {
 
 
 
-// DELETE RESPONSE
+// DELETE-- deletes a single response
+router.delete("/delete/:response_id", function(req, res) {
 
+  // grab the specific response instance from db
+  Response.findById(req.params.response_id, function(err, responseData) {
+
+    // pull response instance from user's responses array
+    User.findByIdAndUpdate(req.user.id, {$pull: {responses: {_id: req.params.response_id}}}, {new: true}, function(err, user) {
+      // console.log(user);
+
+      // pull response instance from prompt's responses array
+      Prompt.findByIdAndUpdate(responseData.promptid, {$pull: {responses: {_id: req.params.response_id}}}, {new:true}, function(err, prompt) {
+        // console.log(prompt);
+
+        // delete the original response from the response collection
+        Response.findByIdAndRemove(req.params.response_id, function(err, data) {
+          console.log("Deleted response!");
+
+          res.redirect("/prompts/" + responseData.promptid);
+        });
+      });
+    });
+  });
+}); // end delete response route
 
 
 
@@ -100,6 +122,7 @@ router.get("/:prompt_id", function(req, res) {
     });
   });
 }); // end :prompt_id show route
+
 
 
 // NEWRESPONSE-- add a new response 
@@ -206,4 +229,5 @@ module.exports = router;
         //   });
         // });
   // ------------------------------------- end second half of original new response route
+
 

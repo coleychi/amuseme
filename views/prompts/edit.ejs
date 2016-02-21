@@ -6,7 +6,7 @@
 
 <%= response.promptBody %>
 
-<form action="/prompts/<%= response.id %>?_method=PUT" method="POST" id="edit-response">
+<form action="/prompts/edit/<%= response.id %>?_method=PUT" method="POST" id="edit-response">
 
 
 		<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"></textarea>

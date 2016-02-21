@@ -7,6 +7,18 @@
 	<h3><%= prompt.promptBody %></h3>
 	</section>
 
+	
+
+
+	<% if (prompt.responses.length == 0) { %>
+
+		<section class="response">
+			<p>No one has responded yet. Be the first to response to this prompt!</p>
+		</section> <!-- this needs to be styled -->
+
+	<% } %>
+
+
 	<% for (var i = 0; i < prompt.responses.length; i++) { %>
 
 		<section class="response">
@@ -24,8 +36,11 @@
 			<% if (prompt.responses[i].author === locals.username) { %>
 
 			<span class="rb-edit-delete">
-				<a href="../prompts/<%= prompt.responses[i].id %>/edit" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a>
-				<a href="../prompts/delete"><img src="../img/trash.png" class="edit-delete-icon"></a>
+
+				<a href="../prompts/edit/<%= prompt.responses[i].id %>" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a>
+
+				<form action="/prompts/delete/<%= prompt.responses[i].id %>?_method=DELETE" method="POST" class="hidden" display="inline"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
+
 			</span>
 
 			<% } %>
