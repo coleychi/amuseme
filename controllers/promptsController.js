@@ -102,11 +102,15 @@ router.delete("/delete/:response_id", function(req, res) {
         // console.log(prompt);
 
         // delete the original response from the response collection
-        Response.findByIdAndRemove(req.params.response_id, function(err, data) {
-          console.log("Deleted response!");
+        responseData.remove();
+        console.log("Deleted response!")
+        res.redirect("/prompts/" + responseData.promptid);
 
-          res.redirect("/prompts/" + responseData.promptid);
-        });
+        // Response.findByIdAndRemove(req.params.response_id, function(err, data) {
+        //   console.log("Deleted response!");
+
+        //   res.redirect("/prompts/" + responseData.promptid);
+        // });
       });
     });
   });

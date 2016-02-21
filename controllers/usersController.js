@@ -79,15 +79,60 @@ router.delete("/delete/:response_id", function(req, res) {
         // console.log(prompt);
 
         // delete the original response from the response collection
-        Response.findByIdAndRemove(req.params.response_id, function(err, data) {
-          console.log("Deleted response!");
+        responseData.remove();
+        console.log("Deleted response!");
+        res.redirect("/users/" + user.id);
+        
+        // Response.findByIdAndRemove(req.params.response_id, function(err, data) {
+        //   console.log("Deleted response!");
 
-          res.redirect("/users/" + user.id);
-        });
+        //   res.redirect("/users/" + user.id);
+        // });
       });
     });
   });
 }); // end delete response route
+
+
+// DELETE-- delete's the user's profile (deletes all responses but does not remove prompts)
+router.delete("/deleteaccount/:user_id", function(req, res) {
+  // res.send("route is right"); // checks route
+
+  // grabs the specific user instance
+  User.findById(req.params.user_id, function(err, user) {
+
+
+    // delete responses from parent prompts
+    // find all responses whose auther is equal to the user's username
+    Response.find({author: user.username}, function(err, userContributions) {
+      console.log("USER CONTRIBUTIONS================")
+      console.log(userContributions[0])
+      console.log(userContributions[0].id)
+
+      // for loop-- for every response in the query array
+      for (var i = 0; i < userContributions.length; i++) {
+
+        // grab the parent prompt using the key/value in userContributions query result.
+        Prompt.findByIdAndUpdate(userContributions[i].promptid, {$pull: {
+          // pull the response from the prompt object that matches the response id from the user query array
+          responses: {_id: userContributions[i]._id}}}, {new: true}, function(err, data) {
+            console.log("pulled responses from prompts");
+          });
+
+            // remove the response from the response collection
+            Response.findByIdAndRemove(userContributions[i].id, function(err, data) {
+              console.log("gone?")
+        });
+
+      } // closes for loop 
+
+      // delete the user document from db
+      user.remove(); // removes the user
+      res.redirect("/prompts");
+
+    });
+  });
+});
 
 
 

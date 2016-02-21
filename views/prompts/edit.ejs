@@ -1,15 +1,19 @@
 <% include ../partials/header_partial.ejs %>
 
 <!-- prompts edit -->
+<section class="prompt">
+	<h4><%= response.promptBody %></h4>
+</section>
 
-<%= response %>
 
-<%= response.promptBody %>
+
+
+
 
 <form action="/prompts/edit/<%= response.id %>?_method=PUT" method="POST" id="edit-response">
 
 
-		<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"></textarea>
+<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"></textarea>
 		<input type="submit">
 </form>
 

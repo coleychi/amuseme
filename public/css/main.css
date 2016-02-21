@@ -3,11 +3,11 @@
 	src: url(../fonts/PoiretOne-Regular.ttf);
 }
 
-/*@font-face {
+@font-face {
 	font-family: Lato;
 	src: url(../fonts/Lato-Regular.ttf);
 }
-*/
+
 * {
 	margin: 0;
 	padding: 0;
@@ -21,6 +21,21 @@ body {
 
 a {
 	text-decoration: none;
+}
+
+textarea {
+	resize: none;
+	border: 0 none;
+}
+
+/*button {
+	border: 0 none;
+}*/
+
+button, input[type="submit"] {
+	border: 0 none;
+	font-weight: bold;
+
 }
 
 /*#cover {
@@ -76,7 +91,7 @@ a {
 #sidebar-container form button {
 	width: 48%;
 	margin-top: 0.5em;
-	border: none;
+	/*border: none;*/
 	padding: 0.75em;
 	display: inline-block;
 }
@@ -157,7 +172,7 @@ nav li a:hover {
 	width: 70%;
 	margin: 3.5em auto 2em;
 	padding: 0.8em;
-	background-color: white;
+	background-color: #ffffff;
 	border-top: 5px solid #f63341;
 	border-bottom: 0.5px solid #d3d3d3;
 }
@@ -240,14 +255,14 @@ nav li a:hover {
 	height: 100px;
 	padding: 0.5em;
 	margin-bottom: 10px;
-	resize: none;
+	/*resize: none;*/
 }
 
 #post-response input[type="submit"] {
 	width: 100%;
 	text-align: center;
 	font-size: 1em;
-	border: 0;
+	/*border: 0;*/
 	padding: 0.75em;
 /*	background-color: #fabc00;
 	border-bottom: 5px solid #e4981f;*/
@@ -293,22 +308,22 @@ nav li a:hover {
 	font-size: 1em;
 	display: inline-block;
 	margin-bottom: 1.2em;
-	border: none;
+	/*border: none;*/
 }
 
 #new-account input[type=submit] {
 	width: 92%;
 	margin-top: 0.5em;
 	padding: 1em;
-	border: none;
+	/*border: none;*/
 }
 
 #new-account textarea {
 	width: 65%;
 	height: 8em;
 	padding: 1em;
-	resize: none;
-	border: none;
+	/*resize: none;*/
+	/*border: none;*/
 }
 
 .prompt-listitem {
@@ -326,10 +341,10 @@ nav li a:hover {
 	margin-top: 2em;
 }
 
-.prompt-listitem h3 {
+/*.prompt-listitem h3 {
 	font-size: 1.2em;
 	display: inline;
-}
+}*/
 
 .prompt-listitem span {
 	display: block;
@@ -347,8 +362,8 @@ nav li a:hover {
 	width: 85%;
 	height: 4em;
 	padding: 1em;
-	resize: none;
-	border: none;
+	/*resize: none;*/
+	/*border: none;*/
 	display: inline;
 	float: left;
 }
@@ -357,7 +372,7 @@ nav li a:hover {
 	width: 10%;
 	margin-top: 0.2em;
 	margin-left: 1em;
-	border: none;
+	/*border: none;*/
 	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */
 	padding: 1em;
 	text-align: center;
@@ -378,6 +393,23 @@ nav li a:hover {
 	padding: 1.5em 2em 1.5em 2em;
 	margin-bottom: 2em;
 }
+
+.profile-content form {
+	margin-top: 1em;
+	display: inline-block;
+	width: 30%;
+}
+
+.profile-content form:last-of-type {
+	margin-left: 0.5em;
+}
+
+#profile-buttons {
+	width: 100%;
+	padding: 1em;
+	background-color: red;
+}
+
 
 .profile-content h2 {
 	padding-bottom: 0.15em;
@@ -457,6 +489,39 @@ nav li a:hover {
 	display: inline-block
 	vertical-align: top;
 }
+
+.back {
+	margin-left: 2em;
+	margin-top: 1.5em;
+}
+
+#edit-response {
+	width: 70%;
+	margin: auto;
+}
+
+#edit-response textarea {
+	width: 100%;
+	height: 100px;
+	padding: 0.5em;
+	margin-bottom: 10px;
+	/*resize: none;*/
+}
+
+#edit-response input[type="submit"] {
+	width: 100%;
+	text-align: center;
+	font-size: 1em;
+	/*border: 0;*/
+	padding: 0.75em;
+/*	background-color: #fabc00;
+	border-bottom: 5px solid #e4981f;*/
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
+	color: #ffffff;
+	font-weight: bold;
+}
+
 
 
 footer {

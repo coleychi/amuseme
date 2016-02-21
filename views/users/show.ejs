@@ -9,6 +9,19 @@
 
 			<p>Pollis turpis venenatis odio maximus, eu volutpat orci lacinia. Vestibulum dui urna, imperdiet vitae turpis aliquam, hendrerit interdum justo. Vivamus euismod posuere nulla condimentum suscipit. Vivamus in ante id odio consectetur pellentesque ac quis metus.</p>
 
+			<% if (user.username == locals.username) { %>
+
+			<center> 
+				<form action="/users/edit/<%= user.id %>?_method=PUT" method="POST" display="inline"><button id="profile-buttons">Update Profile</button></form>
+
+				<form action="/users/deleteaccount/<%= user.id %>?_method=DELETE" method="POST" display="inline"><button id="profile-buttons">Delete Account</button></form>
+
+			</center>
+
+			<% } %>
+
+			<!-- <form action="/users/delete/<%= user.id %>?_method=DELETE" method="POST" display="inline"><button>Delete Account</button></form> -->
+
 
 
 		</div>
@@ -34,12 +47,15 @@
 							<%= user.responses[i].id %>
 						
 
+							<% if (user.username == locals.username) { %>
 						
 							<span class="edit-delete">edit delete</span>
 
 							<a href="../prompts/edit/<%= user.responses[i].id %>">edit</a>
 
 							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST" class="hidden" display="inline"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
+
+							<% } %>
 						
 
 				
