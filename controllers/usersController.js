@@ -12,7 +12,7 @@ var Prompt = require("../models/prompts.js");
 // -----------------------------------------------------------------
 // INDEX-- users root index (FOR TEST PURPOSES ONLY)
 router.get("/", function(req, res) {
-  res.render("users/index.ejs");
+  res.redirect("/prompts");
 });
 
 
@@ -67,6 +67,15 @@ router.post("/newprompt", isLoggedIn, function(req, res) {
 });
 
 
+// SHOW-- user's show page... convert username to userid
+router.get("/username/:username", function(req, res) {
+  User.findOne({username: req.params.username}, function(err, user) {
+    console.log(user.id)
+    res.redirect("/users/" + user.id)
+  })
+})
+
+
 // SHOW-- user's show page
 router.get("/:user_id", isLoggedIn, function(req, res) {
   User.findById(req.params.user_id, function(err, userData) {
@@ -75,6 +84,7 @@ router.get("/:user_id", isLoggedIn, function(req, res) {
     });
   });
 });
+
 
 
 
