@@ -4,6 +4,11 @@
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
+
+<!-- 	<div id="cover">
+		.
+	</div> -->
+
 	<div id="super-container">
 
 		<div id="sidebar-container">
@@ -11,6 +16,9 @@
 			
 			<nav>
 				<ul>
+					<% if (locals.login) { %>
+					<li><a href="/users/<%= locals.userid %>"><%= locals.username %></a></li>
+					<% } %>
 					<li><a href="/prompts">Prompts</a></li>
 					<li><a href="#">Random</a></li>
 				</ul>
@@ -29,7 +37,7 @@
 
 		<% if (locals.login) { %>
 
-		<h2><a href="/users/<%= locals.userid %>"><%= locals.username %></a></h2>
+		<!-- <h2><a href="/users/<%= locals.userid %>"><%= locals.username %></a></h2> -->
 
 		<a href="../users/logout">logout</a>
 

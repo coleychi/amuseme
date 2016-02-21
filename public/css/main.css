@@ -1,7 +1,18 @@
+@font-face {
+	font-family: Poiret;
+	src: url(../fonts/PoiretOne-Regular.ttf);
+}
+
+/*@font-face {
+	font-family: Lato;
+	src: url(../fonts/Lato-Regular.ttf);
+}
+*/
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	color: #222222;
 }
 
 body {
@@ -11,6 +22,15 @@ body {
 a {
 	text-decoration: none;
 }
+
+/*#cover {
+	width: 100%;
+	height: 100%;
+	background-color: red;
+	overflow: auto;
+	opacity: 0.5;
+	position: fixed; /* will cover all content. remove to scroll to content */
+/*}*/
 
 #super-container {
 	width: 100%;
@@ -65,15 +85,20 @@ a {
 	border: none;
 	padding: 0.75em;
 	display: inline-block;
+	background-color: #fabc00;
+	font-weight: bold;
+	color: white;
 }
-
-#sidebar-container form button:first-child {
+/*#sidebar-container form button:first-child {
 	margin-left: 0;
-}
+}*/
 #sidebar-container form button:last-child {
 	margin-right: 0;
 	float: right; /* is there a way to avoid using floats */
-	/*background-color: orange;*/
+	background-color: #fabc00;
+	font-weight: bold;
+	color: white;
+	box-shadow: none;
 }
 
 
@@ -82,7 +107,7 @@ a {
 #content-container {
 	width: 75%;
 	height: 100%;
-	background-color: #efefef;
+	background-color: #ededed;
 	overflow: auto;
 	display: inline-block;
 	/*box-sizing: border-box;*/
@@ -92,7 +117,9 @@ h1 {
 	margin-top: 1.5em;
 	font-size: 2.5em;
 	text-align: center;
-	color: black;
+	color: #4ECDC4;
+	font-family: Poiret, Helvetica;
+	font-weight: normal;
 }
 
 nav ul {
@@ -106,18 +133,22 @@ nav ul {
 nav li a {
 	display: block;
 	padding: 1em 0em 1em 1em;
-	border-top: 1px solid red;
+	border-top: 1px solid gray;
 	/*text-decoration: none;*/
+	text-transform: uppercase;
 	font-size: 0.85em;
+	font-family: Lato, Helvetica;
 	/*background-color: lightblue;*/
 }
 
 nav li:last-child {
-	border-bottom: 1px solid red; /* matches border-top in nav li a */
+	border-bottom: 1px solid gray; /* matches border-top in nav li a */
 }
 
 nav li a:hover {
-	background-color: red;
+	background-color: #ccf0ed; /* change this color? maybe? */
+	/*font-weight: bold;*/
+	/*color: white;*/
 }
 
 .prompt {
@@ -125,7 +156,7 @@ nav li a:hover {
 	margin: 3.5em auto 2em;
 	padding: 0.8em;
 	background-color: white;
-	border-top: 3px solid red;
+	border-top: 5px solid #f63341;
 	border-bottom: 0.5px solid #d3d3d3;
 }
 
@@ -163,6 +194,17 @@ nav li a:hover {
 	font-size: 0.7em;
 }
 
+.response-bottom span a {
+	color: #28c0d6;
+	font-weight: bold;
+	border-bottom: 1px solid;
+	/*text-decoration: underline;*/
+}
+
+.response-bottom span a:hover {
+	color: #199caf;
+}
+
 #post-response {
 /*	background-color: red;*/
 	width: 70%;
@@ -172,14 +214,23 @@ nav li a:hover {
 #post-response textarea {
 	width: 100%;
 	height: 100px;
+	padding: 0.5em;
 	margin-bottom: 10px;
 	resize: none;
 }
 
-#post-response button {
+#post-response input[type="submit"] {
+	width: 100%;
 	text-align: center;
 	font-size: 1em;
-	width: 100px;
+	border: 0;
+	padding: 0.75em;
+/*	background-color: #fabc00;
+	border-bottom: 5px solid #e4981f;*/
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */ 
+	color: #ffffff;
+	font-weight: bold;
 }
 
 #signup-container {
@@ -245,11 +296,6 @@ nav li a:hover {
 	border-radius: 3px;
 }
 
-.prompt-listitem a {
-	/*text-decoration: none;*/
-	/*color: black;*/
-}
-
 .prompt-listitem:first-of-type {
 	margin-top: 2em;
 }
@@ -291,12 +337,15 @@ nav li a:hover {
 
 #newprompt input[type=submit]{
 	width: 10%;
-	margin-top: 0.25em;
+	margin-top: 0.2em;
 	margin-left: 1em;
 	border: none;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */
 	padding: 1em;
 	text-align: center;
-	background-color: yellow;
+	background-color: #ff3e4c;
+	color: #ffffff;
+	font-weight: bold;
 	display: inline;
 }
 
@@ -323,7 +372,7 @@ nav li a:hover {
 	margin: auto;
 /*	border-top: 3px solid red;*/
 /*	border: 1px solid red;*/
-	border-bottom: 5px solid red;
+	border-bottom: 5px solid #f63341;
 	margin-bottom: 2.5em;
 /*	background-color: red;*/
 }
@@ -331,6 +380,7 @@ nav li a:hover {
 .profile-response p {
 	padding: 0.5em;
 	padding-bottom: 0.75em;
+	/*font-size: 1em;*/
 }
 
 .profile-response span {
@@ -338,6 +388,12 @@ nav li a:hover {
 	background-color: #efefef;
 	padding: 0.3em 1em 0.3em 1em;
 	font-size: 0.75em;
+	font-weight: bold;
+	transition: background-color 3s linear;
+}
+
+.profile-response span:hover {
+	background-color: rgba(255, 255, 255, 0.85);
 }
 
 .promptbody span {
@@ -345,8 +401,8 @@ nav li a:hover {
 	background-color: #efefef;
 }
 
-.promptbody a {
-	/*text-decoration: none;*/
+.promptbody a:hover {
+	color: #f63341;
 }
 
 

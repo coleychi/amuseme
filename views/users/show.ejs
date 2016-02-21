@@ -39,19 +39,35 @@
 
 			<% } %>
 
-		
-
-
-			<!-- <div class="profile-response">
-				<span class="promptbody">Killing Hitler has become a sport amongst time travelers. Points are awarded for creativity and difficulty. You are last year's champion, how did you win?</span>
-				<p>Germany invaded France and so came upon my little village which lay in Burgundy. First, came the overwhelming buzzing as the Luftwaffe began to toss their bombs. I didn't understand why they were attacking us at the time; I later found out that the villa was the site of large oil tanks and reserves, and just a few kilometers off was a hidden military base. The bombs swept over the village like a fiery storm, spitting fire, twisting and burning everything and everyone. My Time Machine was destroyed in my house during that first wave. My daughter burned to death; she was in her crib and was crying out as her flesh melted off her bones. I found her later, charred black with a gaping mouth but no tongue. Her teeth were still white as snow. The few bombs had created towering infernos that dashed and killed as an avenging angel of death. The Germans wasted an immense amount of resources on our useless village. When I returned to my time, I learned of their assaults on Paris and London, but I would never hear of their experiments of these techniques on small towns like mine.</p>
-			</div> -->
-
-
-
 		</div>
 
-	</div>
+
+		<div class="profile-content">
+			<h2>Prompts</h2>
+
+			<div class="profile-prompt">
+
+				<% if (user.prompts[0] != null) { %> <!-- don't run loop if there is no array -->
+				<% for (var i = 0; i < user.prompts.length; i++) { %>
+
+				<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a>
+
+
+									<% } %>
+				<% } else { %>
+
+				<p><%= user.username %> has not posted anything yet. </p>
+
+
+			<% } %>
+			</div>
+		</div>
+
+	</div> <!-- closes usershow-container -->
+
+
+
+	
 
 	<footer></footer>
 
