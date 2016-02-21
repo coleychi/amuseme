@@ -21,6 +21,71 @@ router.get("/", function(req, res) {
 });
 
 
+// EDIT-- render edit form page
+router.get("/:response_id/edit", function(req, res) {
+  Response.findById(req.params.response_id, function(err, responseData) {
+    console.log(responseData); // confirms information being passed
+    res.render("prompts/edit.ejs", { 
+      response: responseData
+    });
+  });
+});
+
+
+// UPDATE-- submit changes to db
+router.put("/:response_id", function(req, res) {
+
+  // update the specific response in responses collection
+  Response.findByIdAndUpdate(req.params.response_id, req.body, {new: true}, function(err, responseData) {
+    console.log("FOUND THE INSTANCE!");
+    console.log(responseData);
+    console.log("response updated");
+    console.log(req.body);
+
+    // update the response in prompts collection
+    Prompt.update({"responses._id": req.params.response_id}, {"$set": {
+      "responses.$.responseBody" : responseData.responseBody
+    }}, function(err, prompt) {
+      console.log(prompt); 
+
+      // update the response in the users collection
+      console.log("USER ID IS BELOw------")
+      console.log(req.user.id)
+
+
+      User.update({"responses._id": req.params.response_id}, {"$set": {
+        "responses.$.responseBody" : responseData.responseBody
+      }}, function(err, user) {
+        console.log("USER DATA--------")
+        console.log(user)
+      })
+      //   function(err, user) {
+      //   console.log(user)
+      // })
+
+      // User.update({"responses._id": req.params.response_id}, {"$set": {
+      //   "responses.$responseBody" : responseData.responseBody
+      // }}, function(err, user) {
+      //   console.log(user)
+      // })
+
+
+    })
+
+
+
+    // res.redirect("/prompts/" + responseData.promptid);
+  })
+})
+
+
+
+
+// DELETE RESPONSE
+
+
+
+
 // SHOW
 router.get("/:prompt_id", function(req, res) {
   Prompt.findById(req.params.prompt_id, function(err, promptData) { // finds prompt instance by id using params

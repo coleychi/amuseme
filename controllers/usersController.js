@@ -10,7 +10,7 @@ var Prompt = require("../models/prompts.js");
 
 // ROUTES
 // -----------------------------------------------------------------
-// INDEX-- users root index (FOR TEST PURPOSES ONLY)
+// INDEX-- users root index redirects to prompts root
 router.get("/", function(req, res) {
   res.redirect("/prompts");
 });
