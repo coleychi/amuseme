@@ -340,6 +340,10 @@ nav li a:hover {
 	background-color: #efefef;
 }
 
+.promptbody a {
+	text-decoration: none;
+}
+
 
 footer {
 	overflow: auto;

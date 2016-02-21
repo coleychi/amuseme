@@ -43,38 +43,71 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
     // console.log(responseData.id)
     // console.log(req.user.username)
 
-    // set author to the logged in user
-    Response.findByIdAndUpdate(responseData.id, {$set: {author: req.user.username, authorid: req.user.id}}, {new: true}, function(err, responseData) {
-      console.log(responseData);
+    // add the user to the response instance
+    Response.findByIdAndUpdate(responseData.id, {
+      $set: {
+        author: req.user.username, // sets author to the logged in user
+        authorid: req.user.id,  // saves the author id 
+        promptid: req.params.prompt_id} // saves the parent prompt id 
+      }, {new: true}, function(err, responseData) {
+        console.log(responseData);
 
-      // push into prompt's responses array and save
-      Prompt.findById(req.params.prompt_id, function(err, prompt) {
-        // console.log(prompt); // confirms prompt instance being grabbed
-        prompt.responses.push(responseData); // push new response to prompt's responses array
-        prompt.save(function(err, data) { // saves change to database
-          console.log("response saved to prompt"); 
+        // add the promptBody to the response instance
+        Prompt.findById(req.params.prompt_id, function(err, prompt) { // finds the prompt by id
+          // console.log(prompt.promptBody);
+          // console.log(responseData)
+          Response.findByIdAndUpdate(responseData.id, {
+            $set: {promptBody: prompt.promptBody} // set promptBody in response document
+          }, {new: true}, function(err, responseData) {
+            console.log(responseData); // confirms promptBody was added
 
-        // console.log(req.user.id); // confirms req.user is still accessible 
+            prompt.responses.push(responseData); 
+            prompt.save(function(err, data) {
+              console.log("response saved to prompt!");
 
-          // push into user's responses array and save
-          User.findById(req.user.id, function(err, user) {
-            // console.log(user); // confirms user instance being grabbed
-            // console.log(responseData); // confirms responseData accessible
-            user.responses.push(responseData); // push new response to user's responses array
-            user.save(function(err, data) { // saves change to database
-              console.log("response saved to user"); 
-              res.redirect("/prompts/" + prompt.id); // change to a redirect or something
-
-            });
-          });
-
+              //push into user's responses array and save
+              User.findById(req.user.id, function(err, user) {
+                user.responses.push(responseData);
+                user.save(function(err, data) {
+                  console.log("response saved to user");
+                  res.redirect("/prompts/" + prompt.id)
+                })
+              })
+            })
+          }); 
         });
+
+
+        // // push into prompt's responses array and save
+        // Prompt.findById(req.params.prompt_id, function(err, prompt) {
+        //   // console.log(prompt); // confirms prompt instance being grabbed
+        //   prompt.responses.push(responseData); // push new response to prompt's responses array
+        //   prompt.save(function(err, data) { // saves change to database
+        //     console.log("response saved to prompt"); 
+
+        //   // console.log(req.user.id); // confirms req.user is still accessible 
+
+        //     // push into user's responses array and save
+        //     User.findById(req.user.id, function(err, user) {
+        //       // console.log(user); // confirms user instance being grabbed
+        //       // console.log(responseData); // confirms responseData accessible
+        //       user.responses.push(responseData); // push new response to user's responses array
+        //       user.save(function(err, data) { // saves change to database
+        //         console.log("response saved to user"); 
+        //         res.redirect("/prompts/" + prompt.id); // change to a redirect or something
+
+        //       });
+        //     });
+
+        //   });
+        // });
+
       });
 
     });
-
   });
-});
+
+
 
 
 // RANDOM
