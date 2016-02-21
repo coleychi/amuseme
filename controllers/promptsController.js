@@ -85,7 +85,11 @@ router.post("/:prompt_id/newresponse", isLoggedIn, function(req, res) {
 
 
 
-// RANDOM
+// EDIT
+// only able to edit own. make sure to edit in all places
+
+// DELETE
+// only able to delete own. make sure to delete from all places
 
 
 

@@ -16,7 +16,10 @@
 			<!-- <p>Author: <%= prompt.responses[i].author %></p> -->
 
 		<div class="response-bottom">
-			<span>By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
+			<span class="response-bottom-span">By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
+
+			<span class="rb-edit-delete">
+				<a href="../prompts/edit" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a><a href="../prompts/delete"><img src="../img/trash.png" class="edit-delete-icon"></span></a>
 		</div> <!-- closes response-bottom div -->
 
 		</section>

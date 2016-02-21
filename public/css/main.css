@@ -194,15 +194,30 @@ nav li a:hover {
 	font-size: 0.7em;
 }
 
-.response-bottom span a {
+.response-bottom-span a {
 	color: #28c0d6;
 	font-weight: bold;
 	border-bottom: 1px solid;
 	/*text-decoration: underline;*/
 }
 
-.response-bottom span a:hover {
+.response-bottom-span a:hover {
 	color: #199caf;
+}
+
+.rb-edit-delete {
+	display: inline-block;
+	float: right;
+}
+
+.edit-delete-icon {
+	width: 1.2em;
+	height: 1.2em;
+	text-decoration: none;
+}
+
+.edit-delete-icon:first-of-type {
+	margin-right: 0.8em;
 }
 
 #post-response {
@@ -228,7 +243,7 @@ nav li a:hover {
 /*	background-color: #fabc00;
 	border-bottom: 5px solid #e4981f;*/
 	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */ 
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color  
 	color: #ffffff;
 	font-weight: bold;
 }
@@ -374,35 +389,70 @@ nav li a:hover {
 /*	border: 1px solid red;*/
 	border-bottom: 5px solid #f63341;
 	margin-bottom: 2.5em;
+	position: relative;
+	white-space: nowrap;
+	/*overflow: hidden;*/
 /*	background-color: red;*/
 }
 
 .profile-response p {
 	padding: 0.5em;
-	padding-bottom: 0.75em;
+	padding-bottom: 0em;
+	margin-bottom: 0;
+	white-space: normal;
 	/*font-size: 1em;*/
 }
 
-.profile-response span {
+/*.profile-response span {
 	display: block;
 	background-color: #efefef;
 	padding: 0.3em 1em 0.3em 1em;
 	font-size: 0.75em;
 	font-weight: bold;
 	transition: background-color 3s linear;
+}*/
+
+/*.profile-response-content {
+	width: 90%;
+	background-color: red;
+	display: inline-block;
+	white-space: normal;
 }
 
-.profile-response span:hover {
-	background-color: rgba(255, 255, 255, 0.85);
+.profile-response-panel {
+	width: 10%;
+	background-color: orange;
+	display: inline-block;
+	white-space: normal;
+	position: relative;
 }
-
-.promptbody span {
+*/
+.promptbody {
 	display: block;
 	background-color: #efefef;
+	padding: 0.3em 1em 0.3em 1em;
+	font-size: 0.75em;
+	font-weight: bold;
+	transition: background-color 3s linear;
+	white-space: normal;
+}
+
+.promptbody:hover {
+	background-color: rgba(255, 255, 255, 0.85);
 }
 
 .promptbody a:hover {
 	color: #f63341;
+}
+
+.edit-delete {
+/*	position: absolute;*/
+/*	right: 0;*/
+	/*background-color: #ffffff;*/
+	text-align: right;
+	padding-right: 0.3em;
+	display: inline-block
+	vertical-align: top;
 }
 
 
