@@ -43,6 +43,11 @@
 
 			</span>
 
+				<%# if the user has posed already, save as variable %>
+				<% var userPosted = true %>
+
+
+
 			<% } %>
 
 		</div> <!-- closes response-bottom div -->
@@ -51,13 +56,29 @@
 
 	<% } %>
 	
-	<!-- HIDE NEW RESPONSE FORM IF USER IS NOT LOGGED IN -->
-	<% if (locals.login) { %>
+
+
+	<!-- HIDE IF USER IS NOT LOGGED IN OR IF USER HAS ALREADY POSTED -->
+	<% if (locals.login && !userPosted) { %>
 		<!-- form to post a new response -->
 		<form action="/prompts/<%= prompt.id %>/newresponse" method="POST" id="post-response">
 		<textarea name="responseBody" form="post-response" placeholder="<%= prompt.promptBody %>"></textarea>
 		<input type="submit">
 		</form>
+
+	<% } %>
+
+
+	<% if (userPosted) { %>
+
+	<div class="message">
+
+		<p>You have already responded to this prompt! Find another prompt, post your own, or edit your submission.</p>
+
+		<!-- is there a way I can grab what the user has already done... make it easier for the user to find their submission. -->
+
+	</div>
+
 
 	<% } %>
 

@@ -11,12 +11,18 @@ var responseSchema = require("./responses.js").responseSchema;
 // -----------------------------------------------------------------
 // create user schema
 var userSchema = new mongoose.Schema({
-  username: {type: String, required: true, unique: true},
+  username: {type: String, required: true, unique: true, lowercase: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
+  about: {type: String},
   prompts: [promptSchema],
   responses: [responseSchema]
 });
+
+
+// userSchema.path('username').validate(function (username) {
+//   return username.length > 5;
+// }, "error"); // won't allow a username less than 5 characters
 
 // METHODS
 // generate hash from password

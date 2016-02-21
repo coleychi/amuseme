@@ -105,9 +105,9 @@ router.delete("/deleteaccount/:user_id", function(req, res) {
     // delete responses from parent prompts
     // find all responses whose auther is equal to the user's username
     Response.find({author: user.username}, function(err, userContributions) {
-      console.log("USER CONTRIBUTIONS================")
-      console.log(userContributions[0])
-      console.log(userContributions[0].id)
+      // console.log("USER CONTRIBUTIONS================")
+      // console.log(userContributions[0])
+      // console.log(userContributions[0].id)
 
       // for loop-- for every response in the query array
       for (var i = 0; i < userContributions.length; i++) {
@@ -131,6 +131,25 @@ router.delete("/deleteaccount/:user_id", function(req, res) {
       res.redirect("/prompts");
 
     });
+  });
+});
+
+
+
+// EDIT PROFILE
+router.get("/editprofile/:user_id", function(req, res) {
+  res.render("users/edit.ejs");
+});
+
+
+// UPDATE
+router.put("/editprofile/:user_id", function(req, res) {
+  // console.log("THIS IS REQ BODY");
+  // console.log(req.body);
+  User.findByIdAndUpdate(req.params.user_id, {$set: {about: req.body.about}}, {new: true}, function(err, user) {
+    console.log("Updated user profile");
+    res.redirect("/users/" + user.id);
+    // res.redirect("/users/" + user.id);
   });
 });
 

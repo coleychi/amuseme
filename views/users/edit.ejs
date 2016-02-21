@@ -1,0 +1,35 @@
+<% include ../partials/header_partial.ejs %>
+	
+	<div id="usershow-container">
+
+		<div class="profile-content">
+
+			<h2><%= user.username %></h2>
+
+
+			<form action="/users/editprofile/<%= user.id %>?_method=PUT" method="POST" id="edit-response">
+				<textarea name="about" form="edit-response" placeholder="<%= user.about %>"></textarea>
+				<input type="submit">
+			</form>
+
+
+
+
+		</div>
+
+
+
+
+
+	</div> <!-- closes usershow-container -->
+
+
+
+	
+
+	<footer></footer>
+
+</div> <!-- closes content-container div -->
+
+
+</div> <!-- closes super-container div -->
