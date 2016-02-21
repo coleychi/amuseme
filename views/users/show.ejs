@@ -36,6 +36,10 @@
 
 						
 							<span class="edit-delete">edit delete</span>
+
+							<a href="../prompts/edit/<%= user.responses[i].id %>">edit</a>
+
+							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST" class="hidden" display="inline"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
 						
 
 				

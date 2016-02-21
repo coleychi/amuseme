@@ -5,6 +5,7 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/users.js");
 var Prompt = require("../models/prompts.js");
+var Response = require("../models/responses.js");
 
 
 
@@ -44,29 +45,6 @@ router.get("/newaccount", function(req, res) {
 });
 
 
-// // NEWPROMPT-- add a new prompt
-// router.post("/newprompt", isLoggedIn, function(req, res) {
-  
-//   // save new prompt in prompts collection
-//   var newPrompt = new Prompt(req.body);
-//   // console.log(newPrompt); // confirms newPrompt body content 
-//   newPrompt.save(function(err, promptData) { // saves new prompt to prompts collection
-//     // console.log(promptData); // confirms newPrompt has been saved (should have unique id)
-//     // console.log(req.user.id); // confirms logged in user info is accessible
-    
-//     // push into user's prompts
-//     User.findById(req.user.id, function(err, user) {
-//       console.log(user); // confirms instance being grabbed
-//       user.prompts.push(promptData); // push new prompt to user's prompts array
-//       user.save(function(err, data) { // saves the change to the database
-//         console.log("new prompt saved!");
-//         res.redirect("/users/" + user.id);
-//       });
-//     });
-//   });
-// });
-
-
 // SHOW-- user's show page... convert username to userid
 router.get("/username/:username", function(req, res) {
   User.findOne({username: req.params.username}, function(err, user) {
@@ -85,6 +63,31 @@ router.get("/:user_id", isLoggedIn, function(req, res) {
   });
 });
 
+
+// DELETE-- deletes a single response (same as prompts controller route, different redirect)
+router.delete("/delete/:response_id", function(req, res) {
+
+  // grab the specific response instance from db
+  Response.findById(req.params.response_id, function(err, responseData) {
+
+    // pull response instance from user's responses array
+    User.findByIdAndUpdate(req.user.id, {$pull: {responses: {_id: req.params.response_id}}}, {new: true}, function(err, user) {
+      // console.log(user);
+
+      // pull response instance from prompt's responses array
+      Prompt.findByIdAndUpdate(responseData.promptid, {$pull: {responses: {_id: req.params.response_id}}}, {new:true}, function(err, prompt) {
+        // console.log(prompt);
+
+        // delete the original response from the response collection
+        Response.findByIdAndRemove(req.params.response_id, function(err, data) {
+          console.log("Deleted response!");
+
+          res.redirect("/users/" + user.id);
+        });
+      });
+    });
+  });
+}); // end delete response route
 
 
 
@@ -111,3 +114,31 @@ function isLoggedIn(req, res, next) {
 // EXPORT
 // -----------------------------------------------------------------
 module.exports = router;
+
+
+
+
+// SCRAP CODE
+
+// moved to prompts controller -----------------------------
+// // NEWPROMPT-- add a new prompt
+// router.post("/newprompt", isLoggedIn, function(req, res) {
+  
+//   // save new prompt in prompts collection
+//   var newPrompt = new Prompt(req.body);
+//   // console.log(newPrompt); // confirms newPrompt body content 
+//   newPrompt.save(function(err, promptData) { // saves new prompt to prompts collection
+//     // console.log(promptData); // confirms newPrompt has been saved (should have unique id)
+//     // console.log(req.user.id); // confirms logged in user info is accessible
+    
+//     // push into user's prompts
+//     User.findById(req.user.id, function(err, user) {
+//       console.log(user); // confirms instance being grabbed
+//       user.prompts.push(promptData); // push new prompt to user's prompts array
+//       user.save(function(err, data) { // saves the change to the database
+//         console.log("new prompt saved!");
+//         res.redirect("/users/" + user.id);
+//       });
+//     });
+//   });
+// });
