@@ -117,6 +117,22 @@ router.delete("/delete/:response_id", function(req, res) {
 }); // end delete response route
 
 
+// RANDOM-- goes to random prompt show page
+router.get("/random", function(req, res) {
+  // find the number of instances in prompt collection
+  Prompt.count({}, function(err, count) {
+    console.log(count); // confirm count works
+
+    // generate a random number using the count value
+    var randomIndex = Math.floor(Math.random() * count);
+
+    Prompt.findOne().skip(randomIndex).exec(function(err, prompt) {
+      console.log(prompt); // confirms that a prompt is returned
+      res.redirect("/prompts/" + prompt.id);
+    });
+  });
+});
+
 
 // SHOW
 router.get("/:prompt_id", function(req, res) {
