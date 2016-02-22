@@ -43,6 +43,11 @@ router.post("/newprompt", isLoggedIn, function(req, res) {
   });
 });
 
+// NEXT-- show next (#?) results
+router.get("/next", function(req, res) {
+  
+})
+
 
 // EDIT-- render edit form page
 router.get("/edit/:response_id", isLoggedIn, function(req, res) {
