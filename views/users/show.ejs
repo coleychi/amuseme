@@ -31,6 +31,7 @@
 			<% if (user.username == locals.username) { %>
 
 			<center> 
+				
 				<form action="/users/editprofile/<%= user.id %>" display="inline"><button id="profile-buttons">Update Profile</button></form>
 
 				<form action="/users/deleteaccount/<%= user.id %>?_method=DELETE" method="POST" display="inline"><button id="profile-buttons">Delete Account</button></form>
@@ -65,11 +66,18 @@
 						
 
 							<% if (user.username == locals.username) { %>
+
+							<span class="profile-response-bottom">
+
+
+							<a href="../prompts/edit/<%= user.responses[i].id %>"><img src="../img/pencil.png" class="profile-icon"></a>
 				
 
-							<a href="../prompts/edit/<%= user.responses[i].id %>">edit</a>
+							<!-- <a href="../prompts/edit/<%= user.responses[i].id %>">edit</a> -->
 
-							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST" class="hidden" display="inline"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
+							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST"><input type="image" src="../img/trash.png" class="profile-icon"></form>
+
+							</span>
 
 							<% } %>
 						

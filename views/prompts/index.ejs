@@ -5,7 +5,11 @@
 
 		<% if (prompts.length == 0) { %>
 
-		<p>No more prompts! Submit another?</p>
+		<div class="notice prompt">
+
+			<p>No more prompts! Submit another?</p>
+
+		</div>
 
 		<% } %>
 
@@ -50,6 +54,8 @@
 
 			LAST PAGE: <%= lastPage %> <br>
 
+			<% console.log(typeof(lastPage)) %>
+
 <!-- 			<% parseInt(nextPage) %>
  -->
 			NEXT PAGE: <%= nextPage %> <br>
@@ -63,9 +69,40 @@
 
 			<!-- go to next or previous pages -->
 
-		<a href="/prompts/pages/<%= lastPage %>">Back</a>
 
-		<a href="/prompts/pages/<%= nextPage %>">Next</a>
+
+		<div id="bottom-nav">
+			
+			<!-- hide if there are no more pages -->
+
+			<% if (lastPage > -1) { %>
+
+			<span class="bottom-back">
+
+				<a href="/prompts/pages/<%= lastPage %>">Back</a>
+
+			</span>
+
+			<% } %>
+
+			<!-- hide if there are no more pages -->
+
+			<!-- length equal to the limit in prompts controller -->
+
+
+
+			<% if (prompts.length === 2) { %>
+
+			<span class="bottom-next">
+
+				<a href="/prompts/pages/<%= nextPage %>">Next</a>
+
+			</span>
+
+			<% } %>
+
+
+		</div>
 
 
 		</div> <!-- closes content-container div -->

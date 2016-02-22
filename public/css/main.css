@@ -200,6 +200,10 @@ nav li a:hover {
 	margin-bottom: 2em;
 }
 
+.notice.prompt {
+	margin-top: 3em;
+}
+
 .response {
 	width: 67%;
 	margin: auto;
@@ -218,7 +222,9 @@ nav li a:hover {
 	/*background-color: orange;*/
 	margin-bottom: 1em;
 	font-size: 0.95em;
+	white-space: pre-line;
 } /*make this last child*/
+
 
 .response-bottom {
 	position: absolute;
@@ -436,7 +442,10 @@ nav li a:hover {
 #profile-buttons {
 	width: 100%;
 	padding: 1em;
-	background-color: red;
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000;
+	color: #ffffff;
+	font-weight: bold;
 }
 
 
@@ -464,9 +473,39 @@ nav li a:hover {
 	padding: 0.5em;
 	padding-bottom: 0em;
 	margin-bottom: 0;
-	white-space: normal;
+	white-space: pre-line;
 	/*font-size: 1em;*/
 }
+
+.profile-response-bottom {
+	/*background-color: red;*/
+	display: block;
+	text-align: right;
+	height: 0.8em;
+	position: relative;
+}
+
+.profile-response-bottom form {
+	width: 10px;
+	margin-top: -0.8em;
+	margin-right: 1em;
+}
+
+.profile-icon {
+	width: 0.8em;
+	position: absolute;
+	top: -0.4em;
+}
+
+/*.pencil {
+	width: 0.8em;
+	height: 0.8em;
+}
+
+.trash {
+	width: 0.8em;
+	height: 0.8em;
+}*/
 
 /*.profile-response span {
 	display: block;
@@ -553,6 +592,37 @@ nav li a:hover {
 	font-weight: bold;
 }
 
+#bottom-nav {
+	width: 100%;
+/*	background-color: green;*/
+	position: relative;
+/*	color: red;*/
+	/*padding: 1em;*/
+}
+
+.bottom-next,.bottom-back {
+	background-color: #fabc00; /* make this brighter */
+	border-bottom: 1px solid #e4981f;
+	padding: 0.75em;
+	border-radius: 3px;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+.bottom-next a,.bottom-back a {
+	color: #ffffff;
+}
+
+.bottom-next {
+	position: absolute;
+	right: 18%;
+	color: white;
+}
+
+.bottom-back {
+	position: absolute;
+	left: 18%;
+}
 
 
 footer {
