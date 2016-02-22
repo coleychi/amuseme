@@ -12,13 +12,28 @@ var User = require("../models/users.js");
 // -----------------------------------------------------------------
 // INDEX
 router.get("/", function(req, res) {
-  Prompt.find({}, function(err, prompts) { // finds all prompt instances in collection
+  Prompt.find({}, {}, {limit: 2}, function(err, prompts) { // finds all prompt instances in collection
     // console.log(prompts); // confirms prompts
     res.render("prompts/index.ejs", {
-      prompts: prompts // renders prompts data with index.ejs
+      prompts: prompts, // renders prompts data with index.ejs
+      pageNumber: 0 // set page number to 0
     });
   });
 }); // end root route
+
+
+// NEXT-- show next (#?) results
+router.get("/pages/:page_number", function(req, res) {
+  var pageNumber = parseInt(req.params.page_number); // convert param to an integer
+  // pulls the next (#) of entries and saves to ender to show page
+  // var morePrompts = true; // default value is true --> assumes that there are more prompts
+  Prompt.find({}, {}, {limit: 2, skip: (2 * req.params.page_number)}, function(err, prompts) {
+      res.render("prompts/index.ejs", {
+        prompts: prompts, 
+        pageNumber: pageNumber
+      })
+  });
+});
 
 
 // NEWPROMPT-- add a new prompt
@@ -42,11 +57,6 @@ router.post("/newprompt", isLoggedIn, function(req, res) {
     });
   });
 });
-
-// NEXT-- show next (#?) results
-router.get("/next", function(req, res) {
-  
-})
 
 
 // EDIT-- render edit form page
@@ -254,5 +264,54 @@ module.exports = router;
         //   });
         // });
   // ------------------------------------- end second half of original new response route
+
+
+  // NEXT ROUTE... WAS TRYING TO USE QUERIES TO DISABLE SEARCH IF THERE WOULD BE NO MORE RESULTS 
+
+  // NEXT-- show next (#?) results
+  // router.get("/pages/:page_number", function(req, res) {
+  //   var pageNumber = parseInt(req.params.page_number); // convert param to an integer
+  //   // pulls the next (#) of entries and saves to ender to show page
+  //   // var morePrompts = true; // default value is true --> assumes that there are more prompts
+  //   Prompt.find({}, {}, {limit: 2, skip: (2 * req.params.page_number)}, function(err, prompts) {
+
+  //     // check if there are more entries on potential next page
+  //     Prompt.find({}, {promptBody: 1}, {limit: 2, skip: 4}, function(err, nextPrompt) {
+
+  //       console.log("NEXT PROMPT");
+  //       console.log(nextPrompt);
+
+  //       // if (nextPrompt === 0) {
+  //       //   var morePrompts = false; // set more prompts variable to false if there are none left
+
+  //       // } else {
+  //       //   var morePrompts = true;
+  //       // }
+
+  //       //   console.log("MORE PROMPTS")
+  //       //   console.log(morePrompts)
+
+  //       res.render("prompts/index.ejs", {
+  //         prompts: prompts, // pass data from first query
+  //         pageNumber: pageNumber
+  //         // morePrompts: morePrompts
+  //       })
+
+  //     }) // closes inner prompt find
+
+  //     // if there are no prompts to display
+  //     // if (prompts.length == 0 ) {
+  //     //   res.send("nothing is here");
+  //     // }
+
+  //     // display the page with the passed prompts
+  //     // res.render("prompts/index.ejs", {
+  //     //   prompts: prompts,
+  //     //   pageNumber: pageNumber
+  //     // });
+  //   });
+  // });
+  
+  // ------------------------------------------------------------- END NEXT ROUTE CODE
 
 

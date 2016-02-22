@@ -1,29 +1,71 @@
 <% include ../partials/header_partial.ejs %>
 
-			<% for (var i = 0; i < prompts.length; i++) { %>
+	
+		<!-- if there are no prompts to display -->
 
-			<div class="prompt-listitem">
+		<% if (prompts.length == 0) { %>
 
-				<h3><a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a></h3>
+		<p>No more prompts! Submit another?</p>
 
-				<!-- <span>Submitted 5 hours ago by user</span> -->
-			</div>
-			<% } %>
+		<% } %>
 
 
-			<!-- HIDE NEW PROMPT FORM IF USER IS NOT LOGGED IN -->
-			<% if (locals.login) { %>
+		<!-- if there are prompts to display -->
 
-			<div id="newprompt-container">
+		<% for (var i = 0; i < prompts.length; i++) { %>
 
-				<!-- ADDS NEW PROMPT -->
-				<form action="/prompts/newprompt" method="POST" id="newprompt">
-					<textarea form="newprompt" name="promptBody"></textarea>
-					<input type="submit" value="Post">
-				</form>
-			</div>
+		<div class="prompt-listitem">
 
-			<% } %>
+			<h3><a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a></h3>
+
+			<!-- <span>Submitted 5 hours ago by user</span> -->
+		</div>
+		<% } %>
+
+
+		<!-- HIDE NEW PROMPT FORM IF USER IS NOT LOGGED IN -->
+		<% if (locals.login) { %>
+
+		<div id="newprompt-container">
+
+			<!-- ADDS NEW PROMPT -->
+			<form action="/prompts/newprompt" method="POST" id="newprompt">
+				<textarea form="newprompt" name="promptBody"></textarea>
+				<input type="submit" value="Post">
+			</form>
+		</div>
+
+		<% } %>
+
+
+<!-- 			PageNumber: <%= parseInt(pageNumber) %> <br> 
+ -->
+
+
+<!-- 			Typeof: <%= typeof(pageNumber) %> <br>
+ -->			
+			<% var nextPage = (pageNumber += 1) %>
+
+			<% var lastPage = (pageNumber -= 2) %>
+
+			LAST PAGE: <%= lastPage %> <br>
+
+<!-- 			<% parseInt(nextPage) %>
+ -->
+			NEXT PAGE: <%= nextPage %> <br>
+
+
+
+<!-- 			BE A NUMBER: <% console.log(typeof(nextPage)) %>
+ -->
+<!-- 			PageNumber: <%= pageNumber %> <br>
+			Next page (number): <%= nextPage %><br> -->
+
+			<!-- go to next or previous pages -->
+
+		<a href="/prompts/pages/<%= lastPage %>">Back</a>
+
+		<a href="/prompts/pages/<%= nextPage %>">Next</a>
 
 
 		</div> <!-- closes content-container div -->
