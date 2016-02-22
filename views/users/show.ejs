@@ -8,7 +8,18 @@
 
 			<% if (user.about == null) { %>
 
-				<p>Pollis turpis venenatis odio maximus, eu volutpat orci lacinia. Vestibulum dui urna, imperdiet vitae turpis aliquam, hendrerit interdum justo. Vivamus euismod posuere nulla condimentum suscipit. Vivamus in ante id odio consectetur pellentesque ac quis metus.</p>
+				<% if (user.username != locals.username) { %>
+
+				<p><%= user.username %> hasn't written anything yet. How mysterious...</p>
+
+				<% } %>
+
+
+				<% if (user.username === locals.username) { %>
+
+				<p>Edit your profile to let others know some stuff about you.</p>
+
+				<% } %>
 
 			<% } else { %>
 
@@ -88,7 +99,7 @@
 				<% if (user.prompts[0] != null) { %> <!-- don't run loop if there is no array -->
 				<% for (var i = 0; i < user.prompts.length; i++) { %>
 
-				<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a>
+				<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a><br><br>
 
 
 									<% } %>

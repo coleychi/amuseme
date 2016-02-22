@@ -13,7 +13,7 @@
 <form action="/prompts/edit/<%= response.id %>?_method=PUT" method="POST" id="edit-response">
 
 
-<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"></textarea>
+<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"><%= response.responseBody %></textarea>
 		<input type="submit">
 </form>
 
