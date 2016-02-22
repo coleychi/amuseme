@@ -225,7 +225,7 @@ function isLoggedIn(req, res, next) {
   } else {
 
   // if they aren't redirect them to the homepage
-    res.redirect("/");
+    res.redirect("/signup");
 
   }; 
 };

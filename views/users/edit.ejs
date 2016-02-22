@@ -4,11 +4,15 @@
 
 		<div class="profile-content">
 
+
+
 			<h2><%= user.username %></h2>
 
+			<p>Edit your profile.</p>
 
-			<form action="/users/editprofile/<%= user.id %>?_method=PUT" method="POST" id="edit-response">
-				<textarea name="about" form="edit-response" placeholder="<%= user.about %>"></textarea>
+
+			<form action="/users/editprofile/<%= user.id %>?_method=PUT" method="POST" id="edit-profile">
+				<textarea name="about" form="edit-profile" placeholder="<%= user.about %>"></textarea>
 				<input type="submit">
 			</form>
 

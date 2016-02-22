@@ -46,6 +46,8 @@
 				<%# if the user has posed already, save as variable %>
 				<% var userPosted = true %>
 
+				<% var userResponseId = prompt.responses[i].id %>
+
 
 
 			<% } %>
@@ -73,7 +75,7 @@
 
 	<section class="notice">
 
-		<p>You have already responded to this prompt! Find another prompt, post your own, or edit your submission.</p>
+		<p>You have already responded to this prompt! Find <a href="/prompts">another prompt,</a> <a href="#">post your own,</a> or <a href="/prompts/edit/<%= userResponseId %>">edit your submission.</p>
 
 		<!-- is there a way I can grab what the user has already done... make it easier for the user to find their submission. -->
 

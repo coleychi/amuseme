@@ -40,6 +40,7 @@ button, input[type="submit"] {
 	border-radius: 3px;
 }
 
+
 /*#cover {
 	width: 100%;
 	height: 100%;
@@ -176,7 +177,7 @@ nav li:last-child {
 }
 
 nav li a:hover {
-	background-color: #ffd200; /* change this color? maybe? */
+	background-color: #baf1ee; /* change this color? maybe? */
 	/*font-weight: bold;*/
 	color: #2b2b2b;
 }
@@ -190,6 +191,14 @@ nav li a:hover {
 	border-bottom: 0.5px solid #d3d3d3;
 }
 
+.prompt h4 a{
+
+}
+
+.prompt h4 a:hover {
+	color: #f63341;
+}
+
 .notice {
 	width: 67%;
 	margin: auto;
@@ -198,6 +207,16 @@ nav li a:hover {
 	border: 1px solid #d3d3d3;
 	border-radius: 3px;
 	margin-bottom: 2em;
+}
+
+.notice a {
+	border-bottom: 1px solid #28c0d6;
+	/*text-decoration: underline;*/
+}
+
+.notice a:hover {
+	color: #28c0d6;
+	border-bottom: 1px solid #28c0d6;
 }
 
 .notice.prompt {
@@ -308,9 +327,14 @@ nav li a:hover {
 }
 
 #signup-container h2 {
-	margin-bottom: 1em;
-	border-bottom: 1px solid #ff3e4c;
 	color: #333333;
+	font-family: Lato, Helvetica;
+	font-size: 1.3em;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid #ff3e4c;
+
 }
 
 #new-account {
@@ -351,6 +375,15 @@ nav li a:hover {
 	background-color: #ff3e4c;
 	border-bottom: 3px solid #cc0000;	
 	color: white;
+}
+
+#new-account input[type="text"]:focus{
+	box-shadow: none;
+	border: 1px solid #4ECDC4; /* change color? */ 
+	box-shadow: 0 0 5px #4ECDC4; /*#fabc00*/
+	outline: 0;
+	-webkit-appearance: none; /* overrides default blue outline */
+
 }
 
 #new-account textarea {
@@ -433,7 +466,7 @@ nav li a:hover {
 	margin-top: 1em;
 	display: inline-block;
 	width: 30%;
-}
+} /* for button on profile page */
 
 .profile-content form:last-of-type {
 	margin-left: 0.5em;
@@ -448,7 +481,6 @@ nav li a:hover {
 	font-weight: bold;
 }
 
-
 .profile-content h2 {
 	padding-bottom: 0.15em;
 	margin-bottom: 0.5em;
@@ -456,12 +488,51 @@ nav li a:hover {
 	text-transform: capitalize;
 }
 
+/* EDIT PAGE */
+#edit-profile {
+	width: 100%;
+	margin: auto;
+	/*background-color: blue;*/
+}
+
+#edit-profile textarea{
+	margin-top: 1em;
+	width: 100%;
+	height: 8em;
+	padding: 0.5em;
+	border: 1px solid #d3d3d3; /* change to gray */
+}
+
+#edit-profile textarea:focus{
+	box-shadow: none;
+	border: 1px solid #4ECDC4; /* change color? */ 
+	outline: 0;
+	-webkit-appearance: none; /* overrides default blue outline */
+}
+
+#edit-profile input[type="submit"] {
+	width: 100%;
+	text-align: center;
+	font-size: 1em;
+	padding: 0.75em;
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
+	color: #ffffff;
+	font-weight: bold;
+	margin-top: 1em;
+}
+
+
+
+
 .profile-response {
 	width: 95%;
 	margin: auto;
 /*	border-top: 3px solid red;*/
 /*	border: 1px solid red;*/
-	border-bottom: 5px solid #f63341;
+	border-bottom: 3px solid #f63341;
+	/*padding-bottom: 0.5em;*/
+	border-radius: 2px;
 	margin-bottom: 2.5em;
 	position: relative;
 	white-space: nowrap;
@@ -485,6 +556,14 @@ nav li a:hover {
 	position: relative;
 }
 
+.profile-response-spacer {
+	width: 100%;
+	height: 0.3em;
+	overflow: auto;
+	display: block;
+	/*background-color: pink;*/
+}
+
 .profile-response-bottom form {
 	width: 10px;
 	margin-top: -0.8em;
@@ -496,6 +575,8 @@ nav li a:hover {
 	position: absolute;
 	top: -0.4em;
 }
+
+
 
 /*.pencil {
 	width: 0.8em;
@@ -600,29 +681,34 @@ nav li a:hover {
 	/*padding: 1em;*/
 }
 
+#top-nav {
+	width: 100%;
+	margin-top: 3em;
+/*	position: relative;*/
+}
+
 .bottom-next,.bottom-back {
 	background-color: #fabc00; /* make this brighter */
 	border-bottom: 1px solid #e4981f;
+	color: #ffffff;
 	padding: 0.75em;
 	border-radius: 3px;
 	font-size: 0.9em;
 	font-weight: bold;
 }
 
-.bottom-next a,.bottom-back a {
-	color: #ffffff;
-}
-
 .bottom-next {
 	position: absolute;
 	right: 18%;
-	color: white;
+	/*color: #ffffff;*/
 }
 
 .bottom-back {
 	position: absolute;
 	left: 18%;
+	/*color: #ffffff;*/
 }
+
 
 
 footer {

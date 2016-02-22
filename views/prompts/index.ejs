@@ -52,13 +52,12 @@
 
 			<% var lastPage = (pageNumber -= 2) %>
 
-			LAST PAGE: <%= lastPage %> <br>
+			<!-- LAST PAGE: <%= lastPage %> <br> -->
 
-			<% console.log(typeof(lastPage)) %>
 
 <!-- 			<% parseInt(nextPage) %>
  -->
-			NEXT PAGE: <%= nextPage %> <br>
+			<!-- NEXT PAGE: <%= nextPage %> <br> -->
 
 
 
@@ -77,11 +76,9 @@
 
 			<% if (lastPage > -1) { %>
 
-			<span class="bottom-back">
-
-				<a href="/prompts/pages/<%= lastPage %>">Back</a>
-
-			</span>
+			<a href="/prompts/pages/<%= lastPage %>">
+				<span class="bottom-back">Back</span>
+			</a>
 
 			<% } %>
 
@@ -93,11 +90,9 @@
 
 			<% if (prompts.length === 2) { %>
 
-			<span class="bottom-next">
-
-				<a href="/prompts/pages/<%= nextPage %>">Next</a>
-
-			</span>
+			<a href="/prompts/pages/<%= nextPage %>">
+				<span class="bottom-next">Next</span>
+			</a>
 
 			<% } %>
 
