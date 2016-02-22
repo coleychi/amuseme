@@ -51,13 +51,10 @@
 					
 							<p><%= user.responses[i].responseBody %></p>
 
-
-							<%= user.responses[i].id %>
 						
 
 							<% if (user.username == locals.username) { %>
-						
-							<span class="edit-delete">edit delete</span>
+				
 
 							<a href="../prompts/edit/<%= user.responses[i].id %>">edit</a>
 

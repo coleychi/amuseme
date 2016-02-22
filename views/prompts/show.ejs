@@ -12,7 +12,7 @@
 
 	<% if (prompt.responses.length == 0) { %>
 
-		<section class="response">
+		<section class="notice">
 			<p>No one has responded yet. Be the first to response to this prompt!</p>
 		</section> <!-- this needs to be styled -->
 
@@ -71,13 +71,13 @@
 
 	<% if (userPosted) { %>
 
-	<div class="message">
+	<section class="notice">
 
 		<p>You have already responded to this prompt! Find another prompt, post your own, or edit your submission.</p>
 
 		<!-- is there a way I can grab what the user has already done... make it easier for the user to find their submission. -->
 
-	</div>
+	</section>
 
 
 	<% } %>

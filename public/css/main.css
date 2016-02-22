@@ -35,7 +35,9 @@ textarea {
 button, input[type="submit"] {
 	border: 0 none;
 	font-weight: bold;
-
+	text-shadow: none;
+	box-shadow: none;
+	border-radius: 3px;
 }
 
 /*#cover {
@@ -102,7 +104,10 @@ button, input[type="submit"] {
 	border: none;
 	padding: 0.75em;
 	display: inline-block;
-	background-color: #fabc00;
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000;	
+	/*background-color: #fabc00; orange-ish */
+	/*border-bottom: 3px solid #e4981f;*/
 	font-weight: bold;
 	color: white;
 }
@@ -112,13 +117,21 @@ button, input[type="submit"] {
 #sidebar-container form button:last-child {
 	margin-right: 0;
 	float: right; /* is there a way to avoid using floats */
-	background-color: #fabc00;
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000;	
 	font-weight: bold;
 	color: white;
 	box-shadow: none;
 }
 
-
+#sidebar-container button /*logout button */ {
+	background-color: #ff3e4c;
+	width: 30%;
+	border-bottom: 3px solid #cc0000;	
+	padding: 1em;
+	color: white;
+	font-weight: bold;
+}
 
 
 #content-container {
@@ -163,9 +176,9 @@ nav li:last-child {
 }
 
 nav li a:hover {
-	background-color: #ccf0ed; /* change this color? maybe? */
+	background-color: #ffd200; /* change this color? maybe? */
 	/*font-weight: bold;*/
-	/*color: white;*/
+	color: #2b2b2b;
 }
 
 .prompt {
@@ -175,6 +188,16 @@ nav li a:hover {
 	background-color: #ffffff;
 	border-top: 5px solid #f63341;
 	border-bottom: 0.5px solid #d3d3d3;
+}
+
+.notice {
+	width: 67%;
+	margin: auto;
+	padding: 1em;
+	background-color: #ffffff;
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
+	margin-bottom: 2em;
 }
 
 .response {
@@ -275,17 +298,19 @@ nav li a:hover {
 #signup-container {
 	width: 65%;
 	margin: auto;
-	/*background-color: pink;*/
+	background-color: #ffffff;
 }
 
 #signup-container h2 {
-	margin-top: 2em;
 	margin-bottom: 1em;
+	border-bottom: 1px solid #ff3e4c;
+	color: #333333;
 }
 
 #new-account {
 	width: 60%;
-	margin: auto;
+	margin: 2em auto;
+	padding: 1em;
 	/*background-color: orange;*/
 }
 
@@ -295,15 +320,17 @@ nav li a:hover {
 }
 
 #new-account label {
-	width: 25%;
-	font-size: 0.8em;
+	width: 30%;
+	font-size: 0.85em;
 	font-weight: bold;
 	display: inline-block;
 	margin-top: 0;
+	color: #333333;
+	font-family: Lato, Helvetica
 }
 
 #new-account input {
-	width: 65%;
+	width: 68%;
 	padding: 0.6em;
 	font-size: 1em;
 	display: inline-block;
@@ -312,10 +339,12 @@ nav li a:hover {
 }
 
 #new-account input[type=submit] {
-	width: 92%;
+	width: 100%;
 	margin-top: 0.5em;
 	padding: 1em;
-	/*border: none;*/
+	background-color: #ff3e4c;
+	border-bottom: 3px solid #cc0000;	
+	color: white;
 }
 
 #new-account textarea {
@@ -478,6 +507,7 @@ nav li a:hover {
 }
 
 .promptbody a:hover {
+	/*color: #28c0d6;*/
 	color: #f63341;
 }
 
