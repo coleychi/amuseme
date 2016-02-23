@@ -76,6 +76,8 @@
 					<% if (user.username == locals.username) { %>
 
 						<span class="profile-response-bottom">
+							<!-- <a href="/users/response/<%= user.responses[i].id %>">view</a> -->
+
 							<a href="../prompts/edit/<%= user.responses[i].id %>"><img src="../img/pencil.png" class="profile-icon"></a>
 
 							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST">
@@ -119,7 +121,7 @@
 					<!-- display prompt and link to it -->
 					<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a>
 
-				</div><!-- closes profile-prompt div-->
+				</div> <!-- closes profile-prompt div-->
 
 
 			<% } %>

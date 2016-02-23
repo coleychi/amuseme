@@ -10,7 +10,7 @@
 	<% if (prompt.responses.length == 0) { %>
 
 		<div class="notice">
-			<p>No one has responded yet. Be the first to response to this prompt!</p>
+			<p>No one has responded yet. Be the first to respond!</p>
 		</div> 
 
 	<% } %>
@@ -27,9 +27,7 @@
 
 			<!-- DISPLAY THE AUTHOR OF THE RESPONSE-->
 			<div class="response-bottom">
-				<span class="response-bottom-span">
-					By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %>
-				</span>
+				<span class="response-bottom-span">By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
 
 
 				<!-- if logged in user is the response's author, display the edit/delete icons -->

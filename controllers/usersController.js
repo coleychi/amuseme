@@ -54,7 +54,7 @@ router.get("/username/:username", function(req, res) {
 })
 
 
-// SHOW-- user's show page
+// SHOW-- user's show page (profile)
 router.get("/:user_id", isLoggedIn, function(req, res) {
   User.findById(req.params.user_id, function(err, userData) {
     res.render("users/show.ejs", {
@@ -62,6 +62,16 @@ router.get("/:user_id", isLoggedIn, function(req, res) {
     });
   });
 });
+
+
+// SHOW-- shows a specific response to a prompt
+router.get("/response/:response_id", function(req, res) {
+  Response.findById(req.params.response_id, function(err, responseData) {
+    res.render("users/response.ejs", {
+      response: responseData
+    });
+  })
+})
 
 
 // DELETE-- deletes a single response (same as prompts controller route, different redirect)

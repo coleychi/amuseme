@@ -149,7 +149,7 @@ router.get("/random", function(req, res) {
 });
 
 
-// SHOW
+// SHOW-- shows one prompt
 router.get("/:prompt_id", function(req, res) {
   Prompt.findById(req.params.prompt_id, function(err, promptData) { // finds prompt instance by id using params
     res.render("prompts/show.ejs", {

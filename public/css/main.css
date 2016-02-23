@@ -13,7 +13,6 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	
 }
 
 body {
@@ -29,10 +28,6 @@ textarea {
 	border: 0 none;
 }
 
-/*button {
-	border: 0 none;
-}*/
-
 button, input[type="submit"] {
 	font-weight: bold;
 	text-align: center;
@@ -43,14 +38,6 @@ button, input[type="submit"] {
 }
 
 
-/*#cover {
-	width: 100%;
-	height: 100%;
-	background-color: red;
-	overflow: auto;
-	opacity: 0.5;
-	position: fixed; /* will cover all content. remove to scroll to content */
-/*}*/
 
 /* BASIC LAYOUT CONTAINERS */
 #super-container {
@@ -70,13 +57,10 @@ button, input[type="submit"] {
 	height: 100%;
 	display: inline-block;
 	overflow: auto;
-/*	background-color: red;*/
 	border-right: 1px solid #d3d3d3;
-	/*box-sizing: border-box;*/
 }
 
 #sidebar-container form {
-/*	background-color: orange;*/
 	width: 65%;
 	margin: 2em auto 0;
 } /* LOG IN FORM */
@@ -105,9 +89,6 @@ button, input[type="submit"] {
 	border-bottom: 3px solid #cc0000;	
 	padding: 0.75em;
 	margin-top: 0.5em;
-	/*background-color: #fabc00; orange-ish */
-	/*border-bottom: 3px solid #e4981f;*/
-	/*font-weight: bold;*/
 } /* LOG IN BUTTON */
 
 #sidebar-container button {
@@ -116,9 +97,7 @@ button, input[type="submit"] {
 	color: #ffffff;	
 	border-bottom: 3px solid #cc0000;
 	padding: 1em;
-	/*font-weight: bold;*/
 } /* LOGOUT BUTTON */
-
 
 #content-container {
 	width: 75%;
@@ -126,7 +105,6 @@ button, input[type="submit"] {
 	display: inline-block;
 	overflow: auto;
 	background-color: #ededed;
-	/*box-sizing: border-box;*/
 }
 
 h1 {
@@ -142,8 +120,6 @@ nav ul {
 	width: 75%;
 	list-style-type: none;
 	margin: 2em auto;
-/*	padding: 0;*/
-/*	background-color: green;*/	
 } /* SIDEBAR LINKS */
 
 nav li a {
@@ -153,8 +129,6 @@ nav li a {
 	text-transform: uppercase;
 	border-top: 1px solid #333333;
 	padding: 1em 0em 1em 1em;
-	/*font-size: 0.85em;*/
-	/*background-color: lightblue;*/
 } /* SIDEBAR LINKS */
 
 nav li:last-child {
@@ -163,7 +137,6 @@ nav li:last-child {
 
 nav li a:hover {
 	background-color: #baf1ee; /* change this color? maybe? */
-	/*font-weight: bold;*/
 	color: #2b2b2b;
 } /* SIDEBAR LINKS */
 
@@ -193,7 +166,6 @@ nav li a:hover {
 
 .notice a {
 	border-bottom: 1px solid #28c0d6;
-	/*text-decoration: underline;*/
 } /* NOTICE FOR USER IN /PROMPTS/SHOW AND /PROMPTS/EDIT */
 
 .notice a:hover {
@@ -207,17 +179,14 @@ nav li a:hover {
 
 #bottom-nav {
 	width: 100%;
-/*	background-color: green;*/
 	position: relative;
-/*	color: red;*/
-	/*padding: 1em;*/
-}
+} /* CONTAINER THAT HOLDS BACK AND NEXT BUTTONS ON PROMPTS/INDEX */
 
-#top-nav {
+/* DONT DELETE YET */
+/*#top-nav {
 	width: 100%;
 	margin-top: 3em;
-/*	position: relative;*/
-} /* CONTAINER THAT HOLDS BACK AND NEXT BUTTONS ON PROMPTS/INDEX */
+} */
 
 .bottom-next,.bottom-back {
 	background-color: #fabc00; /* make this brighter? */
@@ -582,6 +551,7 @@ nav li a:hover {
 
 .profile-prompt {
 	/*padding: 0.5em;*/
+	font-weight: bold;
 	border-left: 3px solid #ff3e4c;
 	border-radius: 3px;
 	padding: 0.3em 0 0.3em 0.6em;
@@ -593,6 +563,10 @@ nav li a:hover {
 }
 .profile-prompt:last-of-type {
 	margin-bottom: 0.3em;  
+}
+
+.profile-prompt a:hover {
+	color: #ff3e4c;
 }
 
 .promptbody {

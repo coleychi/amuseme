@@ -1,0 +1,30 @@
+<% include ../partials/header_partial.ejs %>
+	
+
+	<!-- DISPLAY THE PROMPT -->
+	<div class="prompt">
+		<h3><a href="/prompts/<%= response.promptid %>"><%= response.promptBody %></a></h3>
+	</div>
+
+
+	<!-- DISPLAY THE RESPONSE -->
+	<section class="response">
+		<p><%= response.responseBody %></p>
+		
+		<div class="response-bottom">
+
+			<span class="response-bottom-span">By <a href="/users/<%= response.authorid %>"><%= response.author %></a> on <%= response.timestamp.toDateString() %></span>
+
+			<span class="rb-edit-delete">
+
+				<a href="../../prompts/edit/<%= response.id %>" text-decoration="none"><img src="../../img/pencil.png" class="edit-delete-icon"></a>
+
+				<form action="/prompts/delete/<%= response.id %>?_method=DELETE" method="POST">
+					<input type="image" src="../../img/trash.png" class="edit-delete-icon">
+				</form>
+
+			</span>
+		</div>
+	</section>
+
+<% include ../partials/footer_partial.ejs %>
