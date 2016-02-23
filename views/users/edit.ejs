@@ -1,42 +1,17 @@
 <% include ../partials/header_partial.ejs %>
-	
-	<!-- <div id="usershow-container"> -->
 
-		<div class="profile-content">
+	<div class="profile-content">
 
+		<h2><a href="/users/<%= user.id %>"><%= user.username %></a></h2>
 
+		<p>Edit your profile.</p>
 
-			<h2><a href="/users/<%= user.id %>"><%= user.username %></a></h2>
+		<form action="/users/editprofile/<%= user.id %>?_method=PUT" method="POST" id="edit-profile">
+			<textarea name="about" form="edit-profile" placeholder="<%= user.about %>"></textarea>
+			<input type="submit" value="Submit">
+		</form>
+		
+	</div> <!-- closes profile-content div -->
 
-			<p>Edit your profile.</p>
+<% include ../partials/footer_partial.ejs %>
 
-
-			<form action="/users/editprofile/<%= user.id %>?_method=PUT" method="POST" id="edit-profile">
-				<textarea name="about" form="edit-profile" placeholder="<%= user.about %>"></textarea>
-				<input type="submit">
-			</form>
-
-
-
-
-		</div>
-
-
-
-
-
-	<!-- </div>  --><!-- closes usershow-container -->
-
-
-
-	
-
-	<footer></footer>
-
-</div> <!-- closes content-container div -->
-
-
-</div> <!-- closes super-container div -->
-
-</body>
-</html>

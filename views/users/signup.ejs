@@ -2,38 +2,30 @@
 
 	<div id="signup-container">
 
-
 		<form action="../users/signup" method="POST" id="new-account">
 
 			<center><h2>Create a New Account</h2></center>
 
 			<div class="newitem">
 		
-				<label>Email:</label>
+				<label for="email">Email:</label>
 				<input type="text" name="email">
 
 			</div>
 		
 			<div class="newitem">
 		
-				<label>Username:</label>
+				<label for="username">Username:</label>
 				<input type="text" name="username">
 
 			</div>
 
 			<div class="newitem">
 		
-				<label>Password:</label>
+				<label for="password">Password:</label>
 				<input type="text" name="password">
 
 			</div>
-
-			<!-- <div class="newitem"> -->
-		
-				<!-- <label>Bio:</label> -->
-				<!-- <textarea form="new-account"></textarea> -->
-
-			<!-- </div> -->
 
 			<div class="newitem">
 		
@@ -43,11 +35,6 @@
 
 		</form>
 
-	</div>
+	</div> <!-- closes signup-container div -->
 
-	</div> <!-- closes content-container div -->
-
-</div> <!-- closes super-container div -->
-
-</body>
-</html>
+<% include ../partials/footer_partial.ejs %>

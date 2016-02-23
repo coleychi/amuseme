@@ -1,34 +1,19 @@
 <% include ../partials/header_partial.ejs %>
 
-<!-- prompts edit -->
 
 
-	<section class="prompt">
+	<!-- display the parent prompt -->
+	<div class="prompt">
 		<h4><a href="/prompts/<%= response.promptid %>"><%= response.promptBody %></a></h4>
-	</section>
+	</div>
 
 
-
-
-
-
+	<!-- EDIT/UPDATE FORM -->
 	<form action="/prompts/edit/<%= response.id %>?_method=PUT" method="POST" id="edit-response">
-
-
-	<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"><%= response.responseBody %></textarea>
-			<input type="submit">
+		<textarea name="responseBody" form="edit-response" placeholder="<%= response.responseBody %>"><%= response.responseBody %></textarea>
+		<input type="submit">
 	</form>
 
 
 
-	<footer></footer>
-
-</div> <!-- closes content-container div -->
-
-
-</div> <!-- closes super-container div -->
-
-
-
-</body>
-</html>
+<% include ../partials/footer_partial.ejs %>

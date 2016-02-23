@@ -1,146 +1,140 @@
 <% include ../partials/header_partial.ejs %>
-	
-	<!-- <div id="usershow-container"> -->
 
-		<div class="profile-content">
+	<!-- DISPLAY USERNAME AND BIO -->
+	<div class="profile-content">
 
-			<h2><%= user.username %></h2>
+		<h2><%= user.username %></h2>
 
-			<% if (user.about == null) { %>
+		<!-- if the user has not completed his/her about section yet-->
+		<% if (user.about == null) { %>
 
-				<% if (user.username != locals.username) { %>
+			<!-- if the logged in user is NOT the owner of the profile... -->
+			<% if (user.username != locals.username) { %>
 
 				<p><%= user.username %> hasn't written anything yet. How mysterious...</p>
 
-				<% } %>
+			<% } %>
 
-
-				<% if (user.username === locals.username) { %>
+			<!-- if the logged in user IS the owner of the profile... -->
+			<% if (user.username === locals.username) { %>
 
 				<p>Edit your profile to let others know some stuff about you.</p>
 
-				<% } %>
-
-			<% } else { %>
-
-				<p><%= user.about %></p>
-
 			<% } %>
 
+		<!-- if the user has completed his/her about section, display the content -->
+		<% } else { %>
 
-			<% if (user.username == locals.username) { %>
+			<p><%= user.about %></p>
+
+		<% } %>
+
+		<!-- USER CONTROL PANEL (EDIT/DELETE USER) -->
+
+		<!-- if the logged in user IS the owner of the profile, show edit and delete buttons -->
+		<% if (user.username == locals.username) { %>
 
 			<center> 
 				
-				<form action="/users/editprofile/<%= user.id %>" display="inline"><button id="profile-buttons">Update Profile</button></form>
+				<form action="/users/editprofile/<%= user.id %>" display="inline">
+					<button id="profile-buttons">Update Profile</button>
+				</form>
 
-				<form action="/users/deleteaccount/<%= user.id %>?_method=DELETE" method="POST" display="inline"><button id="profile-buttons">Delete Account</button></form>
+				<form action="/users/deleteaccount/<%= user.id %>?_method=DELETE" method="POST" display="inline">
+					<button id="profile-buttons">Delete Account</button>
+				</form>
 
 			</center>
 
-			<% } %>
+		<% } %>
 
-			<!-- <form action="/users/delete/<%= user.id %>?_method=DELETE" method="POST" display="inline"><button>Delete Account</button></form> -->
-
-
-
-		</div>
+	</div> <!-- closes profile-content div -->
 
 
 
+	<!-- DISPLAY USER'S RESPONSE -->
+	<div class="profile-content">
 
-		<div class="profile-content">
+		<h2>Responses</h2>
 
-			<h2>Responses</h2>
+		<% if (user.responses[0] != null) { %> <!-- don't run loop if there are no submitted responses -->
 
-			<% if (user.responses[0] != null) { %> <!-- don't run loop if there is no array -->
-				<% for (var i = 0; i < user.responses.length; i++) { %>
+			<!-- for every response the user has submitted, construct a response div -->
+			<% for (var i = 0; i < user.responses.length; i++) { %>
 
-					<div class="profile-response">
+				<div class="profile-response">
 
-						<span class="promptbody"><a href="/prompts/<%= user.responses[i].promptid %>" id="author"><%= user.responses[i].promptBody %></a></span>
+					<!-- display the parent prompt and link to it -->
+					<span class="promptbody">
+						<a href="/prompts/<%= user.responses[i].promptid %>" id="author"><%= user.responses[i].promptBody %></a>
+					</span>
 
-					
-							<p><%= user.responses[i].responseBody %></p>
+					<!-- display user's submitted response -->
+					<p><%= user.responses[i].responseBody %></p>
 
-						
+					<!-- if logged in user is the owner of the profile, show edit/delete buttons -->
+					<% if (user.username == locals.username) { %>
 
-							<% if (user.username == locals.username) { %>
-
-							<span class="profile-response-bottom">
-
-
+						<span class="profile-response-bottom">
 							<a href="../prompts/edit/<%= user.responses[i].id %>"><img src="../img/pencil.png" class="profile-icon"></a>
-				
 
-							<!-- <a href="../prompts/edit/<%= user.responses[i].id %>">edit</a> -->
+							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST">
+								<input type="image" src="../img/trash.png" class="profile-icon">
+							</form>
+						</span>
 
-							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST"><input type="image" src="../img/trash.png" class="profile-icon"></form>
+					<% } else { %>
 
-							</span>
-
-							<% } else { %>
-
-								<span class="profile-response-spacer"></span>
-
-							<% } %>
-						
-
-				
-
-						<!-- <span class="edit-delete">edit delete</span> -->
-
-					</div>
+						<span class="profile-response-spacer"></span> <!-- empty spacer -->
 
 					<% } %>
-				<% } else { %>
 
-				<p><%= user.username %> has not posted anything yet. </p>
-
+				</div> <!-- closes profile-response div-->
 
 			<% } %>
 
-		</div>
+		<!-- if the user has not submitted any responses -->
+		<% } else { %>
+
+			<p><%= user.username %> has not posted any responses yet.</p>
+
+		<% } %>
+
+	</div> <!-- closes profile-content div-->
 
 
-		<div class="profile-content">
-			<h2>Prompts</h2>
 
-			<!-- <div class="profile-prompt"> -->
+	<!-- DISPLAY USER'S SUBMITTED PROMPTS -->
+	<div class="profile-content">
 
-				<% if (user.prompts[0] != null) { %> <!-- don't run loop if there is no array -->
-				<% for (var i = 0; i < user.prompts.length; i++) { %>
+		<h2>Prompts</h2>
 
+		<% if (user.prompts[0] != null) { %> <!-- don't run loop if there are no submitted prompts -->
+
+			<!-- for every prompt the user has submitted, construct a prompt div -->
+			<% for (var i = 0; i < user.prompts.length; i++) { %>
 
 				<div class="profile-prompt">
 
+					<!-- display prompt and link to it -->
 					<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a>
 
-				</div>
-
-
-									<% } %>
-				<% } else { %>
-
-				<p><%= user.username %> has not posted anything yet. </p>
+				</div><!-- closes profile-prompt div-->
 
 
 			<% } %>
-			<!-- </div> -->
-		</div>
 
-	<!-- </div> --> <!-- closes usershow-container -->
+		<!-- if the user has not submitted any prompts -->
+		<% } else { %>
+
+			<p><%= user.username %> has not submitted any prompts yet.</p>
+
+		<% } %>
+		
+	</div> <!-- closes profile-content div-->
 
 
 
 	
 
-	<footer></footer>
-
-</div> <!-- closes content-container div -->
-
-
-</div> <!-- closes super-container div -->
-
-</body>
-</html>
+<% include ../partials/footer_partial.ejs %>

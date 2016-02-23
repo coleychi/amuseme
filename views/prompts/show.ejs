@@ -1,98 +1,89 @@
 <% include ../partials/header_partial.ejs %>
 
-
-<!-- prompt's show -->
-
-	<section class="prompt">
-	<h3><%= prompt.promptBody %></h3>
-	</section>
+	<!-- DISPLAY THE PROMPT -->
+	<div class="prompt">
+		<h3><%= prompt.promptBody %></h3>
+	</div>
 
 	
-
-
+	<!-- if the prompt does not have any responses, display notice -->
 	<% if (prompt.responses.length == 0) { %>
 
-		<section class="notice">
+		<div class="notice">
 			<p>No one has responded yet. Be the first to response to this prompt!</p>
-		</section> <!-- this needs to be styled -->
+		</div> 
 
 	<% } %>
 
 
+	<!-- DISPLAY THE RESPONSES -->
+
+	<!-- for every response that has been submitted, construct a response section -->
 	<% for (var i = 0; i < prompt.responses.length; i++) { %>
 
 		<section class="response">
 
-			<p class="linebreak"><%= prompt.responses[i].responseBody %></p>
+			<p><%= prompt.responses[i].responseBody %></p>
 
-			<!-- <p>Author: <%= prompt.responses[i].author %></p> -->
-
-		<div class="response-bottom">
-			<span class="response-bottom-span">By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
-
-
-			<!-- hide is user is not the author -->
-
-			<% if (prompt.responses[i].author === locals.username) { %>
-
-			<span class="rb-edit-delete">
-
-				<a href="../prompts/edit/<%= prompt.responses[i].id %>" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a>
-
-				<form action="/prompts/delete/<%= prompt.responses[i].id %>?_method=DELETE" method="POST"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
-
-			</span>
-
-				<%# if the user has posed already, save as variable %>
-				<% var userPosted = true %>
-
-				<% var userResponseId = prompt.responses[i].id %>
+			<!-- DISPLAY THE AUTHOR OF THE RESPONSE-->
+			<div class="response-bottom">
+				<span class="response-bottom-span">
+					By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %>
+				</span>
 
 
+				<!-- if logged in user is the response's author, display the edit/delete icons -->
+				<% if (prompt.responses[i].author === locals.username) { %>
 
-			<% } %>
+					<span class="rb-edit-delete">
 
-		</div> <!-- closes response-bottom div -->
+						<a href="../prompts/edit/<%= prompt.responses[i].id %>" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a>
 
-		</section>
+						<form action="/prompts/delete/<%= prompt.responses[i].id %>?_method=DELETE" method="POST">
+							<input type="image" src="../img/trash.png" class="edit-delete-icon">
+						</form>
+
+					</span>
+
+					<%# if the logged in user has posed already, save as variable to access later %>
+					<% var userPosted = true %>
+
+					<%# save the response id of the logged in user's post %>
+					<% var userResponseId = prompt.responses[i].id %>
+
+				<% } %>
+
+			</div> <!-- closes response-bottom div -->
+
+		</section> <!-- closes response section -->
 
 	<% } %>
 	
 
 
-	<!-- HIDE IF USER IS NOT LOGGED IN OR IF USER HAS ALREADY POSTED -->
+	<!-- DISPLAY NEW RESPONSE FORM -->
+
+	<!-- if active user is logged in AND has not already posted, display the form -->
 	<% if (locals.login && !userPosted) { %>
+
 		<!-- form to post a new response -->
 		<form action="/prompts/<%= prompt.id %>/newresponse" method="POST" id="post-response">
-		<textarea name="responseBody" form="post-response" placeholder="<%= prompt.promptBody %>"></textarea>
-		<input type="submit">
+			<textarea name="responseBody" form="post-response" placeholder="<%= prompt.promptBody %>"></textarea>
+			<input type="submit">
 		</form>
 
 	<% } %>
 
-
+	<!-- if the user has already responded, do not allow the user to re-respond -->
 	<% if (userPosted) { %>
 
-	<section class="notice">
+		<div class="notice">
 
-		<p>You have already responded to this prompt! Find <a href="/prompts">another prompt,</a> <a href="#">post your own,</a> or <a href="/prompts/edit/<%= userResponseId %>">edit your submission.</p>
+			<p>You have already responded to this prompt! Find <a href="/prompts/">another prompt,</a> <a href="/prompts">post your own,</a> or <a href="/prompts/edit/<%= userResponseId %>">edit your response.</p>
 
-		<!-- is there a way I can grab what the user has already done... make it easier for the user to find their submission. -->
-
-	</section>
-
+		</div>
 
 	<% } %>
 
 
-	<footer></footer>
-
-</div> <!-- closes content-container div -->
-
-
-</div> <!-- closes super-container div -->
-
-
-
-</body>
-</html>
+<% include ../partials/footer_partial.ejs %>

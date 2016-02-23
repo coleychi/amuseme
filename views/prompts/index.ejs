@@ -1,107 +1,77 @@
 <% include ../partials/header_partial.ejs %>
-
 	
-		<!-- if there are no prompts to display -->
 
-		<% if (prompts.length == 0) { %>
+
+	<!-- DISPLAY PROMPTS -->
+
+	<!-- if there are no submitted prompts, display notice -->
+	<% if (prompts.length == 0) { %>
 
 		<div class="notice top">
-
 			<p>No more prompts! Submit another?</p>
-
 		</div>
 
-		<% } %>
+	<% } %>
 
 
-		<!-- if there are prompts to display -->
-
-		<% for (var i = 0; i < prompts.length; i++) { %>
+	<!-- for every prompt that has been submitted, construct a prompt-listitem div -->
+	<% for (var i = 0; i < prompts.length; i++) { %>
 
 		<div class="prompt-listitem">
-
 			<h3><a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a></h3>
-
 		</div>
-		<% } %>
+
+	<% } %>
 
 
-		<!-- HIDE NEW PROMPT FORM IF USER IS NOT LOGGED IN -->
-		<% if (locals.login) { %>
+	<!-- DISPLAY NEW PROMPT FORM -->
+
+	<!-- if the user is logged in, display the form -->
+	<% if (locals.login) { %>
 
 		<div id="newprompt-container">
 
-			<!-- ADDS NEW PROMPT -->
+			<!-- form to post new prompt-->
 			<form action="/prompts/newprompt" method="POST" id="newprompt">
 				<textarea form="newprompt" name="promptBody"></textarea>
 				<input type="submit" value="Post">
 			</form>
+
 		</div>
 
-		<% } %>
-
-
-<!-- 			PageNumber: <%= parseInt(pageNumber) %> <br> 
- -->
-
-
-<!-- 			Typeof: <%= typeof(pageNumber) %> <br>
- -->			
-			<% var nextPage = (pageNumber += 1) %>
-
-			<% var lastPage = (pageNumber -= 2) %>
-
-			<!-- LAST PAGE: <%= lastPage %> <br> -->
-
-
-<!-- 			<% parseInt(nextPage) %>
- -->
-			<!-- NEXT PAGE: <%= nextPage %> <br> -->
+	<% } %>
 
 
 
-<!-- 			BE A NUMBER: <% console.log(typeof(nextPage)) %>
- -->
-<!-- 			PageNumber: <%= pageNumber %> <br>
-			Next page (number): <%= nextPage %><br> -->
 
-			<!-- go to next or previous pages -->
+	<!-- NEXT/BACK LINKS -->
 
+	<%# manipulate pageNumber to great nextPage and lastPage variables %>
+	<% var nextPage = (pageNumber += 1) %>
 
-			<!-- BACK AND NEXT LINKS -->
-		<div id="bottom-nav">
+	<% var lastPage = (pageNumber -= 2) %> 
+
+	<div id="bottom-nav">
 			
-			<!-- hide if there are no more pages -->
-
-			<% if (lastPage > -1) { %>
+		<!-- hide back link if there are no more pages -->
+		<% if (lastPage > -1) { %>
 
 			<a href="/prompts/pages/<%= lastPage %>">
 				<span class="bottom-back">Back</span>
 			</a>
 
-			<% } %>
+		<% } %>
 
-			<!-- hide if there are no more pages -->
-
-			<!-- length equal to the limit in prompts controller -->
-
-
-
-			<% if (prompts.length === 5) { %>
+		<!-- show next button if there are 5 prompts (maximum # per page) --> 
+		<% if (prompts.length === 5) { %>
 
 			<a href="/prompts/pages/<%= nextPage %>">
 				<span class="bottom-next">Next</span>
 			</a>
 
-			<% } %>
+		<% } %>
 
 
-		</div>
 
 
-		</div> <!-- closes content-container div -->
-
-	</div> <!-- closes super-container div -->
-
-</body>
-</html>
+<% include ../partials/footer_partial.ejs %>

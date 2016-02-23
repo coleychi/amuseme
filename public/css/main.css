@@ -525,7 +525,7 @@ nav li a:hover {
 	white-space: nowrap;
 	/*margin: auto;*/
 /*	border-top: 3px solid red;*/
-/*	border: 1px solid red;*/
+	/*border: 1px solid #333333;*/
 	border-bottom: 3px solid #f63341;
 	/*padding-bottom: 0.5em;*/
 	border-radius: 2px;
@@ -534,10 +534,19 @@ nav li a:hover {
 /*	background-color: red;*/
 } /* RESPONSE DISPLAY DIV ON USER/SHOW */
 
+.profile-response:first-of-type {
+	margin-top: 1.3em; /* matches profile-prompt:first of type */
+}
+
+.profile-response:last-of-type {
+	margin-bottom: 1em; /* matches profile-prompt:last of type */
+}
+
 .profile-response p {
 	white-space: pre-line; /* preserves line breaks */
 	padding: 0.5em 0.5em 0 0.5em;
 	/*padding-bottom: 0em;*/
+	margin-top: 0.3em;
 	margin-bottom: 0;
 	/*font-size: 1em;*/
 } /* RESPONSE TEXT ON USER/SHOW */
@@ -578,6 +587,13 @@ nav li a:hover {
 	padding: 0.3em 0 0.3em 0.6em;
 	margin-bottom: 1em;
 } /* PROMPT DISPLAY DIV ON USER/SHOW */
+
+.profile-prompt:first-of-type {
+	margin-top: 1.3em;  /* matches profile-response:first of type */
+}
+.profile-prompt:last-of-type {
+	margin-bottom: 0.3em;  
+}
 
 .promptbody {
 	display: block;
