@@ -15,16 +15,22 @@
 
 			<span class="response-bottom-span">By <a href="/users/<%= response.authorid %>"><%= response.author %></a> on <%= response.timestamp.toDateString() %></span>
 
-			<span class="rb-edit-delete">
+			<!-- if logged in user is the response's author, display the edit/delete icons -->
+			<% if (response.author === locals.username) { %>
 
-				<a href="../../prompts/edit/<%= response.id %>" text-decoration="none"><img src="../../img/pencil.png" class="edit-delete-icon"></a>
+				<span class="rb-edit-delete">
 
-				<form action="/prompts/delete/<%= response.id %>?_method=DELETE" method="POST">
-					<input type="image" src="../../img/trash.png" class="edit-delete-icon">
-				</form>
+					<a href="../../prompts/edit/<%= response.id %>" text-decoration="none"><img src="../../img/pencil.png" class="edit-delete-icon"></a>
 
-			</span>
+					<form action="/prompts/delete/<%= response.id %>?_method=DELETE" method="POST">
+						<input type="image" src="../../img/trash.png" class="edit-delete-icon">
+					</form>
+
+				</span>
+			<% } %>
 		</div>
 	</section>
+
+	
 
 <% include ../partials/footer_partial.ejs %>

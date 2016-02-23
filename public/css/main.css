@@ -267,8 +267,17 @@ nav li a:hover {
 	float: right;
 } /* CONTAIN ICON LINKS AT BOTTOM OF RESPONSE */
 
+.rb-edit-delete-pencil {
+	margin-left: 2em;
+	margin-right: 2em;
+	padding-left: 2em;
+	padding-right: 2em;
+	display: inline-block;
+} /* MARGIN ON PENCIL ICON */
+
 .rb-edit-delete form {
 	margin-left: 0.8em;
+	margin-right: 0.8em;
 	display: inline-block;
 } 
 
@@ -276,6 +285,10 @@ nav li a:hover {
 	width: 1.2em; /* resizes icon image size */
 	height: 1.2em;
 } /* ICON AT BOTTOM OF RESPONSE */
+
+.edit-delete-icon.pencil {
+	margin-left: 0.8em;
+}
 
 /*.edit-delete-icon:first-of-type {
 	margin-right: 0.8em;
@@ -521,32 +534,28 @@ nav li a:hover {
 } /* RESPONSE TEXT ON USER/SHOW */
 
 .profile-response-bottom {
-	/*background-color: red;*/
+	/*background-color: blue;*/
+	width: 100%;
 	height: 0.8em;
-	position: relative;
 	display: block;
 	text-align: right;
+	padding: 0.3em 0.3em 1.35em 0.3em;
+	/*padding-bottom: 1.5em;*/
+	/*position: relative;*/
 } /* CONTAINS EDIT DELETE ICON BUTTONS ON USER/SHOW */
-
-.profile-response-spacer {
-	width: 100%;
-	height: 0.3em;
-	display: block;
-	overflow: auto;
-	/*background-color: pink;*/
-} /* SPACER ELEMENT BETWEEN BOTTOM OF PARAGRAPH AND RESPONSE BOTTOM ON USER/SHOW */
 
 .profile-response-bottom form {
 	width: 10px;
-	margin: -0.8em 1em 0 0;
+	margin: -0.8em 0.7em 0 0;
 /*	margin-top: -0.8em;
 	margin-right: 1em;*/
 } /* DELETE FORM ON USER/SHOW */
 
 .profile-icon {
 	width: 0.8em;
-	position: absolute;
-	top: -0.4em;
+	margin: 0;
+	/*position: absolute;*/
+	/*top: -0.4em;*/
 } /* ICON IMAGES ON USER/SHOW */
 
 .profile-prompt {
@@ -625,55 +634,6 @@ nav li a:hover {
 } /* SUBMIT BUTTON IN EDIT PROFILE FORM */
 
 
-/*.pencil {
-	width: 0.8em;
-	height: 0.8em;
-}
-
-.trash {
-	width: 0.8em;
-	height: 0.8em;
-}*/
-
-/*.profile-response span {
-	display: block;
-	background-color: #efefef;
-	padding: 0.3em 1em 0.3em 1em;
-	font-size: 0.75em;
-	font-weight: bold;
-	transition: background-color 3s linear;
-}*/
-
-/*.profile-response-content {
-	width: 90%;
-	background-color: red;
-	display: inline-block;
-	white-space: normal;
-}
-
-.profile-response-panel {
-	width: 10%;
-	background-color: orange;
-	display: inline-block;
-	white-space: normal;
-	position: relative;
-}
-*/
-
-/*.edit-delete {*/
-/*	position: absolute;*/
-/*	right: 0;*/
-	/*background-color: #ffffff;*/
-/*	text-align: right;
-	padding-right: 0.3em;
-	display: inline-block
-	vertical-align: top;
-}*/
-
-/*.back {
-	margin-left: 2em;
-	margin-top: 1.5em;
-}*/
 
 /* PROMPTS/EDIT PAGE (edits response) */
 #edit-response {

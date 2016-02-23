@@ -73,24 +73,25 @@
 					<p><%= user.responses[i].responseBody %></p>
 
 					<!-- if logged in user is the owner of the profile, show edit/delete buttons -->
-					<% if (user.username == locals.username) { %>
+					
 
-						<span class="profile-response-bottom">
-							<!-- <a href="/users/response/<%= user.responses[i].id %>">view</a> -->
+					<span class="profile-response-bottom">
+						<!-- <a href="/users/response/<%= user.responses[i].id %>">view</a> -->
+
+						<% if (user.username == locals.username) { %>
 
 							<a href="../prompts/edit/<%= user.responses[i].id %>"><img src="../img/pencil.png" class="profile-icon"></a>
 
 							<form action="/users/delete/<%= user.responses[i].id %>?_method=DELETE" method="POST">
 								<input type="image" src="../img/trash.png" class="profile-icon">
 							</form>
-						</span>
 
-					<% } else { %>
+						<% } %>
 
-						<span class="profile-response-spacer"></span> <!-- empty spacer -->
+						<a href="/users/response/<%= user.responses[i].id %>"><img src="../img/share.png" class="profile-icon"></a>
 
-					<% } %>
-
+					</span>
+					
 				</div> <!-- closes profile-response div-->
 
 			<% } %>

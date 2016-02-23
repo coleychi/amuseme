@@ -7,7 +7,7 @@
 
 	
 	<!-- if the prompt does not have any responses, display notice -->
-	<% if (prompt.responses.length == 0) { %>
+	<% if (prompt.responses.length == 0 && locals.login) { %>
 
 		<div class="notice">
 			<p>No one has responded yet. Be the first to respond!</p>
@@ -27,13 +27,16 @@
 
 			<!-- DISPLAY THE AUTHOR OF THE RESPONSE-->
 			<div class="response-bottom">
-				<span class="response-bottom-span">By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %></span>
+				<span class="response-bottom-span">
+					By <a href="/users/<%= prompt.responses[i].authorid %>"><%= prompt.responses[i].author %></a> on <%= prompt.responses[i].timestamp.toDateString() %> 
+				</span>
 
 
-				<!-- if logged in user is the response's author, display the edit/delete icons -->
-				<% if (prompt.responses[i].author === locals.username) { %>
+				<!-- ICONS VIEW/EDIT/DELETE -->
+				<span class="rb-edit-delete">
 
-					<span class="rb-edit-delete">
+					<!-- if logged in user is the response's author, display the edit/delete icons -->
+					<% if (prompt.responses[i].author === locals.username) { %>
 
 						<a href="../prompts/edit/<%= prompt.responses[i].id %>" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a>
 
@@ -41,15 +44,17 @@
 							<input type="image" src="../img/trash.png" class="edit-delete-icon">
 						</form>
 
-					</span>
+						<%# if the logged in user has posted already, save as variable to access later %>
+						<% var userPosted = true %>
 
-					<%# if the logged in user has posed already, save as variable to access later %>
-					<% var userPosted = true %>
+						<%# save the response id of the logged in user's post %>
+						<% var userResponseId = prompt.responses[i].id %>
 
-					<%# save the response id of the logged in user's post %>
-					<% var userResponseId = prompt.responses[i].id %>
+					<% } %>
 
-				<% } %>
+					<a href="../users/response/<%= prompt.responses[i].id %>"><img src="../img/share.png" class="edit-delete-icon"></a>
+
+				</span>
 
 			</div> <!-- closes response-bottom div -->
 
@@ -77,7 +82,17 @@
 
 		<div class="notice">
 
-			<p>You have already responded to this prompt! Find <a href="/prompts/">another prompt,</a> <a href="/prompts">post your own,</a> or <a href="/prompts/edit/<%= userResponseId %>">edit your response.</p>
+			<p>You have already responded to this prompt! Find <a href="/">another prompt,</a> <a href="/">post your own,</a> or <a href="../users/response/<%= userResponseId %>">see your response.</p>
+
+		</div>
+
+	<% } %>
+
+	<% if (!locals.login) { %>
+
+		<div class="notice">
+
+			<p>You must <a href="/users/newaccount">create an account</a> to respond to this prompt.</p>
 
 		</div>
 

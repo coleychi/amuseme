@@ -19,7 +19,7 @@ router.get("/", function(req, res) {
 
 // SIGNUP-- create a new account
 router.post("/signup", passport.authenticate("local-signup", { 
-  failureRedirect: "/userssss"}), function(req, res) {
+  failureRedirect: "/users"}), function(req, res) {
   // res.send(req.user); // checks that data persists
   res.redirect("/users/" + req.user.id); // possibly change redirect to prompts
 });
@@ -147,7 +147,7 @@ router.delete("/deleteaccount/:user_id", function(req, res) {
 
 
 // EDIT PROFILE
-router.get("/editprofile/:user_id", function(req, res) {
+router.get("/editprofile/:user_id", isLoggedIn, function(req, res) {
   res.render("users/edit.ejs");
 });
 
@@ -178,7 +178,7 @@ function isLoggedIn(req, res, next) {
   } else {
 
   // if they aren't redirect them to the homepage
-  res.redirect("/");
+  res.redirect("/users/newaccount");
   
   }; 
 };
