@@ -39,7 +39,7 @@
 
 				<a href="../prompts/edit/<%= prompt.responses[i].id %>" text-decoration="none"><img src="../img/pencil.png" class="edit-delete-icon"></a>
 
-				<form action="/prompts/delete/<%= prompt.responses[i].id %>?_method=DELETE" method="POST" class="hidden" display="inline"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
+				<form action="/prompts/delete/<%= prompt.responses[i].id %>?_method=DELETE" method="POST"><input type="image" src="../img/trash.png" class="edit-delete-icon"></form>
 
 			</span>
 

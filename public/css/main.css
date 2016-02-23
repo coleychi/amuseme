@@ -9,10 +9,11 @@
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
 	color: #222222;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	
 }
 
 body {
@@ -33,10 +34,11 @@ textarea {
 }*/
 
 button, input[type="submit"] {
-	border: 0 none;
 	font-weight: bold;
+	text-align: center;
 	text-shadow: none;
 	box-shadow: none;
+	border: 0 none;
 	border-radius: 3px;
 }
 
@@ -50,11 +52,12 @@ button, input[type="submit"] {
 	position: fixed; /* will cover all content. remove to scroll to content */
 /*}*/
 
+/* BASIC LAYOUT CONTAINERS */
 #super-container {
 	width: 100%;
 	overflow: hidden;
-	white-space: nowrap;
 	font-size: 0;
+	white-space: nowrap;
 }
 
 #super-container > * {
@@ -65,10 +68,10 @@ button, input[type="submit"] {
 #sidebar-container {
 	width: 25%;
 	height: 100%;
+	display: inline-block;
+	overflow: auto;
 /*	background-color: red;*/
 	border-right: 1px solid #d3d3d3;
-	overflow: auto;
-	display: inline-block;
 	/*box-sizing: border-box;*/
 }
 
@@ -76,82 +79,64 @@ button, input[type="submit"] {
 /*	background-color: orange;*/
 	width: 65%;
 	margin: 2em auto 0;
-}
+} /* LOG IN FORM */
 
 #sidebar-container form input {
-	display: block;
 	width: 100%; /* 100% of the parent's width */
+	display: block;
+	background-color: #ffffff;
+	border: 1px solid #d3d3d3;
 	padding: 0.5em;
 	margin-top: 1em;
-	border: 1px solid #d3d3d3;
-	background-color: #ffffff;
-}
+} /* LOG IN FORM */
 
-/*#sidebar-container form input:first-child {*/
-
-/*}*/
 
 #sidebar-container form button {
 	width: 48%;
 	margin-top: 0.5em;
-	/*border: none;*/
 	padding: 0.75em;
-	display: inline-block;
-}
+} /* SIGNUP BUTTON */
 
 #sidebar-container form input[type="submit"] {
 	width: 48%;
-	margin-top: 0.5em;
-	border: none;
-	padding: 0.75em;
 	display: inline-block;
 	background-color: #ff3e4c;
+	color: #ffffff;
 	border-bottom: 3px solid #cc0000;	
+	padding: 0.75em;
+	margin-top: 0.5em;
 	/*background-color: #fabc00; orange-ish */
 	/*border-bottom: 3px solid #e4981f;*/
-	font-weight: bold;
-	color: white;
-}
-/*#sidebar-container form button:first-child {
-	margin-left: 0;
-}*/
-#sidebar-container form button:last-child {
-	margin-right: 0;
-	float: right; /* is there a way to avoid using floats */
-	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000;	
-	font-weight: bold;
-	color: white;
-	box-shadow: none;
-}
+	/*font-weight: bold;*/
+} /* LOG IN BUTTON */
 
-#sidebar-container button /*logout button */ {
-	background-color: #ff3e4c;
+#sidebar-container button {
 	width: 30%;
-	border-bottom: 3px solid #cc0000;	
+	background-color: #ff3e4c;
+	color: #ffffff;	
+	border-bottom: 3px solid #cc0000;
 	padding: 1em;
-	color: white;
-	font-weight: bold;
-}
+	/*font-weight: bold;*/
+} /* LOGOUT BUTTON */
 
 
 #content-container {
 	width: 75%;
 	height: 100%;
-	background-color: #ededed;
-	overflow: auto;
 	display: inline-block;
+	overflow: auto;
+	background-color: #ededed;
 	/*box-sizing: border-box;*/
 }
 
 h1 {
-	margin-top: 1.5em;
-	font-size: 2.5em;
-	text-align: center;
 	color: #4ECDC4;
 	font-family: Poiret, Helvetica;
+	font-size: 2.5em;
 	font-weight: normal;
-}
+	text-align: center;
+	margin-top: 1.5em;
+} /* SITENAME ON SIDEBAR */
 
 nav ul {
 	width: 75%;
@@ -159,144 +144,184 @@ nav ul {
 	margin: 2em auto;
 /*	padding: 0;*/
 /*	background-color: green;*/	
-}
+} /* SIDEBAR LINKS */
 
 nav li a {
 	display: block;
-	padding: 1em 0em 1em 1em;
-	border-top: 1px solid gray;
-	/*text-decoration: none;*/
-	text-transform: uppercase;
-	font-size: 0.85em;
 	font-family: Lato, Helvetica;
+	font-size: 0.85em;
+	text-transform: uppercase;
+	border-top: 1px solid #333333;
+	padding: 1em 0em 1em 1em;
+	/*font-size: 0.85em;*/
 	/*background-color: lightblue;*/
-}
+} /* SIDEBAR LINKS */
 
 nav li:last-child {
-	border-bottom: 1px solid gray; /* matches border-top in nav li a */
-}
+	border-bottom: 1px solid #333333; /* matches border-top in nav li a */
+} /* SIDEBAR LINKS */
 
 nav li a:hover {
 	background-color: #baf1ee; /* change this color? maybe? */
 	/*font-weight: bold;*/
 	color: #2b2b2b;
-}
+} /* SIDEBAR LINKS */
+
 
 .prompt {
 	width: 70%;
-	margin: 3.5em auto 2em;
-	padding: 0.8em;
 	background-color: #ffffff;
 	border-top: 5px solid #f63341;
 	border-bottom: 0.5px solid #d3d3d3;
-}
-
-.prompt h4 a{
-
-}
+	padding: 0.8em;
+	margin: 3.5em auto 2em;
+} /* PROMPT DIV IN /PROMPTS/SHOW AND /PROMPTS/EDIT */
 
 .prompt h4 a:hover {
 	color: #f63341;
-}
+} /* PROMPT TEXT HOVER */
 
 .notice {
 	width: 67%;
-	margin: auto;
-	padding: 1em;
 	background-color: #ffffff;
 	border: 1px solid #d3d3d3;
 	border-radius: 3px;
+	padding: 1em;
+	margin: auto;
 	margin-bottom: 2em;
-}
+} /* NOTICE FOR USER IN /PROMPTS/SHOW AND /PROMPTS/EDIT */
 
 .notice a {
 	border-bottom: 1px solid #28c0d6;
 	/*text-decoration: underline;*/
-}
+} /* NOTICE FOR USER IN /PROMPTS/SHOW AND /PROMPTS/EDIT */
 
 .notice a:hover {
 	color: #28c0d6;
 	border-bottom: 1px solid #28c0d6;
+} /* NOTICE FOR USER IN /PROMPTS/SHOW AND /PROMPTS/EDIT */
+
+.notice.top {
+	margin-top: 3em;
+} /* NOTICE FOR USER IN /PROMPTS/INDEX */
+
+#bottom-nav {
+	width: 100%;
+/*	background-color: green;*/
+	position: relative;
+/*	color: red;*/
+	/*padding: 1em;*/
 }
 
-.notice.prompt {
+#top-nav {
+	width: 100%;
 	margin-top: 3em;
-}
+/*	position: relative;*/
+} /* CONTAINER THAT HOLDS BACK AND NEXT BUTTONS ON PROMPTS/INDEX */
+
+.bottom-next,.bottom-back {
+	background-color: #fabc00; /* make this brighter? */
+	color: #ffffff;
+	font-size: 0.9em;
+	border-bottom: 1px solid #e4981f;
+	border-radius: 3px;
+	padding: 0.75em;
+	font-weight: bold;
+} /* NEXT AND BACK "BUTTONS" */
+
+.bottom-next {
+	position: absolute;
+	right: 15%;
+	/*color: #ffffff;*/
+} /* NEXT "BUTTON" (right) */
+
+.bottom-back {
+	position: absolute;
+	left: 15%;
+	/*color: #ffffff;*/
+} /* BACK "BUTTON" (left) */
+
 
 .response {
 	width: 67%;
-	margin: auto;
-	background-color: #ffffff;
-	padding: 1em 1.5em 1.5em 1.5em;
-	padding-bottom: 3em;
-	margin-top: 1em;
-	margin-bottom: 1.5em;
-	border: 1px solid #d3d3d3;
-/*	border-top: 3px solid blue;*/
-	border-radius: 3px;
 	position: relative;
-}
+	background-color: #ffffff;
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
+	padding: 1em 1.5em 3em 1.5em;
+	margin: 1em auto 1.5em;
+	/*margin: auto;*/
+	/*padding-bottom: 3em;*/
+	/*margin-top: 1em;
+	margin-bottom: 1.5em;*/
+	/*border: 1px solid #d3d3d3;*/
+/*	border-top: 3px solid blue;*/
+	/*border-radius: 3px;*/
+} /* RESPONSE SECTION IN /PROMPTS/SHOW */
 
 .response p {
 	/*background-color: orange;*/
-	margin-bottom: 1em;
 	font-size: 0.95em;
 	white-space: pre-line;
-} /*make this last child*/
+	margin-bottom: 1em;
+} /* RESPONSE TEXT IN /PROMPTS/SHOW */
 
 
 .response-bottom {
+	width: 100%;
 	position: absolute;
 	bottom: 0;
 	background-color: #e9e9e9;
-	width: 100%;
-	margin-left: -1.5em; /* equal to padding on response */
-	/*padding: 0.2em 0.8em 0;*/
 	padding: 1em;
-}
+	margin-left: -1.5em; /* equal to padding (left/right) on response */
+	/*padding: 0.2em 0.8em 0;*/
+} /* RESPONSE BOTTOM DIV IN /PROMPTS/SHOW */
 
 .response-bottom span {
 	font-size: 0.7em;
-}
+} /* TEXT AT BOTTOM OF RESPONSE ON /PROMPTS/SHOW */
 
 .response-bottom-span a {
+	/* this is its own span or the icon link will adopt border-bottom */
 	color: #28c0d6;
 	font-weight: bold;
 	border-bottom: 1px solid;
 	/*text-decoration: underline;*/
-}
+} /* LINK (to user show) AT BOTTOM OF RESPONSE ON /PROMPTS/SHOW */
 
-.response-bottom-span a:hover {
+.response-bottom span a:hover {
 	color: #199caf;
-}
+} /* LINK AT BOTTOM OF RESPONSE ON /PROMPTS/SHOW */
 
 .rb-edit-delete {
 	display: inline-block;
 	float: right;
-}
+} /* CONTAIN ICON LINKS AT BOTTOM OF RESPONSE */
 
 .rb-edit-delete form {
 	margin-left: 0.8em;
-}
+	display: inline-block;
+} 
 
 .edit-delete-icon {
-	width: 1.2em;
+	width: 1.2em; /* resizes icon image size */
 	height: 1.2em;
-}
+} /* ICON AT BOTTOM OF RESPONSE */
 
 /*.edit-delete-icon:first-of-type {
 	margin-right: 0.8em;
 }*/
 
-.hidden {
+/*.hidden {
 	display: inline-block;
 }
+*/
 
 #post-response {
 /*	background-color: red;*/
 	width: 70%;
 	margin: auto;
-}
+} /* FORM TO POST RESPONSE ON /PROMPTS/SHOW */
 
 #post-response textarea {
 	width: 100%;
@@ -304,169 +329,182 @@ nav li a:hover {
 	padding: 0.5em;
 	margin-bottom: 10px;
 	/*resize: none;*/
-}
+} /* TEXTAREA INPUT TO POST ON /PROMPTS/SHOW */
 
 #post-response input[type="submit"] {
 	width: 100%;
-	text-align: center;
+	background-color: #ff3e4c;
+	color: #ffffff;
 	font-size: 1em;
-	/*border: 0;*/
+/*	font-weight: bold;
+	text-align: center;*/
+	border-bottom: 5px solid #cc0000; /* do this in a color slightly darker than the background color */
 	padding: 0.75em;
+	/*text-align: center;*/
+	/*font-size: 1em;*/
+	/*border: 0;*/
 /*	background-color: #fabc00;
 	border-bottom: 5px solid #e4981f;*/
-	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
-	color: #ffffff;
-	font-weight: bold;
-}
+	/*background-color: #ff3e4c;*/
+	/*color: #ffffff;*/
+	/*font-weight: bold;*/
+} /* SUBMIT BUTTON TO POST ON /PROMPTS/SHOW */
 
+
+/* SIGN UP PAGE */
 #signup-container {
 	width: 65%;
-	margin: auto;
 	background-color: #ffffff;
-}
+	margin: auto;
+} /* CONTAINER DIV ON /USERS/NEWACCOUNT */
 
 #signup-container h2 {
 	color: #333333;
 	font-family: Lato, Helvetica;
 	font-size: 1.3em;
+	border-bottom: 1px solid #ff3e4c;
+	padding-bottom: 0.3em;
 	margin-top: 0.5em;
 	margin-bottom: 1em;
-	padding-bottom: 0.3em;
-	border-bottom: 1px solid #ff3e4c;
-
-}
+} /* HEADER ON /USERS/NEWACCOUNT */
 
 #new-account {
 	width: 60%;
-	margin: 2em auto;
 	padding: 1em;
+	margin: 2em auto;
 	/*background-color: orange;*/
-}
+} /* FORM TO CREATE NEW ACCOUNT ON /USERS/NEWACCOUNT */
 
 #newitem {
 	display: block;
-	position: relative;
-}
+	/*position: relative;*/
+} /* NEW LINE IN CREATE ACCOUNT FORM */
 
 #new-account label {
 	width: 30%;
+	display: inline-block;
+	color: #333333;
+	font-family: Lato, Helvetica;
 	font-size: 0.85em;
 	font-weight: bold;
-	display: inline-block;
-	margin-top: 0;
-	color: #333333;
-	font-family: Lato, Helvetica
-}
+	/*margin-top: 0;*/
+} /* LABEL IN NEW ACCOUNT FORM */
 
-#new-account input {
+#new-account input[type="text"] {
 	width: 68%;
-	padding: 0.6em;
-	font-size: 1em;
 	display: inline-block;
+	font-size: 1em;
+	padding: 0.6em;
 	margin-bottom: 1.2em;
 	/*border: none;*/
-}
-
-#new-account input[type=submit] {
-	width: 100%;
-	margin-top: 0.5em;
-	padding: 1em;
-	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000;	
-	color: white;
-}
+} /* TEXT INPUT IN NEW ACCOUNT FORM */
 
 #new-account input[type="text"]:focus{
-	box-shadow: none;
+	/*box-shadow: none;*/
 	border: 1px solid #4ECDC4; /* change color? */ 
 	box-shadow: 0 0 5px #4ECDC4; /*#fabc00*/
 	outline: 0;
 	-webkit-appearance: none; /* overrides default blue outline */
+} /* SELECTED TEXT INPUT */
 
-}
-
-#new-account textarea {
-	width: 65%;
-	height: 8em;
+#new-account input[type=submit] {
+	width: 100%;
+	background-color: #ff3e4c;
+	color: #ffffff;
+	border-bottom: 3px solid #cc0000;	
 	padding: 1em;
-	/*resize: none;*/
-	/*border: none;*/
-}
+	margin-top: 0.5em;
+	/*margin-top: 0.5em;
+	padding: 1em;*/
+} /* SUBMIT BUTTON ON /USERS/NEWACCOUNT */
 
+
+/* /PROMPT INDEX */
 .prompt-listitem {
 	width: 70%;
-	margin: 0 auto 1em;
-	padding: 1em;
-	background-color: white;
-	border: 1px #d3d3d3 solid;
-	border-left: 5px #ff3e4c solid;
-	border-radius: 3px;
 	box-sizing: content-box;
-}
+	background-color: #ffffff;
+	border: 1px solid #d3d3d3;
+	border-left: 5px solid #ff3e4c;
+	border-radius: 3px;
+	padding: 1em;
+	margin: 0 auto 1em;
+	/*background-color: white;*/
+	/*border-radius: 3px;
+	box-sizing: content-box;*/
+} /* PROMPT DIV (holds one prompt) ON /PROMPTS/INDEX */
 
 .prompt-listitem:first-of-type {
 	margin-top: 2em;
-}
+} /* FIRST PROMPT ON /PROMPTS/INDEX */
 
 /*.prompt-listitem h3 {
 	font-size: 1.2em;
 	display: inline;
 }*/
 
-.prompt-listitem span {
+/*.prompt-listitem span {
 	display: block;
 	margin-top: 0.5em;
 	font-size: 0.6em;
-}
+}*/
 
 #newprompt-container {
 	width: 60%;
 	margin: 2em auto;
 /*	overflow: auto;*/
-}
+} /* HOLDS FORM TO CREATE NEW PROMPT ON /PROMPTS */
 
 #newprompt textarea {
 	width: 85%;
 	height: 4em;
+	display: inline;
+	float: left;
 	padding: 1em;
 	/*resize: none;*/
 	/*border: none;*/
-	display: inline;
-	float: left;
-}
+} /* TEXTAREA INPUT IN NEW PROMPT FORM */
 
 #newprompt input[type=submit]{
 	width: 10%;
+	display: inline;
+	background-color: #ff3e4c;
+	color: #ffffff;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */
+	padding: 1em;
 	margin-top: 0.2em;
 	margin-left: 1em;
 	/*border: none;*/
-	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */
-	padding: 1em;
-	text-align: center;
-	background-color: #ff3e4c;
-	color: #ffffff;
-	font-weight: bold;
-	display: inline;
-}
+} /* SUBMIT BUTTON IN NEW PROMPT FORM */
 
-
-#usershow-container {
+/* DONT DELETE THIS YET */
+/*#usershow-container {
 	width: 80%;
 	margin: 2.5em auto;
-}
+	background-color: red;
+}*/ /* CONTAINER ON USER/SHOW */
 
+/* USER/SHOW */
 .profile-content {
-	background-color: white;
+	width: 80%;
+	background-color: #ffffff;
 	padding: 1.5em 2em 1.5em 2em;
-	margin-bottom: 2em;
-}
+	margin: 3em auto 2em;
+} /* CONTENT DIV ON USER/SHOW and USER/EDIT */
+
+.profile-content h2 {
+	padding-bottom: 0.15em;
+	margin-bottom: 0.5em;
+	border-bottom: 1px solid gray;
+	text-transform: capitalize;
+} /* HEADER FOR CONTENT DIVS ON USER/SHOW */
 
 .profile-content form {
 	margin-top: 1em;
 	display: inline-block;
 	width: 30%;
-} /* for button on profile page */
+	/*margin-left: 0.5em;*/
+} /* BUTTONS TO EDIT/DELETE USER ON USER/SHOW */
 
 .profile-content form:last-of-type {
 	margin-left: 0.5em;
@@ -474,116 +512,127 @@ nav li a:hover {
 
 #profile-buttons {
 	width: 100%;
-	padding: 1em;
 	background-color: #ff3e4c;
+	color: #ffffff;
 	border-bottom: 3px solid #cc0000;
-	color: #ffffff;
-	font-weight: bold;
-}
-
-.profile-content h2 {
-	padding-bottom: 0.15em;
-	margin-bottom: 0.5em;
-	border-bottom: 1px solid gray;
-	text-transform: capitalize;
-}
-
-/* EDIT PAGE */
-#edit-profile {
-	width: 100%;
-	margin: auto;
-	/*background-color: blue;*/
-}
-
-#edit-profile textarea{
-	margin-top: 1em;
-	width: 100%;
-	height: 8em;
-	padding: 0.5em;
-	border: 1px solid #d3d3d3; /* change to gray */
-}
-
-#edit-profile textarea:focus{
-	box-shadow: none;
-	border: 1px solid #4ECDC4; /* change color? */ 
-	outline: 0;
-	-webkit-appearance: none; /* overrides default blue outline */
-}
-
-#edit-profile input[type="submit"] {
-	width: 100%;
-	text-align: center;
-	font-size: 1em;
-	padding: 0.75em;
-	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
-	color: #ffffff;
-	font-weight: bold;
-	margin-top: 1em;
-}
-
-
-
+	padding: 1em;
+	/*font-weight: bold;*/
+} /* BUTTONS TO EDIT/DELETE USER ON USER/SHOW */
 
 .profile-response {
 	width: 95%;
-	margin: auto;
+	position: relative;
+	white-space: nowrap;
+	/*margin: auto;*/
 /*	border-top: 3px solid red;*/
 /*	border: 1px solid red;*/
 	border-bottom: 3px solid #f63341;
 	/*padding-bottom: 0.5em;*/
 	border-radius: 2px;
-	margin-bottom: 2.5em;
-	position: relative;
-	white-space: nowrap;
+	margin: 2em auto;
 	/*overflow: hidden;*/
 /*	background-color: red;*/
-}
+} /* RESPONSE DISPLAY DIV ON USER/SHOW */
 
 .profile-response p {
-	padding: 0.5em;
-	padding-bottom: 0em;
+	white-space: pre-line; /* preserves line breaks */
+	padding: 0.5em 0.5em 0 0.5em;
+	/*padding-bottom: 0em;*/
 	margin-bottom: 0;
-	white-space: pre-line;
 	/*font-size: 1em;*/
-}
+} /* RESPONSE TEXT ON USER/SHOW */
 
 .profile-response-bottom {
 	/*background-color: red;*/
-	display: block;
-	text-align: right;
 	height: 0.8em;
 	position: relative;
-}
+	display: block;
+	text-align: right;
+} /* CONTAINS EDIT DELETE ICON BUTTONS ON USER/SHOW */
 
 .profile-response-spacer {
 	width: 100%;
 	height: 0.3em;
-	overflow: auto;
 	display: block;
+	overflow: auto;
 	/*background-color: pink;*/
-}
+} /* SPACER ELEMENT BETWEEN BOTTOM OF PARAGRAPH AND RESPONSE BOTTOM ON USER/SHOW */
 
 .profile-response-bottom form {
 	width: 10px;
-	margin-top: -0.8em;
-	margin-right: 1em;
-}
+	margin: -0.8em 1em 0 0;
+/*	margin-top: -0.8em;
+	margin-right: 1em;*/
+} /* DELETE FORM ON USER/SHOW */
 
 .profile-icon {
 	width: 0.8em;
 	position: absolute;
 	top: -0.4em;
-}
+} /* ICON IMAGES ON USER/SHOW */
 
 .profile-prompt {
 	/*padding: 0.5em;*/
 	border-left: 3px solid #ff3e4c;
-	padding: 0.3em 0 0.3em 0.6em;
 	border-radius: 3px;
+	padding: 0.3em 0 0.3em 0.6em;
 	margin-bottom: 1em;
-}
+} /* PROMPT DISPLAY DIV ON USER/SHOW */
 
+.promptbody {
+	display: block;
+	background-color: #efefef;
+	font-size: 0.75em;
+	font-weight: bold;
+	white-space: normal;
+	padding: 0.3em 1em 0.3em 1em;
+	transition: background-color 3s linear;
+} /* DISPLAYS PARENT PROMPT ABOVE RESPONSE ON USER/SHOW */
+
+.promptbody:hover {
+	background-color: rgba(255, 255, 255, 0.85);
+} /* PARENT PROMPT ABOVE RESPONSE ON USER/SHOW */
+
+.promptbody a:hover {
+	/*color: #28c0d6;*/
+	color: #f63341;
+} /* PARENT PROMPT ABOVE RESPONSE ON USER/SHOW */
+
+
+
+/* USERS/EDIT PAGE */
+#edit-profile {
+	width: 100%;
+	margin: auto;
+	/*background-color: blue;*/
+} /* EDIT PROFILE FORM ON USER/EDIT */
+
+#edit-profile textarea{
+	width: 100%;
+	height: 8em;
+	border: 1px solid #d3d3d3; /* change to gray */
+	padding: 0.5em;
+	margin-top: 1em;
+} /* TEXTAREA INPUT ON EDIT PROFILE FORM */
+
+#edit-profile textarea:focus{
+	border: 1px solid #4ECDC4; /* change color? */ 
+	box-shadow: none;
+	outline: 0;
+	-webkit-appearance: none; /* overrides default blue outline */
+} /* TEXTAREA INPUT ON EDIT PROFILE FORM */
+
+#edit-profile input[type="submit"] {
+	width: 100%;
+	/*text-align: center;*/
+	background-color: #ff3e4c;
+	color: #ffffff;
+	font-size: 1em;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */
+	padding: 0.75em;
+	/*font-weight: bold;*/
+	margin-top: 1em;
+} /* SUBMIT BUTTON IN EDIT PROFILE FORM */
 
 
 /*.pencil {
@@ -620,108 +669,56 @@ nav li a:hover {
 	position: relative;
 }
 */
-.promptbody {
-	display: block;
-	background-color: #efefef;
-	padding: 0.3em 1em 0.3em 1em;
-	font-size: 0.75em;
-	font-weight: bold;
-	transition: background-color 3s linear;
-	white-space: normal;
-}
 
-.promptbody:hover {
-	background-color: rgba(255, 255, 255, 0.85);
-}
-
-.promptbody a:hover {
-	/*color: #28c0d6;*/
-	color: #f63341;
-}
-
-.edit-delete {
+/*.edit-delete {*/
 /*	position: absolute;*/
 /*	right: 0;*/
 	/*background-color: #ffffff;*/
-	text-align: right;
+/*	text-align: right;
 	padding-right: 0.3em;
 	display: inline-block
 	vertical-align: top;
-}
+}*/
 
-.back {
+/*.back {
 	margin-left: 2em;
 	margin-top: 1.5em;
-}
+}*/
 
+/* PROMPTS/EDIT PAGE (edits response) */
 #edit-response {
 	width: 70%;
 	margin: auto;
-}
+} /* FORM TO EDIT RESPONSE */
 
 #edit-response textarea {
 	width: 100%;
-	height: 100px;
+	height: 8em;
 	padding: 0.5em;
 	margin-bottom: 10px;
 	/*resize: none;*/
-}
+} /* TEXTAREA INPUT ON EDIT RESPONSE FORM */
 
 #edit-response input[type="submit"] {
 	width: 100%;
-	text-align: center;
+	background-color: #ff3e4c;
+	color: #ffffff;
+	/*text-align: center;*/
 	font-size: 1em;
 	/*border: 0;*/
 	padding: 0.75em;
+	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
 /*	background-color: #fabc00;
 	border-bottom: 5px solid #e4981f;*/
-	background-color: #ff3e4c;
-	border-bottom: 3px solid #cc0000; /* do this in a color slightly darker than the background color */  
-	color: #ffffff;
-	font-weight: bold;
-}
-
-#bottom-nav {
-	width: 100%;
-/*	background-color: green;*/
-	position: relative;
-/*	color: red;*/
-	/*padding: 1em;*/
-}
-
-#top-nav {
-	width: 100%;
-	margin-top: 3em;
-/*	position: relative;*/
-}
-
-.bottom-next,.bottom-back {
-	background-color: #fabc00; /* make this brighter */
-	border-bottom: 1px solid #e4981f;
-	color: #ffffff;
-	padding: 0.75em;
-	border-radius: 3px;
-	font-size: 0.9em;
-	font-weight: bold;
-}
-
-.bottom-next {
-	position: absolute;
-	right: 18%;
 	/*color: #ffffff;*/
-}
-
-.bottom-back {
-	position: absolute;
-	left: 18%;
-	/*color: #ffffff;*/
-}
+	/*font-weight: bold;*/
+} /* SUBMIT BUTTON ON EDIT RESPONSE FORM */
 
 
 
 footer {
 	overflow: auto;
 	height: 50px;
-}
+} /* FOOTER */
 
 
