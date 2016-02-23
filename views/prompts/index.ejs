@@ -22,7 +22,6 @@
 
 			<h3><a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a></h3>
 
-			<!-- <span>Submitted 5 hours ago by user</span> -->
 		</div>
 		<% } %>
 
@@ -69,7 +68,7 @@
 			<!-- go to next or previous pages -->
 
 
-
+			<!-- BACK AND NEXT LINKS -->
 		<div id="bottom-nav">
 			
 			<!-- hide if there are no more pages -->
@@ -88,7 +87,7 @@
 
 
 
-			<% if (prompts.length === 2) { %>
+			<% if (prompts.length === 5) { %>
 
 			<a href="/prompts/pages/<%= nextPage %>">
 				<span class="bottom-next">Next</span>

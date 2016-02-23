@@ -12,7 +12,7 @@ var User = require("../models/users.js");
 // -----------------------------------------------------------------
 // INDEX
 router.get("/", function(req, res) {
-  Prompt.find({}, {}, {limit: 2}, function(err, prompts) { // finds all prompt instances in collection
+  Prompt.find({}, {}, {limit: 5}, function(err, prompts) { // finds all prompt instances in collection
     // console.log(prompts); // confirms prompts
     res.render("prompts/index.ejs", {
       prompts: prompts, // renders prompts data with index.ejs
@@ -27,7 +27,7 @@ router.get("/pages/:page_number", function(req, res) {
   var pageNumber = parseInt(req.params.page_number); // convert param to an integer
   // pulls the next (#) of entries and saves to ender to show page
   // var morePrompts = true; // default value is true --> assumes that there are more prompts
-  Prompt.find({}, {}, {limit: 2, skip: (2 * req.params.page_number)}, function(err, prompts) {
+  Prompt.find({}, {}, {limit: 5, skip: (5 * req.params.page_number)}, function(err, prompts) {
       res.render("prompts/index.ejs", {
         prompts: prompts, 
         pageNumber: pageNumber
