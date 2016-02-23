@@ -106,12 +106,17 @@
 		<div class="profile-content">
 			<h2>Prompts</h2>
 
-			<div class="profile-prompt">
+			<!-- <div class="profile-prompt"> -->
 
 				<% if (user.prompts[0] != null) { %> <!-- don't run loop if there is no array -->
 				<% for (var i = 0; i < user.prompts.length; i++) { %>
 
-				<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a><br><br>
+
+				<div class="profile-prompt">
+
+					<a href="/prompts/<%= user.prompts[i].id %>"><%= user.prompts[i].promptBody %></a>
+
+				</div>
 
 
 									<% } %>
@@ -121,7 +126,7 @@
 
 
 			<% } %>
-			</div>
+			<!-- </div> -->
 		</div>
 
 	</div> <!-- closes usershow-container -->

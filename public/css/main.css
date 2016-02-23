@@ -576,6 +576,14 @@ nav li a:hover {
 	top: -0.4em;
 }
 
+.profile-prompt {
+	/*padding: 0.5em;*/
+	border-left: 3px solid #ff3e4c;
+	padding: 0.3em 0 0.3em 0.6em;
+	border-radius: 3px;
+	margin-bottom: 1em;
+}
+
 
 
 /*.pencil {
