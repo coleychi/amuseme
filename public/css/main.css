@@ -532,13 +532,13 @@ nav li a:hover {
 	border-bottom: 3px solid #f63341;
 	/*padding-bottom: 0.5em;*/
 	border-radius: 2px;
-	margin: 2em auto;
+	margin: 2em auto 2.75em;
 	/*overflow: hidden;*/
 /*	background-color: red;*/
 } /* RESPONSE DISPLAY DIV ON USER/SHOW */
 
 .profile-response:first-of-type {
-	margin-top: 1.3em; /* matches profile-prompt:first of type */
+	margin-top: 2em; /* matches profile-prompt:first of type */
 }
 
 .profile-response:last-of-type {
