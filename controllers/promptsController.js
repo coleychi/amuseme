@@ -22,23 +22,22 @@ router.get("/", function(req, res) {
 }); // end root route
 
 
-// NEXT-- show next (#?) results
+// PAGES-- show next(or previous) 5 prompts
 router.get("/pages/:page_number", function(req, res) {
   var pageNumber = parseInt(req.params.page_number); // convert param to an integer
-  // pulls the next (#) of entries and saves to ender to show page
-  // var morePrompts = true; // default value is true --> assumes that there are more prompts
+  // pulls the next (5) of entries and saves to ender to show page
   Prompt.find({}, {}, {limit: 5, skip: (5 * req.params.page_number)}, function(err, prompts) {
       res.render("prompts/index.ejs", {
         prompts: prompts, 
-        pageNumber: pageNumber
-      })
+        pageNumber: pageNumber 
+      });
   });
-});
+}); // end pages route
 
 
 // NEWPROMPT-- add a new prompt
 router.post("/newprompt", isLoggedIn, function(req, res) {
-  
+
   // save new prompt in prompts collection
   var newPrompt = new Prompt(req.body);
   // console.log(newPrompt); // confirms newPrompt body content 
@@ -46,23 +45,23 @@ router.post("/newprompt", isLoggedIn, function(req, res) {
     // console.log(promptData); // confirms newPrompt has been saved (should have unique id)
     // console.log(req.user.id); // confirms logged in user info is accessible
     
-    // push into user's prompts
+    // push prompt into user's prompts array
     User.findById(req.user.id, function(err, user) {
-      console.log(user); // confirms instance being grabbed
-      user.prompts.push(promptData); // push new prompt to user's prompts array
+      // console.log(user); // confirms instance being grabbed
+      user.prompts.push(promptData); // pushes new prompt to user's prompts array
       user.save(function(err, data) { // saves the change to the database
-        console.log("new prompt saved!");
+        // console.log("new prompt saved!"); 
         res.redirect("/prompts/" + promptData.id);
       });
     });
   });
-});
+}); // end newprompt route
 
 
 // EDIT-- render edit form page
 router.get("/edit/:response_id", isLoggedIn, function(req, res) {
-  Response.findById(req.params.response_id, function(err, responseData) {
-    console.log(responseData); // confirms information being passed
+  Response.findById(req.params.response_id, function(err, responseData) { // find the selected response
+    // console.log(responseData); // confirms information being passed
     res.render("prompts/edit.ejs", { 
       response: responseData
     });
@@ -83,7 +82,7 @@ router.put("/edit/:response_id", function(req, res) {
 
       // update the response in prompts collection
       Prompt.update({"responses._id": req.params.response_id}, {$set: {
-        "responses.$.responseBody" : responseData.responseBody
+        "responses.$.responseBody": responseData.responseBody
       }}, function(err, prompt) {
         // console.log(prompt); 
 
@@ -102,19 +101,24 @@ router.put("/edit/:response_id", function(req, res) {
 
 // SAVE-- adds selected prompt to user's saved prompts array
 router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+  // grab the selected prompt instance from the database
   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+    // grab the active user instance from the database
     User.findByIdAndUpdate(req.user.id, 
-      {$addToSet: {savedPrompts: prompt}}, function(err, user) {
-        console.log(user);
-        res.redirect(req.get("referer"));
-      })
-  })
-})
+      {$addToSet: {savedPrompts: prompt}}, function(err, user) { // push prompt to array if it is not already there
+        // console.log(user);
+        res.redirect(req.get("referer")); // redirect to the refering page (refresh)
+      });
+  });
+}); // end save route
+
 
 // UNSAVE-- removes selected prompt from user's saved prompts array
 router.delete("/unsave/:prompt_id", isLoggedIn, function(req, res) {
-  User.findByIdAndUpdate(req.user.id, {$pull: {savedPrompts: {_id: req.params.prompt_id}}}, {new: true}, function(err, user) {
-    console.log(user);
+  // grab the active user instance from the database 
+  User.findByIdAndUpdate(req.user.id, {$pull: { // pull the specific prompt object from savedPrompts array
+    savedPrompts: {_id: req.params.prompt_id}}}, {new: true}, function(err, user) {
+    // console.log(user);
     res.redirect(req.get("referer"));
   })
 })
@@ -127,17 +131,19 @@ router.delete("/delete/:response_id", function(req, res) {
   Response.findById(req.params.response_id, function(err, responseData) {
 
     // pull response instance from user's responses array
-    User.findByIdAndUpdate(req.user.id, {$pull: {responses: {_id: req.params.response_id}}}, {new: true}, function(err, user) {
+    User.findByIdAndUpdate(req.user.id, {$pull: {
+      responses: {_id: req.params.response_id}}}, {new: true}, function(err, user) {
       // console.log(user);
 
       // pull response instance from prompt's responses array
-      Prompt.findByIdAndUpdate(responseData.promptid, {$pull: {responses: {_id: req.params.response_id}}}, {new:true}, function(err, prompt) {
+      Prompt.findByIdAndUpdate(responseData.promptid, {$pull: {
+        responses: {_id: req.params.response_id}}}, {new:true}, function(err, prompt) {
         // console.log(prompt);
 
         // delete the original response from the response collection
         responseData.remove();
-        console.log("Deleted response!")
-        res.redirect("/prompts/" + responseData.promptid);
+        // console.log("Deleted response!");
+        res.redirect(req.get("referer"));
 
         // Response.findByIdAndRemove(req.params.response_id, function(err, data) {
         //   console.log("Deleted response!");
@@ -154,17 +160,18 @@ router.delete("/delete/:response_id", function(req, res) {
 router.get("/random", function(req, res) {
   // find the number of instances in prompt collection
   Prompt.count({}, function(err, count) {
-    console.log(count); // confirm count works
+    // console.log(count); // confirm count works
 
     // generate a random number using the count value
     var randomIndex = Math.floor(Math.random() * count);
 
+    // select prompt based on randomIndex value
     Prompt.findOne().skip(randomIndex).exec(function(err, prompt) {
-      console.log(prompt); // confirms that a prompt is returned
-      res.redirect("/prompts/" + prompt.id);
+      // console.log(prompt); // confirms that a prompt is returned
+      res.redirect("/prompts/" + prompt.id); // redirect user to the show page of randomly selected prompt
     });
   });
-});
+}); // end random route
 
 
 // SHOW-- shows one prompt

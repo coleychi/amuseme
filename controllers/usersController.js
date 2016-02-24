@@ -14,64 +14,67 @@ var Response = require("../models/responses.js");
 // INDEX-- users root index redirects to prompts root
 router.get("/", function(req, res) {
   res.redirect("/prompts");
-});
+}); // end root route
 
 
 // SIGNUP-- create a new account
 router.post("/signup", passport.authenticate("local-signup", { 
   failureRedirect: "/users"}), function(req, res) {
   // res.send(req.user); // checks that data persists
-  res.redirect("/users/" + req.user.id); // possibly change redirect to prompts
-});
+  res.redirect("/users/" + req.user.id); // possibly change redirect to prompts?
+}); // end signup route
 
 // LOGOUT-- logout of account
 router.get("/logout", function(req, res) {
   req.logout(); // built in function that will logout user
   res.redirect("/users");
-});
+}); // end logout route
 
 // LOGIN-- access an existing account
 router.post("/login", passport.authenticate("local-login", { 
-  failureRedirect: "/users/newaccount"}), function(req, res) { // CHANGE FAILURE REDIRECT-- set to dummy route
+  failureRedirect: "/users/newaccount"}), function(req, res) {
   // res.send(req.user); // checks accessible data
   // res.locals.user = req.user;
   res.redirect("/prompts");
-});
+}); // end login route
 
 
 // NEW ACCOUNT-- create a new account
 router.get("/newaccount", function(req, res) {
   res.render("users/signup.ejs");
-});
+}); // end newaccount route
 
 
 // SHOW-- user's show page... convert username to userid
-router.get("/username/:username", function(req, res) {
+router.get("/username/:username", isLoggedIn, function(req, res) {
+  // grab user based on username key/value pair
   User.findOne({username: req.params.username}, function(err, user) {
-    console.log(user.id)
-    res.redirect("/users/" + user.id)
-  })
-})
+    // console.log(user.id);
+    res.redirect("/users/" + user.id);
+  });
+}); // end username route
 
 
 // SHOW-- user's show page (profile)
 router.get("/:user_id", isLoggedIn, function(req, res) {
+  // grab user instance based on id passed in params
   User.findById(req.params.user_id, function(err, userData) {
     res.render("users/show.ejs", {
       user: userData
     });
   });
-});
+}); // end user show route
 
 
 // SHOW-- shows a specific response to a prompt
 router.get("/response/:response_id", function(req, res) {
+  // grab response instance based on id passed in params
   Response.findById(req.params.response_id, function(err, responseData) {
     res.render("users/response.ejs", {
       response: responseData
     });
-  })
-})
+  });
+}); // end response show route
 
 
 // DELETE-- deletes a single response (same as prompts controller route, different redirect)
@@ -81,16 +84,18 @@ router.delete("/delete/:response_id", function(req, res) {
   Response.findById(req.params.response_id, function(err, responseData) {
 
     // pull response instance from user's responses array
-    User.findByIdAndUpdate(req.user.id, {$pull: {responses: {_id: req.params.response_id}}}, {new: true}, function(err, user) {
+    User.findByIdAndUpdate(req.user.id, {$pull: {
+      responses: {_id: req.params.response_id}}}, {new: true}, function(err, user) {
       // console.log(user);
 
       // pull response instance from prompt's responses array
-      Prompt.findByIdAndUpdate(responseData.promptid, {$pull: {responses: {_id: req.params.response_id}}}, {new:true}, function(err, prompt) {
+      Prompt.findByIdAndUpdate(responseData.promptid, {$pull: {
+        responses: {_id: req.params.response_id}}}, {new:true}, function(err, prompt) {
         // console.log(prompt);
 
         // delete the original response from the response collection
         responseData.remove();
-        console.log("Deleted response!");
+        // console.log("Deleted response!");
         res.redirect("/users/" + user.id);
         
         // Response.findByIdAndRemove(req.params.response_id, function(err, data) {
@@ -110,7 +115,6 @@ router.delete("/deleteaccount/:user_id", function(req, res) {
 
   // grabs the specific user instance
   User.findById(req.params.user_id, function(err, user) {
-
 
     // delete responses from parent prompts
     // find all responses whose auther is equal to the user's username
@@ -134,7 +138,7 @@ router.delete("/deleteaccount/:user_id", function(req, res) {
               console.log("gone?")
         });
 
-      } // closes for loop 
+      }; // closes for loop 
 
       // delete the user document from db
       user.remove(); // removes the user
@@ -142,14 +146,14 @@ router.delete("/deleteaccount/:user_id", function(req, res) {
 
     });
   });
-});
+}); // end deleteaccount route
 
 
 
 // EDIT PROFILE
 router.get("/editprofile/:user_id", isLoggedIn, function(req, res) {
   res.render("users/edit.ejs");
-});
+}); // end editprofile route
 
 
 // UPDATE
@@ -161,7 +165,7 @@ router.put("/editprofile/:user_id", function(req, res) {
     res.redirect("/users/" + user.id);
     // res.redirect("/users/" + user.id);
   });
-});
+}); // end put route
 
 
 
@@ -218,3 +222,7 @@ module.exports = router;
 //     });
 //   });
 // });
+
+
+
+

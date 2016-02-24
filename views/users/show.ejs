@@ -52,7 +52,41 @@
 
 
 
-	<!-- DISPLAY USER'S RESPONSE -->
+
+	<!-- DISPLAY USER'S SAVED PROMPTS -->
+	<% if (user.username == locals.username) { %>
+
+		<div class="profile-content">
+			<h2>Saved Prompts</h2>
+
+			<% if (user.savedPrompts[0] != null) { %>
+
+				<% for (var i = 0; i < user.savedPrompts.length; i++) { %>
+
+					<div class="profile-prompt">
+
+						<a href="/prompts/<%= user.savedPrompts[i].id %>"><%= user.savedPrompts[i].promptBody %></a> 
+
+						<form action="/prompts/unsave/<%= user.savedPrompts[i].id %>?_method=DELETE" method="POST" id="unsave-prompt-profile">
+
+							<button>Unsave</button>
+
+						</form>
+
+					</div>
+
+				<% } %>
+
+			<% } %>
+
+		</div>
+
+	<% } %>
+
+
+
+
+	<!-- DISPLAY USER'S RESPONSES -->
 	<div class="profile-content">
 
 		<h2>Responses</h2>
@@ -136,27 +170,6 @@
 		
 	</div> <!-- closes profile-content div-->
 
-
-	<!-- DISPLAY USER'S SAVED PROMPTS -->
-
-	<div class="profile-content">
-		<h2>Saved Prompts</h2>
-
-		<% if (user.savedPrompts[0] != null) { %>
-
-			<% for (var i = 0; i < user.savedPrompts.length; i++) { %>
-
-				<div class="profile-prompt">
-
-					<a href="/prompts/<%= user.savedPrompts[i].id %>"><%= user.savedPrompts[i].promptBody %></a>
-
-				</div>
-
-			<% } %>
-
-		<% } %>
-
-	</div>
 
 
 

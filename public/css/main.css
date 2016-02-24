@@ -35,6 +35,7 @@ button, input[type="submit"] {
 	box-shadow: none;
 	border: 0 none;
 	border-radius: 3px;
+	cursor: pointer;
 }
 
 
@@ -154,15 +155,24 @@ nav li a:hover {
 	color: #f63341;
 } /* PROMPT TEXT HOVER */
 
-#save-prompt, #unsave-prompt {
+#save-prompt, #unsave-prompt, #unsave-prompt-profile {
 	display: inline-block;
 } /* FAVORITE BUTTON ON /PROMPTS */
 
-#save-prompt button, #unsave-prompt button {
-	background-color: #fabc00;
+#save-prompt button, #unsave-prompt button, #unsave-prompt-profile button {
+	background-color: #ffc44d;
 	color: #ffffff;
-	padding: 0.2em 0.4em;
+	padding: 0.25em 0.4em;
 	margin-left: 0.2em;	
+}  /* FAVORITE BUTTON ON /PROMPTS */
+
+#save-prompt button:hover, #unsave-prompt button:hover, #unsave-prompt-profile button:hover {
+	background-color: #feb118;
+}
+
+#unsave-prompt-profile {
+	/*background-color: red;*/
+	margin: 0.2em 0 0 0.2em;
 }
 
 .notice {

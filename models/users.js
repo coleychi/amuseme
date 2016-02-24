@@ -25,15 +25,16 @@ var userSchema = new mongoose.Schema({
 });
 
 
-userSchema.path("savedPrompts").validate(function(savedPrompts) {
-  console.log("validate path")
-  console.log(savedPrompts)
-})
-
+// userSchema.path("savedPrompts").validate(function(savedPrompts) {
+//   console.log("validate path")
+//   console.log(savedPrompts)
+// })
 
 // userSchema.path('username').validate(function (username) {
 //   return username.length > 5;
 // }, "error"); // won't allow a username less than 5 characters
+
+
 
 // METHODS
 // generate hash from password
