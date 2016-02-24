@@ -17,12 +17,18 @@ var userSchema = new mongoose.Schema({
   about: {type: String},
   prompts: [promptSchema],
   responses: [responseSchema], 
-  savedPrompts: [String]
+  savedPrompts: [promptSchema]
   // savedPrompts: [{
   //   promptid: String,
   //   promptBody: String
   // }]
 });
+
+
+userSchema.path("savedPrompts").validate(function(savedPrompts) {
+  console.log("validate path")
+  console.log(savedPrompts)
+})
 
 
 // userSchema.path('username').validate(function (username) {
