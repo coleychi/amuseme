@@ -2,7 +2,63 @@
 
 	<!-- DISPLAY THE PROMPT -->
 	<div class="prompt">
-		<h3><%= prompt.promptBody %></h3>
+
+		<h3>
+			<%= prompt.promptBody %>
+
+			<!-- if user is logged in, show save button -->
+			<% if (locals.login) { %>
+
+			<!-- assume article is not saved yet -->
+			<% var alreadySaved = false %>
+
+				<!-- for every prompt in the user's saved prompts array --> 
+				<% for (var i = 0; i < locals.user.savedPrompts.length; i++) { %>
+
+					<!-- if the prompt is not already saved to the user's saved prompts array, display save button-->
+					<% if (locals.user.savedPrompts[i].id === prompt.id) { %>
+
+						<%#= locals.user.savedPrompts[i].id %>
+						<%#= prompt.id %>
+
+						<!-- toggle already saved variable -->
+						<% var alreadySaved = true %>
+
+						<!-- exit the for loop is the match is found -->
+						<% break; %>
+
+					<% } %>
+
+				<% } %>
+
+				<% if (alreadySaved === true) { %>
+
+					<form action="/prompts/unsave/<%= prompt.id %>?_method=DELETE" method="POST" id="unsave-prompt">
+
+						<button>Unsave</button>
+
+					</form>
+
+
+				<% } else { %>
+
+					<form action="/prompts/save/<%= prompt.id %>?_method=PUT" method="POST" id="save-prompt">
+
+						<button>Save</button>
+
+					</form>
+
+
+				<% } %>
+
+
+
+			<% } %>
+
+		</h3>
+
+
+
 	</div>
 
 	

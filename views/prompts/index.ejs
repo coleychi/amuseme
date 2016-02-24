@@ -19,56 +19,87 @@
 
 		<div class="prompt-listitem">
 			<h3>
-				<a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a> 
+				<a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a>
 
-					<!-- if user is logged in, show save button -->
-					<% if (locals.login) { %>
+			<!-- SAVE/UNSAVE BUTTONS -->
 
-						<!-- is user does not have anything saved yet, show the button -->
-						<% if (locals.user.savedPrompts.length === 0) { %>
+				<!-- only execute if the user is logged in -->
+				<% if (locals.login) { %>
 
-							<form action="/prompts/save/<%= prompts[i].id %>?_method=PUT" method="POST" id="save-prompt">
+					<%#= locals.user.savedPrompts.length %>
 
-									<button>Save</button>
+					<!-- if user has not saved anything to savedPrompts array yet, prompt automatically gets a save button -->
+					<% if (locals.user.savedPrompts.length === 0) { %>
+
+						<form action="/prompts/save/<%= prompts[i].id %>?_method=PUT" method="POST" id="save-prompt">
+
+								<button>Save</button>
+
+						</form>
+
+
+					<!-- if user has saved stuff, run comparison -->
+					<% } else { %>
+
+						<% var savedAlready = false %>
+
+						<% for (var j = 0; j < locals.user.savedPrompts.length; j++) { %>
+
+							<% if (locals.user.savedPrompts[j].id === prompts[i].id) { %>
+
+								<% var savedAlready = true; %>
+
+								<% break; %>
+
+							<% } else { %> 
+
+								<% var savedAlready = false %>
+
+							<% } %> <!-- closes if statement -->
+
+						<% } %> <!-- closes for loop (j) -->
+
+
+						<!-- RENDER SAVE/UNSAVE BUTTONS -->
+
+						<%#= savedAlready %>
+
+
+						<!-- if prompt has already been saved, display unsave button -->
+						<% if (savedAlready === true) { %>
+
+							<form action="/prompts/unsave/<%= prompts[i].id %>?_method=DELETE" method="POST" id="unsave-prompt">
+
+								<button>Unsave</button>
 
 							</form>
 
-						<% } %>
+						<% } else { %>
 
-						<!-- for every prompt in the user's saved prompts array --> 
-						<% for (var j = 0; j < locals.user.savedPrompts.length; j++) { %>
+							<form action="/prompts/save/<%= prompts[i].id %>?_method=PUT" method="POST" id="save-prompt">
 
-							<!-- if the prompt is not already saved to the user's saved prompts array, display save button-->
-							<% if (locals.user.savedPrompts[j].id != prompts[i].id) { %>
+								<button>Save</button>
 
-								<form action="/prompts/save/<%= prompts[i].id %>?_method=PUT" method="POST" id="save-prompt">
+							</form>
 
-									<button>Save</button>
-
-								</form>
-
-							<% } else { %>
-
-								<form action="/prompts/unsave/<%= prompts[i].id %>?_method=DELETE" method="POST" id="unsave-prompt">
-
-									<button>Unsave</button>
-
-								</form>
-
-							<% } %>
+						<% } %> 
 
 
-						<% } %>
+					<% } %> <!-- closes locals.user.savedPrompts.length (else) -->
 
-					<% } %>
+
+
+				<% } %> <!-- closes if locals.login -->
+
 
 			</h3>
-
-			<!-- <form action="/prompts/save/<%= prompts[i].id %>?_method=PUT" method="POST"><button>Favorite</button></form> -->
+									
 
 		</div>
 
-	<% } %>
+	<% } %> <!-- closes prompt for loop(i) -->
+
+
 
 
 	<!-- DISPLAY NEW PROMPT FORM -->

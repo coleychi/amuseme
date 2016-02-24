@@ -17,6 +17,7 @@ aMuseMe is a create writing web application where users can post and respond to 
 -- Users may click "random" button to view a random prompt and its responses 
 -- Users may delete their accounts. Deleting an account removes the user and their submitted responses (prompts will not be deleted)
 -- Each response has a unique page, so users can share the link to a specific response with others
+-- Save prompts to respond to later.
 
 
 

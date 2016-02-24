@@ -106,7 +106,7 @@ router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
     User.findByIdAndUpdate(req.user.id, 
       {$addToSet: {savedPrompts: prompt}}, function(err, user) {
         console.log(user);
-        res.send("done"); // this needs to be changed
+        res.redirect(req.get("referer"));
       })
   })
 })
@@ -115,7 +115,7 @@ router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
 router.delete("/unsave/:prompt_id", isLoggedIn, function(req, res) {
   User.findByIdAndUpdate(req.user.id, {$pull: {savedPrompts: {_id: req.params.prompt_id}}}, {new: true}, function(err, user) {
     console.log(user);
-    res.send("done")
+    res.redirect(req.get("referer"));
   })
 })
 
