@@ -154,6 +154,17 @@ nav li a:hover {
 	color: #f63341;
 } /* PROMPT TEXT HOVER */
 
+#save-prompt, #unsave-prompt {
+	display: inline-block;
+} /* FAVORITE BUTTON ON /PROMPTS */
+
+#save-prompt button, #unsave-prompt button {
+	background-color: #fabc00;
+	color: #ffffff;
+	padding: 0.2em 0.4em;
+	margin-left: 0.2em;	
+}
+
 .notice {
 	width: 67%;
 	background-color: #ffffff;

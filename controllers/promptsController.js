@@ -100,38 +100,24 @@ router.put("/edit/:response_id", function(req, res) {
 }); // end put route 
 
 
-// SAVE
-// this works and wont add duplicates... but i can only save the id number (model must be an empty array)
-// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
-//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
-//     User.update({_id: req.user.id}, {$addToSet: {savedPrompts: prompt.id}}, function(err, data) {
-//       console.log("hi")
-//       res.send("done")
-//     })
-//   })
-// }) 
-
-// this works... but you can push the same prompt in multiple times
-// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
-//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
-//     User.findByIdAndUpdate(req.user.id, 
-//       {$push: {"savedPrompts": {promptid: prompt.id, promptBody: prompt.promptBody}}}, function(err, user) {
-//         console.log(user);
-//         res.send("done")
-//       })
-//   })
-// })
-
+// SAVE-- adds selected prompt to user's saved prompts array
 router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
   Prompt.findById(req.params.prompt_id, function(err, prompt) {
     User.findByIdAndUpdate(req.user.id, 
       {$addToSet: {savedPrompts: prompt}}, function(err, user) {
         console.log(user);
-        res.send("done")
+        res.send("done"); // this needs to be changed
       })
   })
 })
 
+// UNSAVE-- removes selected prompt from user's saved prompts array
+router.delete("/unsave/:prompt_id", isLoggedIn, function(req, res) {
+  User.findByIdAndUpdate(req.user.id, {$pull: {savedPrompts: {_id: req.params.prompt_id}}}, {new: true}, function(err, user) {
+    console.log(user);
+    res.send("done")
+  })
+})
 
 
 // DELETE-- deletes a single response
@@ -418,6 +404,28 @@ module.exports = router;
       //   console.log(!result.length); // returns true
       //   console.log(result <= 0); // returns true
       // })
+
+// SAVE
+// this works and wont add duplicates... but i can only save the id number (model must be an empty array)
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     User.update({_id: req.user.id}, {$addToSet: {savedPrompts: prompt.id}}, function(err, data) {
+//       console.log("hi")
+//       res.send("done")
+//     })
+//   })
+// }) 
+
+// this works... but you can push the same prompt in multiple times
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     User.findByIdAndUpdate(req.user.id, 
+//       {$push: {"savedPrompts": {promptid: prompt.id, promptBody: prompt.promptBody}}}, function(err, user) {
+//         console.log(user);
+//         res.send("done")
+//       })
+//   })
+// })
 // -------------------------------------------------------------------- END SAVE ROUTE
 
 
