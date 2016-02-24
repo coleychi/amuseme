@@ -100,6 +100,28 @@ router.put("/edit/:response_id", function(req, res) {
 }); // end put route 
 
 
+// SAVE
+// this works and wont add duplicates... but i can only save the id number (model must be an empty array)
+router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+  Prompt.findById(req.params.prompt_id, function(err, prompt) {
+    User.update({_id: req.user.id}, {$addToSet: {savedPrompts: prompt.id}}, function(err, data) {
+      console.log("hi")
+      res.send("done")
+    })
+  })
+}) 
+
+// this works... but you can push the same prompt in multiple times
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     User.findByIdAndUpdate(req.user.id, 
+//       {$push: {"savedPrompts": {promptid: prompt.id, promptBody: prompt.promptBody}}}, function(err, user) {
+//         console.log(user);
+//         res.send("done")
+//       })
+//   })
+// })
+
 
 
 // DELETE-- deletes a single response
@@ -225,7 +247,7 @@ function isLoggedIn(req, res, next) {
   } else {
 
   // if they aren't redirect them to the homepage
-    res.redirect("/signup");
+    res.redirect("/users/newaccount");
 
   }; 
 };
@@ -313,5 +335,80 @@ module.exports = router;
   // });
   
   // ------------------------------------------------------------- END NEXT ROUTE CODE
+
+
+  // SAVE ROUTE-----------------------------------------------------------------------
+
+  // SAVE-- save a prompt for later
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+  // check if user has already saved prompt to savedPrompts array
+//   for (var i = 0; i < req.user.savedPrompts; i++) {
+//     console.log("hi");
+//   }
+//   console.log(req.user.savedPrompts.promptid)
+//   console.log(req.user.username)
+// })
+// this works... but you can push the same prompt in multiple times
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   console.log(req.user);
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     User.findByIdAndUpdate(req.user.id, 
+//       {$push: {"savedPrompts": prompt.id}}, function(err, user) {
+//         // console.log(user);
+//         res.send("done")
+//       })
+//   })
+// })
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     User.findById(req.user.id, function(err, user) {
+//     console.log(user.savedPrompts.indexOf(prompt.id)); // returns -1 if not there
+//     // })
+//     // access database to update
+//     User.findByIdAndUpdate(req.user.id, 
+//       {$push: {"savedPrompts": {promptid: prompt.id, promptBody: prompt.promptBody}}}, function(err, user) {
+//         console.log(user);
+//         res.send("done")
+//       })
+//   } // close if statement
+//     })
+
+//   })
+// })
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     // find the active user
+//     User.findById(req.user.id, function(err, user) {
+//       // console.log(user);
+//       console.log(user.savedPrompts.indexOf(prompt.id)); // returns -1 if not there
+//       // if prompt is not already saved, then save it
+//       // if (user.savedPrompts.indexOf(prompt.id) === -1) {
+//         // access the database (again) for update
+//         User.findByIdAndUpdate(req.user.id, 
+//           {$push: {"savedPrompts": {promptid: prompt.id, promptBody: prompt.promptBody}}}, function(err, user) {
+//           console.log(user);
+//         })
+
+//       // } 
+//     })
+//   })
+// })
+// this works... but you can push the same prompt in multiple times
+// router.put("/save/:prompt_id", isLoggedIn, function(req, res) {
+//   Prompt.findById(req.params.prompt_id, function(err, prompt) {
+//     User.findByIdAndUpdate(req.user.id, 
+//       {$push: {"savedPrompts": {promptid: prompt.id, promptBody: prompt.promptBody}}}, function(err, user) {
+//         console.log(user);
+//         res.send("done")
+//       })
+//   })
+// })
+      // User.find({savedPrompts: prompt.id}, function(err, result) {
+      //   console.log(result)
+      //   console.log(!result.length); // returns true
+      //   console.log(result <= 0); // returns true
+      // })
+// -------------------------------------------------------------------- END SAVE ROUTE
+
 
 

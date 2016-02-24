@@ -16,7 +16,12 @@ var userSchema = new mongoose.Schema({
   password: {type: String, required: true},
   about: {type: String},
   prompts: [promptSchema],
-  responses: [responseSchema]
+  responses: [responseSchema], 
+  savedPrompts: [String]
+  // savedPrompts: [{
+  //   promptid: String,
+  //   promptBody: String
+  // }]
 });
 
 
@@ -34,6 +39,7 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password); 
 };
+
 
 
 

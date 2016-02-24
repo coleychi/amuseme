@@ -19,6 +19,11 @@
 
 		<div class="prompt-listitem">
 			<h3><a href="/prompts/<%= prompts[i].id %>"><%= prompts[i].promptBody %></a></h3>
+
+			<form action="/prompts/save/<%= prompts[i].id %>?_method=PUT" method="POST"><button>Favorite</button></form>
+
+
+
 		</div>
 
 	<% } %>
